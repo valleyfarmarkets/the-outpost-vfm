@@ -8,6 +8,7 @@ export interface CabinAmenity {
 export interface Cabin {
   id: string;
   name: string;
+  guestyListingId: string;
   personalityTag: string;
   description: string;
   shortDescription: string;

@@ -34,8 +34,8 @@ async function testGuestyIntegration() {
     console.log('✅ Successfully fetched listings\n');
     console.log('📋 Listing Details:\n');
 
-    if (searchResponse.listings && searchResponse.listings.length > 0) {
-      searchResponse.listings.forEach((listing, index) => {
+    if (searchResponse.results && searchResponse.results.length > 0) {
+      searchResponse.results.forEach((listing, index) => {
         console.log(`${index + 1}. ${listing.title || listing.nickname || 'Unnamed'}`);
         console.log(`   ID: ${listing._id}`);
         console.log(`   Address: ${listing.address?.full || 'N/A'}`);

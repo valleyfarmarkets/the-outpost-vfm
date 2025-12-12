@@ -77,11 +77,22 @@ export async function GET() {
       );
     }
 
-    const searchData = await searchResponse.json();
+    const searchData = (await searchResponse.json()) as {
+      listings?: Array<{
+        _id: string;
+        title?: string;
+        nickname?: string;
+        address?: { full?: string };
+        accommodates?: number;
+        bedrooms?: number;
+        beds?: number;
+        bathrooms?: number;
+      }>;
+    };
 
     console.log('[Test Direct] ✅ Listings retrieved successfully');
 
-    const listings = searchData.listings?.map((listing: any) => ({
+    const listings = searchData.listings?.map((listing) => ({
       id: listing._id,
       title: listing.title || listing.nickname || 'Unnamed',
       address: listing.address?.full || 'N/A',

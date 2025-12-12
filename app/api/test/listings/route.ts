@@ -1,7 +1,6 @@
 import 'server-only';
 import { NextResponse } from 'next/server';
 import { guestyFetch } from '@/lib/guesty/client';
-import type { GuestySearchApiResponse } from '@/lib/guesty/types';
 
 /**
  * Test endpoint to fetch all Guesty listings
@@ -14,11 +13,22 @@ export async function GET() {
     console.log('[Test] Fetching all Guesty listings...');
 
     // Fetch all listings using Booking Engine API
-    const listingsResponse = await guestyFetch<any>('/api/listings', {
+    const listingsResponse = await guestyFetch<{
+      results?: Array<{
+        _id: string;
+        title?: string;
+        nickname?: string;
+        address?: { full?: string };
+        accommodates?: number;
+        bedrooms?: number;
+        beds?: number;
+        bathrooms?: number;
+      }>;
+    }>('/api/listings', {
       method: 'GET',
     });
 
-    const listings = listingsResponse.data?.map((listing: any) => ({
+    const listings = listingsResponse.results?.map((listing) => ({
       id: listing._id,
       title: listing.title || listing.nickname || 'Unnamed',
       address: listing.address?.full || 'N/A',

@@ -128,12 +128,20 @@ export interface GuestyReservationApiResponse {
 }
 
 export interface GuestySearchResult {
+  _id: string;
   available?: boolean;
   blockedDates?: string[];
   minNights?: number;
   maxNights?: number;
   title?: string;
+  nickname?: string;
   accommodates?: number;
+  bedrooms?: number;
+  beds?: number;
+  bathrooms?: number;
+  address?: {
+    full?: string;
+  };
 }
 
 export interface GuestySearchApiResponse {
