@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { NAV_LINKS } from "@/lib/constants";
@@ -12,9 +13,13 @@ export function Footer() {
       <Container>
         <div className="grid gap-8 py-12 md:grid-cols-3">
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-brand-primary">
-              The Outpost VFM
-            </h3>
+            <Image
+              src="/images/outpost_logo_2.svg"
+              alt="The Outpost VFM"
+              width={150}
+              height={40}
+              className="mb-4 h-8 w-auto"
+            />
             <p className="text-sm text-gray-600">{siteInfo.tagline}</p>
           </div>
 

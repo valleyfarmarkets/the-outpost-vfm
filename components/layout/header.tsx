@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Navigation } from "./navigation";
 import { MobileMenu } from "./mobile-menu";
@@ -9,9 +10,14 @@ export function Header() {
       <Container>
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-brand-primary">
-              The Outpost VFM
-            </span>
+            <Image
+              src="/images/outpost_logo_2.svg"
+              alt="The Outpost VFM"
+              width={180}
+              height={50}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           <Navigation className="hidden lg:flex" />
