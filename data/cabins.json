@@ -1,0 +1,93 @@
+{
+  "cabins": [
+    {
+      "id": "pine-cabin",
+      "name": "Pine Cabin",
+      "description": "Cozy one-bedroom cabin perfect for couples or small families. Features a full kitchen, wood-burning fireplace, and private deck with mountain views. Located just steps from the restaurant.",
+      "shortDescription": "Intimate one-bedroom retreat with fireplace and mountain views",
+      "capacity": 4,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "images": [
+        "/images/cabins/pine-1.jpg",
+        "/images/cabins/pine-2.jpg",
+        "/images/cabins/pine-3.jpg"
+      ],
+      "amenities": [
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "tv", "label": "TV" },
+        { "icon": "kitchen", "label": "Full Kitchen" },
+        { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "parking", "label": "Parking" }
+      ],
+      "priceRange": {
+        "min": 150,
+        "max": 200,
+        "unit": "night"
+      },
+      "available": true
+    },
+    {
+      "id": "cedar-cabin",
+      "name": "Cedar Cabin",
+      "description": "Spacious two-bedroom cabin ideal for families or groups. Features two bathrooms, full kitchen, living room with fireplace, and large deck. Sleeps up to 6 guests comfortably.",
+      "shortDescription": "Family-friendly two-bedroom cabin with modern amenities",
+      "capacity": 6,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "images": [
+        "/images/cabins/cedar-1.jpg",
+        "/images/cabins/cedar-2.jpg",
+        "/images/cabins/cedar-3.jpg",
+        "/images/cabins/cedar-4.jpg"
+      ],
+      "amenities": [
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "tv", "label": "TV" },
+        { "icon": "kitchen", "label": "Full Kitchen" },
+        { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "parking", "label": "Parking" },
+        { "icon": "grill", "label": "BBQ Grill" }
+      ],
+      "priceRange": {
+        "min": 200,
+        "max": 275,
+        "unit": "night"
+      },
+      "available": true
+    },
+    {
+      "id": "summit-cabin",
+      "name": "Summit Cabin",
+      "description": "Our largest cabin with three bedrooms and two bathrooms. Perfect for large families or groups up to 8 people. Features include full kitchen, spacious living area with fireplace, wrap-around deck, and stunning panoramic mountain views.",
+      "shortDescription": "Luxury three-bedroom cabin with panoramic mountain views",
+      "capacity": 8,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "images": [
+        "/images/cabins/summit-1.jpg",
+        "/images/cabins/summit-2.jpg",
+        "/images/cabins/summit-3.jpg",
+        "/images/cabins/summit-4.jpg",
+        "/images/cabins/summit-5.jpg"
+      ],
+      "amenities": [
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "tv", "label": "TV" },
+        { "icon": "kitchen", "label": "Full Kitchen" },
+        { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "parking", "label": "Parking" },
+        { "icon": "grill", "label": "BBQ Grill" },
+        { "icon": "hottub", "label": "Hot Tub" }
+      ],
+      "priceRange": {
+        "min": 300,
+        "max": 400,
+        "unit": "night"
+      },
+      "available": true
+    }
+  ],
+  "bookingUrl": "https://www.airbnb.com/rooms/example",
+  "bookingPhone": "(619) 473-8341"
+}

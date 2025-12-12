@@ -1,0 +1,108 @@
+{
+  "categories": [
+    {
+      "id": "breakfast",
+      "name": "Breakfast",
+      "description": "Served weekends 9 AM - 11 AM",
+      "displayOrder": 1,
+      "items": [
+        {
+          "id": "pancakes",
+          "name": "Mountain Pancakes",
+          "description": "Fluffy buttermilk pancakes served with warm maple syrup and butter",
+          "price": 12.99,
+          "image": "/images/menu/pancakes.jpg",
+          "dietaryTags": ["vegetarian"],
+          "available": true,
+          "featured": true
+        },
+        {
+          "id": "breakfast-burrito",
+          "name": "Sunrise Burrito",
+          "description": "Scrambled eggs, cheese, potatoes, and your choice of bacon or sausage wrapped in a flour tortilla",
+          "price": 11.99,
+          "image": "/images/menu/burrito.jpg",
+          "available": true
+        },
+        {
+          "id": "french-toast",
+          "name": "Trail French Toast",
+          "description": "Thick-cut brioche bread with cinnamon, served with fresh berries",
+          "price": 13.99,
+          "image": "/images/menu/french-toast.jpg",
+          "dietaryTags": ["vegetarian"],
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "lunch",
+      "name": "Lunch & Dinner",
+      "description": "Available all day",
+      "displayOrder": 2,
+      "items": [
+        {
+          "id": "burger",
+          "name": "Outpost Burger",
+          "description": "Half-pound angus beef patty with lettuce, tomato, onion, and special sauce. Served with fries",
+          "price": 16.99,
+          "image": "/images/menu/burger.jpg",
+          "available": true,
+          "featured": true
+        },
+        {
+          "id": "fish-tacos",
+          "name": "Baja Fish Tacos",
+          "description": "Three crispy fish tacos with cabbage slaw, pico de gallo, and chipotle aioli",
+          "price": 15.99,
+          "image": "/images/menu/fish-tacos.jpg",
+          "available": true
+        },
+        {
+          "id": "veggie-wrap",
+          "name": "Mountain Veggie Wrap",
+          "description": "Grilled vegetables, hummus, mixed greens, and feta cheese in a spinach tortilla",
+          "price": 13.99,
+          "image": "/images/menu/veggie-wrap.jpg",
+          "dietaryTags": ["vegetarian"],
+          "available": true
+        },
+        {
+          "id": "steak-sandwich",
+          "name": "Grilled Steak Sandwich",
+          "description": "Sliced ribeye with caramelized onions, mushrooms, and Swiss cheese on a toasted hoagie roll",
+          "price": 18.99,
+          "image": "/images/menu/steak-sandwich.jpg",
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "name": "Desserts",
+      "description": "Sweet treats to finish your meal",
+      "displayOrder": 3,
+      "items": [
+        {
+          "id": "pie",
+          "name": "Homemade Pie",
+          "description": "Ask your server for today's selection",
+          "price": 7.99,
+          "image": "/images/menu/pie.jpg",
+          "dietaryTags": ["vegetarian"],
+          "available": true
+        },
+        {
+          "id": "brownie",
+          "name": "Chocolate Brownie Sundae",
+          "description": "Warm chocolate brownie topped with vanilla ice cream, whipped cream, and chocolate sauce",
+          "price": 8.99,
+          "image": "/images/menu/brownie.jpg",
+          "dietaryTags": ["vegetarian"],
+          "available": true
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2025-01-15"
+}

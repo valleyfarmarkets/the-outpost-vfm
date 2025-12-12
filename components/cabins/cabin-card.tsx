@@ -1,0 +1,83 @@
+import { Users, Bed, Bath } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { formatPrice } from "@/lib/utils";
+import type { Cabin } from "@/types/cabins";
+
+interface CabinCardProps {
+  cabin: Cabin;
+  bookingUrl: string;
+}
+
+export function CabinCard({ cabin, bookingUrl }: CabinCardProps) {
+  return (
+    <Card hover>
+      <div>
+        <h3 className="text-2xl font-bold text-gray-900">{cabin.name}</h3>
+        <p className="mt-2 text-sm text-gray-600">{cabin.description}</p>
+
+        <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-600">
+          <div className="flex items-center">
+            <Users className="mr-1.5 h-4 w-4 text-brand-primary" />
+            <span>Sleeps {cabin.capacity}</span>
+          </div>
+          <div className="flex items-center">
+            <Bed className="mr-1.5 h-4 w-4 text-brand-primary" />
+            <span>
+              {cabin.bedrooms} Bedroom{cabin.bedrooms > 1 ? "s" : ""}
+            </span>
+          </div>
+          <div className="flex items-center">
+            <Bath className="mr-1.5 h-4 w-4 text-brand-primary" />
+            <span>
+              {cabin.bathrooms} Bathroom{cabin.bathrooms > 1 ? "s" : ""}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {cabin.amenities.slice(0, 5).map((amenity) => (
+            <span
+              key={amenity.label}
+              className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
+            >
+              {amenity.label}
+            </span>
+          ))}
+          {cabin.amenities.length > 5 && (
+            <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+              +{cabin.amenities.length - 5} more
+            </span>
+          )}
+        </div>
+
+        <div className="mt-6 flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600">Price Range</p>
+            <p className="text-xl font-bold text-brand-primary">
+              {formatPrice(cabin.priceRange.min)} -{" "}
+              {formatPrice(cabin.priceRange.max)}
+            </p>
+            <p className="text-xs text-gray-500">per {cabin.priceRange.unit}</p>
+          </div>
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Button>Book Now</Button>
+          </a>
+        </div>
+
+        {!cabin.available && (
+          <div className="mt-4 rounded-md bg-orange-50 p-3">
+            <p className="text-sm font-medium text-orange-800">
+              Currently unavailable for booking
+            </p>
+          </div>
+        )}
+      </div>
+    </Card>
+  );
+}

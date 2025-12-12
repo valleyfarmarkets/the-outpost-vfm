@@ -1,0 +1,53 @@
+{
+  "upcoming": [
+    {
+      "id": "bluegrass-night-jan",
+      "title": "Bluegrass Night",
+      "artist": "The Mountain String Band",
+      "date": "2025-01-25",
+      "startTime": "18:00",
+      "endTime": "21:00",
+      "description": "Join us for an evening of traditional bluegrass music featuring The Mountain String Band. Enjoy great food, drinks, and live music under the stars.",
+      "image": "/images/events/bluegrass.jpg",
+      "genre": "Bluegrass",
+      "featured": true
+    },
+    {
+      "id": "acoustic-feb",
+      "title": "Acoustic Sunday",
+      "artist": "Sarah Chen",
+      "date": "2025-02-02",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "description": "Relax with acoustic guitar and vocals by local favorite Sarah Chen. Perfect afternoon entertainment for the whole family.",
+      "image": "/images/events/acoustic.jpg",
+      "genre": "Folk",
+      "featured": false
+    },
+    {
+      "id": "country-night-feb",
+      "title": "Country Night",
+      "artist": "Dusty Roads Band",
+      "date": "2025-02-14",
+      "startTime": "19:00",
+      "endTime": "22:00",
+      "description": "Celebrate Valentine's Day with classic and modern country music from Dusty Roads Band.",
+      "image": "/images/events/country.jpg",
+      "genre": "Country",
+      "featured": false
+    },
+    {
+      "id": "jazz-night-feb",
+      "title": "Mountain Jazz",
+      "artist": "The Laguna Jazz Trio",
+      "date": "2025-02-22",
+      "startTime": "18:00",
+      "endTime": "21:00",
+      "description": "Smooth jazz in the mountains. The Laguna Jazz Trio brings their sophisticated sound to The Outpost.",
+      "image": "/images/events/jazz.jpg",
+      "genre": "Jazz",
+      "featured": true
+    }
+  ],
+  "past": []
+}

@@ -1,0 +1,31 @@
+{
+  "businessName": "The Outpost VFM",
+  "tagline": "Mountain Restaurant & Cabins in Mount Laguna",
+  "hours": [
+    { "day": "Monday", "closed": true },
+    { "day": "Tuesday", "closed": true },
+    { "day": "Wednesday", "open": "11:00 AM", "close": "8:00 PM" },
+    { "day": "Thursday", "open": "11:00 AM", "close": "8:00 PM" },
+    { "day": "Friday", "open": "11:00 AM", "close": "9:00 PM" },
+    { "day": "Saturday", "open": "9:00 AM", "close": "9:00 PM" },
+    { "day": "Sunday", "open": "9:00 AM", "close": "8:00 PM" }
+  ],
+  "contact": {
+    "phone": "(619) 473-8341",
+    "email": "info@theoutpostvfm.com",
+    "address": {
+      "street": "10608 Sunrise Hwy",
+      "city": "Mount Laguna",
+      "state": "CA",
+      "zip": "91948",
+      "coordinates": {
+        "lat": 32.8642,
+        "lng": -116.4272
+      }
+    }
+  },
+  "social": {
+    "facebook": "https://facebook.com/theoutpostvfm",
+    "instagram": "https://instagram.com/theoutpostvfm"
+  }
+}
