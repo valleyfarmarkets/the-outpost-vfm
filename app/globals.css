@@ -5,6 +5,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* The Outpost Brand Colors */
+  --outpost-red: #D64439;
+  --terracotta: #CC7F32;
+  --harvest-gold: #D9A441;
+  --sunflower: #F5A623;
+  --charcoal: #2C2C2C;
+  --warm-lodge-cream: #F6F1E7;
 }
 
 @media (prefers-color-scheme: dark) {
