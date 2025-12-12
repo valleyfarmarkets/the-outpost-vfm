@@ -5,9 +5,33 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
-import menuData from "@/data/menu.json";
-import cabinsData from "@/data/cabins.json";
+import rawMenuData from "@/data/menu.json";
+import rawCabinsData from "@/data/cabins.json";
 import eventsData from "@/data/events.json";
+import type { DietaryTag, MenuData } from "@/types/menu";
+import type { CabinData } from "@/types/cabins";
+
+const menuData: MenuData = {
+  ...rawMenuData,
+  categories: rawMenuData.categories.map((category) => ({
+    ...category,
+    items: category.items.map((item) => ({
+      ...item,
+      dietaryTags: item.dietaryTags as DietaryTag[] | undefined,
+    })),
+  })),
+};
+
+const cabinsData: CabinData = {
+  ...rawCabinsData,
+  cabins: rawCabinsData.cabins.map((cabin) => ({
+    ...cabin,
+    priceRange: {
+      ...cabin.priceRange,
+      unit: cabin.priceRange.unit as CabinData["cabins"][number]["priceRange"]["unit"],
+    },
+  })),
+};
 
 export function FeaturedHighlights() {
   // Get featured items

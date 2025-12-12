@@ -1,0 +1,64 @@
+{
+  "faqs": [
+    {
+      "question": "Are any of your cabins pet-friendly?",
+      "answer": "Yes! Whispering Pines Studio welcomes well-behaved pets with a small additional fee of $25 per night. We ask that pets be kept on a leash when outside and that you clean up after them. Please note that our other cabins maintain a no-pet policy to accommodate guests with allergies.",
+      "category": "policies",
+      "order": 1
+    },
+    {
+      "question": "Do your cabins have fireplaces?",
+      "answer": "Four of our five cabins feature cozy wood-burning fireplaces perfect for mountain evenings. Trailhead Haven, Summit's Edge Lodge, Eagle's Nest Retreat, and Stargazer's Sanctuary all include fireplaces. We provide starter firewood, and additional bundles are available for purchase at the restaurant. Whispering Pines Studio has efficient heating but does not include a fireplace.",
+      "category": "amenities",
+      "order": 2
+    },
+    {
+      "question": "How far are the cabins from San Diego?",
+      "answer": "The Outpost VFM is located in Mount Laguna, approximately 50 miles east of downtown San Diego. The scenic drive takes about 1 hour via Interstate 8 and Sunrise Highway. You'll climb from sea level to 6,000 feet elevation, passing through diverse landscapes from desert to pine forest. It's close enough for a quick weekend escape, yet feels worlds away from the city.",
+      "category": "location",
+      "order": 3
+    },
+    {
+      "question": "What is your cancellation policy?",
+      "answer": "We offer flexible cancellation up to 7 days before your check-in date for a full refund. Cancellations made within 7 days of check-in will receive a 50% refund. No-shows and same-day cancellations are non-refundable. We understand that plans change and will work with you to reschedule when possible, especially in cases of severe weather or emergencies.",
+      "category": "booking",
+      "order": 4
+    },
+    {
+      "question": "What are the check-in and check-out times?",
+      "answer": "Check-in time is 3:00 PM and check-out is 11:00 AM. Early check-in or late check-out may be available upon request and subject to availability - please call us at (619) 473-8341 to inquire. If you'll be arriving after 7:00 PM, please let us know so we can arrange for your cabin key pickup at the restaurant.",
+      "category": "booking",
+      "order": 5
+    },
+    {
+      "question": "What should I bring for my stay?",
+      "answer": "We provide all linens, towels, basic toiletries, a fully equipped kitchen, and starter firewood. We recommend bringing your own food and beverages (though our restaurant is right here!), layered clothing for changing mountain weather, hiking boots if you plan to explore trails, sunscreen and sunglasses for daytime, and warm jackets for cool evenings - even in summer, temperatures can drop significantly at this elevation.",
+      "category": "amenities",
+      "order": 6
+    },
+    {
+      "question": "What activities are available in Mount Laguna?",
+      "answer": "Mount Laguna offers year-round outdoor recreation in Cleveland National Forest. Popular activities include hiking the Desert View Trail and other scenic paths, stargazing in one of Southern California's darkest sky areas, mountain biking on forest roads, bird watching, and picnicking in Laguna Mountain Recreation Area. Winter brings opportunities for snow play and sledding. The Pacific Crest Trail is easily accessible for day hikes or meeting thru-hikers.",
+      "category": "location",
+      "order": 7
+    },
+    {
+      "question": "Is cell phone service available?",
+      "answer": "Cell phone coverage in Mount Laguna can be spotty depending on your carrier. Verizon and AT&T generally have the best service, though signal strength varies by location. All our cabins include high-speed WiFi, so you can stay connected through internet calling and messaging if needed. Many guests appreciate the opportunity to truly unplug and enjoy the mountain experience!",
+      "category": "amenities",
+      "order": 8
+    },
+    {
+      "question": "Can the cabins accommodate large groups or events?",
+      "answer": "Our largest cabin, Eagle's Nest Retreat, sleeps up to 8 guests comfortably with three bedrooms. For larger groups, you can book multiple cabins - they're all located on the same property near our restaurant. We can accommodate small family reunions and gatherings. However, we do not permit large parties or events. Please contact us directly at (619) 473-8341 to discuss your group's specific needs.",
+      "category": "policies",
+      "order": 9
+    },
+    {
+      "question": "What is the weather like in Mount Laguna throughout the year?",
+      "answer": "At 6,000 feet elevation, Mount Laguna has four distinct seasons. Summer (June-September) brings pleasant daytime temperatures of 70-80°F with cool evenings dropping to 40-50°F. Fall showcases beautiful foliage with crisp, clear days. Winter (December-March) can bring snow and freezing temperatures - perfect for cozy cabin stays. Spring offers wildflower blooms and mild weather. We recommend checking current conditions before your visit and packing layers regardless of season.",
+      "category": "location",
+      "order": 10
+    }
+  ]
+}

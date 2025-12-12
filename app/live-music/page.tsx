@@ -43,7 +43,7 @@ export default function LiveMusicPage() {
             Interested in Performing?
           </h2>
           <p className="mt-2 text-gray-600">
-            We're always looking for talented musicians to perform at The
+            We&apos;re always looking for talented musicians to perform at The
             Outpost
           </p>
           <p className="mt-4">

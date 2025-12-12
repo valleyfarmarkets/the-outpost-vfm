@@ -1,13 +1,17 @@
 {
   "cabins": [
     {
-      "id": "pine-cabin",
-      "name": "Pine Cabin",
-      "description": "Cozy one-bedroom cabin perfect for couples or small families. Features a full kitchen, wood-burning fireplace, and private deck with mountain views. Located just steps from the restaurant.",
+      "id": "trailhead-haven",
+      "name": "Trailhead Haven",
+      "personalityTag": "Romantic Escape",
+      "description": "Cozy one-bedroom cabin perfect for couples or small families. Features a full kitchen, wood-burning fireplace, and private deck with mountain views. Located just steps from the restaurant and hiking trails.",
       "shortDescription": "Intimate one-bedroom retreat with fireplace and mountain views",
       "capacity": 4,
       "bedrooms": 1,
       "bathrooms": 1,
+      "petFriendly": false,
+      "hasFireplace": true,
+      "featured": false,
       "images": [
         "/images/cabins/pine-1.jpg",
         "/images/cabins/pine-2.jpg",
@@ -28,13 +32,17 @@
       "available": true
     },
     {
-      "id": "cedar-cabin",
-      "name": "Cedar Cabin",
-      "description": "Spacious two-bedroom cabin ideal for families or groups. Features two bathrooms, full kitchen, living room with fireplace, and large deck. Sleeps up to 6 guests comfortably.",
+      "id": "summits-edge-lodge",
+      "name": "Summit's Edge Lodge",
+      "personalityTag": "Family Hub",
+      "description": "Spacious two-bedroom cabin ideal for families or groups. Features two bathrooms, full kitchen, living room with fireplace, and large deck. Sleeps up to 6 guests comfortably with room to spread out.",
       "shortDescription": "Family-friendly two-bedroom cabin with modern amenities",
       "capacity": 6,
       "bedrooms": 2,
       "bathrooms": 2,
+      "petFriendly": false,
+      "hasFireplace": true,
+      "featured": false,
       "images": [
         "/images/cabins/cedar-1.jpg",
         "/images/cabins/cedar-2.jpg",
@@ -57,13 +65,17 @@
       "available": true
     },
     {
-      "id": "summit-cabin",
-      "name": "Summit Cabin",
-      "description": "Our largest cabin with three bedrooms and two bathrooms. Perfect for large families or groups up to 8 people. Features include full kitchen, spacious living area with fireplace, wrap-around deck, and stunning panoramic mountain views.",
-      "shortDescription": "Luxury three-bedroom cabin with panoramic mountain views",
+      "id": "eagles-nest-retreat",
+      "name": "Eagle's Nest Retreat",
+      "personalityTag": "Luxury Getaway",
+      "description": "Our largest and most luxurious cabin with three bedrooms and two bathrooms. Perfect for large families or groups up to 8 people. Features include full kitchen, spacious living area with fireplace, wrap-around deck, private hot tub, and stunning panoramic mountain views.",
+      "shortDescription": "Luxury three-bedroom cabin with hot tub and panoramic views",
       "capacity": 8,
       "bedrooms": 3,
       "bathrooms": 2,
+      "petFriendly": false,
+      "hasFireplace": true,
+      "featured": true,
       "images": [
         "/images/cabins/summit-1.jpg",
         "/images/cabins/summit-2.jpg",
@@ -83,6 +95,70 @@
       "priceRange": {
         "min": 300,
         "max": 400,
+        "unit": "night"
+      },
+      "available": true
+    },
+    {
+      "id": "whispering-pines-studio",
+      "name": "Whispering Pines Studio",
+      "personalityTag": "Pet-Friendly Haven",
+      "description": "Charming studio cabin perfect for couples or solo travelers with furry friends. This pet-friendly retreat features a full kitchen, comfortable queen bed, and cozy living space. Efficient heating keeps you warm, and the private deck offers forest views. Your four-legged companions are welcome here!",
+      "shortDescription": "Cozy pet-friendly studio with all the essentials",
+      "capacity": 2,
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "petFriendly": true,
+      "hasFireplace": false,
+      "featured": false,
+      "images": [
+        "/images/cabins/whispering-1.jpg",
+        "/images/cabins/whispering-2.jpg"
+      ],
+      "amenities": [
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "tv", "label": "TV" },
+        { "icon": "kitchen", "label": "Full Kitchen" },
+        { "icon": "parking", "label": "Parking" },
+        { "icon": "paw", "label": "Pet Friendly" }
+      ],
+      "priceRange": {
+        "min": 125,
+        "max": 175,
+        "unit": "night"
+      },
+      "available": true
+    },
+    {
+      "id": "stargazers-sanctuary",
+      "name": "Stargazer's Sanctuary",
+      "personalityTag": "Astronomer's Dream",
+      "description": "Two-bedroom cabin designed for those who love the night sky. Features a premium wrap-around deck with unobstructed views, perfect for astronomy and stargazing. Includes full kitchen, wood-burning fireplace, private hot tub, and telescope-friendly outdoor space. Located on the quietest part of our property for minimal light pollution.",
+      "shortDescription": "Premium two-bedroom cabin with exceptional stargazing deck",
+      "capacity": 6,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "petFriendly": false,
+      "hasFireplace": true,
+      "featured": false,
+      "images": [
+        "/images/cabins/stargazer-1.jpg",
+        "/images/cabins/stargazer-2.jpg",
+        "/images/cabins/stargazer-3.jpg"
+      ],
+      "amenities": [
+        { "icon": "wifi", "label": "WiFi" },
+        { "icon": "tv", "label": "TV" },
+        { "icon": "kitchen", "label": "Full Kitchen" },
+        { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "parking", "label": "Parking" },
+        { "icon": "grill", "label": "BBQ Grill" },
+        { "icon": "hottub", "label": "Hot Tub" },
+        { "icon": "telescope", "label": "Stargazing Deck" }
+      ],
+      "priceRange": {
+        "min": 225,
+        "max": 325,
         "unit": "night"
       },
       "available": true

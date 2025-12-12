@@ -1,48 +1,34 @@
-import { Phone } from "lucide-react";
-import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
-import { CabinCard } from "@/components/cabins/cabin-card";
-import cabinsData from "@/data/cabins.json";
+import { CabinsHero } from "@/components/cabins/cabins-hero";
+import { CabinsIntro } from "@/components/cabins/cabins-intro";
+import { CabinGrid } from "@/components/cabins/cabin-grid";
+import { LocationExperience } from "@/components/cabins/location-experience";
+import { AmenitiesOverview } from "@/components/cabins/amenities-overview";
+import { CabinFAQ } from "@/components/cabins/cabin-faq";
+import { CabinCTAFooter } from "@/components/cabins/cabin-cta-footer";
 
 export default function CabinsPage() {
   return (
-    <Section>
-      <Container>
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Our Cabins
-          </h1>
-          <p className="mt-4 text-lg text-gray-600">
-            Cozy mountain retreats with modern amenities and stunning views
-          </p>
-        </div>
+    <>
+      {/* 1. Hero Section */}
+      <CabinsHero />
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          {cabinsData.cabins.map((cabin) => (
-            <CabinCard
-              key={cabin.id}
-              cabin={cabin}
-              bookingUrl={cabinsData.bookingUrl}
-            />
-          ))}
-        </div>
+      {/* 2. Intro Paragraph */}
+      <CabinsIntro />
 
-        <div className="mt-12 rounded-lg bg-brand-primary/10 p-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900">
-            Questions About Booking?
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Call us directly to check availability and make reservations
-          </p>
-          <a
-            href={`tel:${cabinsData.bookingPhone}`}
-            className="mt-4 inline-flex items-center text-lg font-semibold text-brand-primary hover:text-brand-primary/80"
-          >
-            <Phone className="mr-2 h-5 w-5" />
-            {cabinsData.bookingPhone}
-          </a>
-        </div>
-      </Container>
-    </Section>
+      {/* 3. Cabin Grid */}
+      <CabinGrid />
+
+      {/* 4. Location & Experience */}
+      <LocationExperience />
+
+      {/* 5. Amenities Overview */}
+      <AmenitiesOverview />
+
+      {/* 6. FAQ Section */}
+      <CabinFAQ />
+
+      {/* 7. Final CTA + Trust Signals */}
+      <CabinCTAFooter />
+    </>
   );
 }

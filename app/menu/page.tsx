@@ -1,7 +1,19 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { MenuCategory } from "@/components/menu/menu-category";
-import menuData from "@/data/menu.json";
+import rawMenuData from "@/data/menu.json";
+import type { DietaryTag, MenuData } from "@/types/menu";
+
+const menuData: MenuData = {
+  ...rawMenuData,
+  categories: rawMenuData.categories.map((category) => ({
+    ...category,
+    items: category.items.map((item) => ({
+      ...item,
+      dietaryTags: item.dietaryTags as DietaryTag[] | undefined,
+    })),
+  })),
+};
 
 export default function MenuPage() {
   const sortedCategories = [...menuData.categories].sort(

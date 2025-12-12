@@ -68,8 +68,8 @@ export function ContactForm() {
     <Card>
       <h2 className="text-2xl font-bold text-gray-900">Send Us a Message</h2>
       <p className="mt-2 text-sm text-gray-600">
-        Have a question or comment? Fill out the form below and we'll get back
-        to you as soon as possible.
+        Have a question or comment? Fill out the form below and we&apos;ll get
+        back to you as soon as possible.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -181,7 +181,7 @@ export function ContactForm() {
         {submitStatus === "success" && (
           <div className="rounded-md bg-green-50 p-4">
             <p className="text-sm font-medium text-green-800">
-              Thank you for your message! We'll be in touch soon.
+              Thank you for your message! We&apos;ll be in touch soon.
             </p>
           </div>
         )}

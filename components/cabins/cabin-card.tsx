@@ -1,19 +1,54 @@
-import { Users, Bed, Bath } from "lucide-react";
+import { Users, Bed, Bath, Flame, PawPrint, Award } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
 import type { Cabin } from "@/types/cabins";
 
 interface CabinCardProps {
   cabin: Cabin;
   bookingUrl: string;
+  featured?: boolean;
 }
 
-export function CabinCard({ cabin, bookingUrl }: CabinCardProps) {
+export function CabinCard({ cabin, bookingUrl, featured = false }: CabinCardProps) {
   return (
     <Card hover>
       <div>
-        <h3 className="text-2xl font-bold text-gray-900">{cabin.name}</h3>
+        {/* Header with Badges */}
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <h3 className="text-2xl font-bold text-gray-900">{cabin.name}</h3>
+          <div className="flex flex-wrap gap-2">
+            {featured && (
+              <Badge variant="orange" className="flex items-center gap-1">
+                <Award className="h-3 w-3" />
+                Featured
+              </Badge>
+            )}
+            {cabin.personalityTag && (
+              <Badge variant="blue">{cabin.personalityTag}</Badge>
+            )}
+          </div>
+        </div>
+
+        {/* Icons for Pet-Friendly and Fireplace */}
+        {(cabin.petFriendly || cabin.hasFireplace) && (
+          <div className="flex gap-3 mb-2">
+            {cabin.petFriendly && (
+              <div className="flex items-center gap-1 text-sm text-brand-primary">
+                <PawPrint className="h-4 w-4" />
+                <span className="font-medium">Pet-Friendly</span>
+              </div>
+            )}
+            {cabin.hasFireplace && (
+              <div className="flex items-center gap-1 text-sm text-brand-accent">
+                <Flame className="h-4 w-4" />
+                <span className="font-medium">Fireplace</span>
+              </div>
+            )}
+          </div>
+        )}
+
         <p className="mt-2 text-sm text-gray-600">{cabin.description}</p>
 
         <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-600">

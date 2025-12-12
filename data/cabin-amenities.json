@@ -1,0 +1,91 @@
+{
+  "universalAmenities": [
+    {
+      "id": "wifi",
+      "label": "High-Speed WiFi",
+      "icon": "Wifi",
+      "category": "connectivity",
+      "description": "Stay connected with complimentary high-speed internet"
+    },
+    {
+      "id": "parking",
+      "label": "Free Parking",
+      "icon": "ParkingCircle",
+      "category": "outdoor",
+      "description": "Ample parking space right outside your cabin"
+    },
+    {
+      "id": "kitchen",
+      "label": "Full Kitchen",
+      "icon": "ChefHat",
+      "category": "indoor",
+      "description": "Cook your own meals with a fully equipped kitchen"
+    },
+    {
+      "id": "heating",
+      "label": "Heating",
+      "icon": "Thermometer",
+      "category": "comfort",
+      "description": "Stay warm year-round with efficient heating"
+    },
+    {
+      "id": "linens",
+      "label": "Fresh Linens & Towels",
+      "icon": "Shirt",
+      "category": "comfort",
+      "description": "Crisp, clean linens and towels provided"
+    }
+  ],
+  "premiumAmenities": [
+    {
+      "id": "fireplace",
+      "label": "Wood-Burning Fireplace",
+      "icon": "Flame",
+      "category": "indoor",
+      "description": "Cozy up by a crackling fire on mountain evenings"
+    },
+    {
+      "id": "hottub",
+      "label": "Private Hot Tub",
+      "icon": "Waves",
+      "category": "outdoor",
+      "description": "Relax under the stars in your own hot tub"
+    },
+    {
+      "id": "grill",
+      "label": "BBQ Grill",
+      "icon": "Utensils",
+      "category": "outdoor",
+      "description": "Outdoor grilling for the perfect mountain cookout"
+    },
+    {
+      "id": "deck",
+      "label": "Private Deck",
+      "icon": "Home",
+      "category": "outdoor",
+      "description": "Spacious outdoor deck with mountain views"
+    }
+  ],
+  "categories": [
+    {
+      "id": "connectivity",
+      "label": "Connectivity",
+      "description": "Stay connected during your mountain getaway"
+    },
+    {
+      "id": "indoor",
+      "label": "Indoor Comforts",
+      "description": "Modern amenities for a comfortable stay"
+    },
+    {
+      "id": "outdoor",
+      "label": "Outdoor Features",
+      "description": "Enjoy the mountain environment"
+    },
+    {
+      "id": "comfort",
+      "label": "Comfort & Convenience",
+      "description": "Everything you need for a relaxing retreat"
+    }
+  ]
+}

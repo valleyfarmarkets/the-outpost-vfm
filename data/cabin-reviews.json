@@ -1,0 +1,71 @@
+{
+  "reviewsSnippet": {
+    "averageRating": 4.8,
+    "totalReviews": 127,
+    "ratingBreakdown": {
+      "5": 98,
+      "4": 23,
+      "3": 4,
+      "2": 1,
+      "1": 1
+    },
+    "highlights": [
+      {
+        "author": "Sarah M.",
+        "location": "San Diego, CA",
+        "rating": 5,
+        "snippet": "The perfect mountain getaway! Our cabin was immaculate and the fireplace created such a cozy atmosphere. Waking up to pine trees and bird songs was magical. The restaurant next door is a huge bonus - their breakfast is incredible. We'll definitely be back!",
+        "date": "2024-11-15",
+        "cabin": "Eagle's Nest Retreat"
+      },
+      {
+        "author": "Michael R.",
+        "location": "La Jolla, CA",
+        "rating": 5,
+        "snippet": "Best stargazing we've ever experienced! The elevation and dark skies make it perfect for astronomy. The cabin had everything we needed, and being so close to hiking trails was ideal. Our kids loved exploring the forest. Highly recommend for families looking to unplug.",
+        "date": "2024-10-28",
+        "cabin": "Summit's Edge Lodge"
+      },
+      {
+        "author": "Jennifer L.",
+        "location": "El Cajon, CA",
+        "rating": 5,
+        "snippet": "Such a peaceful retreat from city life. The hot tub under the stars was absolutely worth it! Staff was friendly and responsive. The cabin was clean, well-maintained, and had all the amenities we needed. Perfect anniversary getaway - we felt like we'd traveled much farther than an hour from home!",
+        "date": "2024-09-22",
+        "cabin": "Stargazer's Sanctuary"
+      }
+    ]
+  },
+  "trustSignals": [
+    {
+      "icon": "Shield",
+      "label": "Verified Property",
+      "description": "Licensed & fully insured mountain lodging"
+    },
+    {
+      "icon": "Clock",
+      "label": "Instant Confirmation",
+      "description": "Book online or call for immediate confirmation"
+    },
+    {
+      "icon": "Phone",
+      "label": "Local Support",
+      "description": "On-site team available 7 days a week"
+    },
+    {
+      "icon": "Award",
+      "label": "Top Rated",
+      "description": "4.8+ stars from over 127 guest reviews"
+    },
+    {
+      "icon": "Heart",
+      "label": "Locally Owned",
+      "description": "Family-operated since our establishment"
+    },
+    {
+      "icon": "CheckCircle",
+      "label": "Flexible Policies",
+      "description": "7-day cancellation with full refund"
+    }
+  ]
+}

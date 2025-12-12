@@ -12,9 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         brand: {
-          primary: "#8B4513", // Saddle brown
-          secondary: "#2F4F4F", // Dark slate gray
-          accent: "#D2691E", // Chocolate
+          primary: "var(--outpost-red)", // Primary CTAs, links, pricing
+          secondary: "var(--charcoal)", // Dark text, overlays
+          accent: "var(--harvest-gold)", // Highlights, badges
+          terracotta: "var(--terracotta)", // Warm accents
+          sunflower: "var(--sunflower)", // Bright accents
+          cream: "var(--warm-lodge-cream)", // Light backgrounds
         },
       },
     },

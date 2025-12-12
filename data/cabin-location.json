@@ -1,0 +1,91 @@
+{
+  "location": {
+    "headline": "Your Mountain Escape in Mount Laguna",
+    "description": "Nestled at 6,000 feet elevation in the heart of Cleveland National Forest, The Outpost VFM offers a perfect blend of wilderness beauty and accessibility. Just an hour's drive from downtown San Diego, our cabins provide a tranquil retreat surrounded by towering pines, crisp mountain air, and some of Southern California's darkest skies for stargazing. Experience the magic of the mountains without venturing far from home.",
+    "coordinates": {
+      "lat": 32.8642,
+      "lng": -116.4272
+    },
+    "address": {
+      "street": "10608 Sunrise Highway",
+      "city": "Mount Laguna",
+      "state": "CA",
+      "zip": "91948"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3367.123!2d-116.4272!3d32.8642"
+  },
+  "nearbyAttractions": [
+    {
+      "name": "Desert View Trail",
+      "distance": "0.3 miles",
+      "description": "Easy 2-mile loop with stunning panoramic views from the Pacific Ocean to the Salton Sea",
+      "icon": "Mountain",
+      "type": "hiking"
+    },
+    {
+      "name": "Laguna Mountain Recreation Area",
+      "distance": "2 miles",
+      "description": "Year-round outdoor activities including hiking, camping, and picnicking in pristine forest",
+      "icon": "Trees",
+      "type": "recreation"
+    },
+    {
+      "name": "Pacific Crest Trail Access",
+      "distance": "1.5 miles",
+      "description": "Connect with the legendary PCT for day hikes or meet thru-hikers on their journey",
+      "icon": "Compass",
+      "type": "hiking"
+    },
+    {
+      "name": "Sunrise Highway Scenic Drive",
+      "distance": "0 miles",
+      "description": "Breathtaking mountain vistas and diverse ecosystems along this iconic byway",
+      "icon": "Car",
+      "type": "scenic"
+    },
+    {
+      "name": "Laguna Mountain Lodge Restaurant",
+      "distance": "0.1 miles",
+      "description": "Our own restaurant serving hearty mountain fare and craft beverages",
+      "icon": "UtensilsCrossed",
+      "type": "dining"
+    },
+    {
+      "name": "Wooded Hill Nature Trail",
+      "distance": "3 miles",
+      "description": "Gentle 1.5-mile interpretive trail through diverse mountain meadows and forest",
+      "icon": "MapPin",
+      "type": "hiking"
+    }
+  ],
+  "seasonalHighlights": [
+    {
+      "season": "Spring",
+      "months": "March - May",
+      "description": "Witness stunning wildflower blooms across mountain meadows and enjoy mild temperatures perfect for hiking. Spring brings the forest to life with fresh greenery and abundant wildlife.",
+      "icon": "Flower",
+      "temperature": "50-70°F"
+    },
+    {
+      "season": "Summer",
+      "months": "June - August",
+      "description": "Escape the San Diego heat with pleasant mountain temperatures 20-30 degrees cooler than the coast. Perfect for stargazing under crystal-clear skies and outdoor dining on your private deck.",
+      "icon": "Sun",
+      "temperature": "65-80°F"
+    },
+    {
+      "season": "Fall",
+      "months": "September - November",
+      "description": "Experience brilliant autumn colors as aspens and oaks transform the landscape. Crisp, clear days offer exceptional visibility for photography and the most spectacular sunsets of the year.",
+      "icon": "Leaf",
+      "temperature": "45-65°F"
+    },
+    {
+      "season": "Winter",
+      "months": "December - February",
+      "description": "Cozy up by the fireplace as occasional snow blankets the pines. Winter brings opportunities for snow play, peaceful forest walks, and the ultimate hygge cabin experience.",
+      "icon": "Snowflake",
+      "temperature": "30-50°F"
+    }
+  ]
+}
