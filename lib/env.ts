@@ -6,8 +6,7 @@ const requiredServerEnv = [
   'GUESTY_CLIENT_SECRET',
   'GUESTY_API_BASE_URL',
   'GUESTY_OAUTH_URL',
-  'KV_REST_API_URL',
-  'KV_REST_API_TOKEN',
+  'STORAGE_REDIS_URL',
   'STRIPE_SECRET_KEY',
 ] as const;
 
@@ -34,8 +33,7 @@ export const env = {
     secretKey: process.env.STRIPE_SECRET_KEY!,
     publishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
   },
-  kv: {
-    url: process.env.KV_REST_API_URL!,
-    token: process.env.KV_REST_API_TOKEN!,
+  redis: {
+    url: process.env.STORAGE_REDIS_URL!,
   },
 } as const;

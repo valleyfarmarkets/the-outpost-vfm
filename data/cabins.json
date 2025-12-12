@@ -1,144 +1,103 @@
 {
   "cabins": [
     {
-      "id": "trailhead-haven",
-      "name": "Trailhead Haven",
-      "personalityTag": "Romantic Escape",
-      "description": "Cozy one-bedroom cabin perfect for couples or small families. Features a full kitchen, wood-burning fireplace, and private deck with mountain views. Located just steps from the restaurant and hiking trails.",
-      "shortDescription": "Intimate one-bedroom retreat with fireplace and mountain views",
-      "capacity": 4,
+      "id": "hunters-lair",
+      "name": "Hunter's Lair",
+      "personalityTag": "Family Gathering",
+      "description": "Hunters Lair is our largest cabin and is dedicated to the spirit of the hunt in our San Diego Backcountry. This rustic cabin is ideal for small family gatherings and can sleep 6. It's the nearest cabin to our restaurant and closest to Sunrise Highway. The Lair features 2 cozy bedrooms, bathroom/shower, a small kitchenette and living room with fireplace.",
+      "shortDescription": "Largest cabin dedicated to the spirit of the hunt, sleeps 6",
+      "capacity": 6,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "petFriendly": false,
+      "hasFireplace": true,
+      "featured": true,
+      "images": [
+        "/images/cabins/hunters-lair-1.jpg",
+        "/images/cabins/hunters-lair-2.jpg",
+        "/images/cabins/hunters-lair-3.jpg"
+      ],
+      "amenities": [
+        { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "kitchen", "label": "Kitchenette" },
+        { "icon": "parking", "label": "Parking" }
+      ],
+      "priceRange": {
+        "min": 149,
+        "max": 199,
+        "unit": "night"
+      },
+      "available": true
+    },
+    {
+      "id": "fishermans-landing",
+      "name": "Fisherman's Landing",
+      "personalityTag": "Seafaring Heritage",
+      "description": "Fisherman's Landing is one of our larger cabins and commemorates our historic seafaring tradition in San Diego. This rustic cabin is ideal for small family gatherings and can sleep 6. The Landing is outfitted with a Queen bed, bunk bed with a full bed & twin bed, and a sofa bed. It features a large fireplace and small kitchenette, as well as in-suite bathroom/shower. There is also a loft with 4 sleeping pads.",
+      "shortDescription": "Spacious cabin commemorating San Diego's seafaring tradition, sleeps 6",
+      "capacity": 6,
       "bedrooms": 1,
       "bathrooms": 1,
       "petFriendly": false,
       "hasFireplace": true,
       "featured": false,
       "images": [
-        "/images/cabins/pine-1.jpg",
-        "/images/cabins/pine-2.jpg",
-        "/images/cabins/pine-3.jpg"
+        "/images/cabins/fishermans-landing-1.jpg",
+        "/images/cabins/fishermans-landing-2.jpg",
+        "/images/cabins/fishermans-landing-3.jpg",
+        "/images/cabins/fishermans-landing-4.jpg"
       ],
       "amenities": [
-        { "icon": "wifi", "label": "WiFi" },
-        { "icon": "tv", "label": "TV" },
-        { "icon": "kitchen", "label": "Full Kitchen" },
         { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "kitchen", "label": "Kitchenette" },
         { "icon": "parking", "label": "Parking" }
       ],
       "priceRange": {
-        "min": 150,
-        "max": 200,
+        "min": 149,
+        "max": 199,
         "unit": "night"
       },
       "available": true
     },
     {
-      "id": "summits-edge-lodge",
-      "name": "Summit's Edge Lodge",
-      "personalityTag": "Family Hub",
-      "description": "Spacious two-bedroom cabin ideal for families or groups. Features two bathrooms, full kitchen, living room with fireplace, and large deck. Sleeps up to 6 guests comfortably with room to spread out.",
-      "shortDescription": "Family-friendly two-bedroom cabin with modern amenities",
-      "capacity": 6,
-      "bedrooms": 2,
-      "bathrooms": 2,
+      "id": "hikers-haven",
+      "name": "Hiker's Haven",
+      "personalityTag": "Trail Lover's Retreat",
+      "description": "Hikers Haven is for our trail lovers and is dedicated to our intricate network of trails through the Cleveland National Forest. This rustic cabin is one of our more secluded options and features a cozy fireplace, small kitchenette and bathroom/shower. It is outfitted with a California king bed, bunk bed and sofa bed and can sleep 5 people.",
+      "shortDescription": "Trail lover's retreat with secluded mountain setting, sleeps 5",
+      "capacity": 5,
+      "bedrooms": 1,
+      "bathrooms": 1,
       "petFriendly": false,
       "hasFireplace": true,
       "featured": false,
       "images": [
-        "/images/cabins/cedar-1.jpg",
-        "/images/cabins/cedar-2.jpg",
-        "/images/cabins/cedar-3.jpg",
-        "/images/cabins/cedar-4.jpg"
+        "/images/cabins/hikers-haven-1.jpg",
+        "/images/cabins/hikers-haven-2.jpg",
+        "/images/cabins/hikers-haven-3.jpg"
       ],
       "amenities": [
-        { "icon": "wifi", "label": "WiFi" },
-        { "icon": "tv", "label": "TV" },
-        { "icon": "kitchen", "label": "Full Kitchen" },
         { "icon": "fireplace", "label": "Fireplace" },
-        { "icon": "parking", "label": "Parking" },
-        { "icon": "grill", "label": "BBQ Grill" }
+        { "icon": "kitchen", "label": "Kitchenette" },
+        { "icon": "parking", "label": "Parking" }
       ],
       "priceRange": {
-        "min": 200,
-        "max": 275,
+        "min": 149,
+        "max": 199,
         "unit": "night"
       },
       "available": true
     },
     {
-      "id": "eagles-nest-retreat",
-      "name": "Eagle's Nest Retreat",
-      "personalityTag": "Luxury Getaway",
-      "description": "Our largest and most luxurious cabin with three bedrooms and two bathrooms. Perfect for large families or groups up to 8 people. Features include full kitchen, spacious living area with fireplace, wrap-around deck, private hot tub, and stunning panoramic mountain views.",
-      "shortDescription": "Luxury three-bedroom cabin with hot tub and panoramic views",
-      "capacity": 8,
-      "bedrooms": 3,
-      "bathrooms": 2,
-      "petFriendly": false,
-      "hasFireplace": true,
-      "featured": true,
-      "images": [
-        "/images/cabins/summit-1.jpg",
-        "/images/cabins/summit-2.jpg",
-        "/images/cabins/summit-3.jpg",
-        "/images/cabins/summit-4.jpg",
-        "/images/cabins/summit-5.jpg"
-      ],
-      "amenities": [
-        { "icon": "wifi", "label": "WiFi" },
-        { "icon": "tv", "label": "TV" },
-        { "icon": "kitchen", "label": "Full Kitchen" },
-        { "icon": "fireplace", "label": "Fireplace" },
-        { "icon": "parking", "label": "Parking" },
-        { "icon": "grill", "label": "BBQ Grill" },
-        { "icon": "hottub", "label": "Hot Tub" }
-      ],
-      "priceRange": {
-        "min": 300,
-        "max": 400,
-        "unit": "night"
-      },
-      "available": true
-    },
-    {
-      "id": "whispering-pines-studio",
-      "name": "Whispering Pines Studio",
-      "personalityTag": "Pet-Friendly Haven",
-      "description": "Charming studio cabin perfect for couples or solo travelers with furry friends. This pet-friendly retreat features a full kitchen, comfortable queen bed, and cozy living space. Efficient heating keeps you warm, and the private deck offers forest views. Your four-legged companions are welcome here!",
-      "shortDescription": "Cozy pet-friendly studio with all the essentials",
+      "id": "stargazer",
+      "name": "Stargazer",
+      "personalityTag": "Romantic Escape",
+      "description": "Stargazer is dedicated to our starry night skies and our Dark Sky designation in the San Backcountry. It is one of our most secluded cabins and is perfect for a romantic getaway for 2. Stargazer features a cozy fireplace, small kitchenette and bathroom/shower. It is outfitted with one queen bed and is the only pet friendly cabin we offer.",
+      "shortDescription": "Romantic getaway under dark skies, pet friendly, sleeps 2",
       "capacity": 2,
-      "bedrooms": 0,
+      "bedrooms": 1,
       "bathrooms": 1,
       "petFriendly": true,
-      "hasFireplace": false,
-      "featured": false,
-      "images": [
-        "/images/cabins/whispering-1.jpg",
-        "/images/cabins/whispering-2.jpg"
-      ],
-      "amenities": [
-        { "icon": "wifi", "label": "WiFi" },
-        { "icon": "tv", "label": "TV" },
-        { "icon": "kitchen", "label": "Full Kitchen" },
-        { "icon": "parking", "label": "Parking" },
-        { "icon": "paw", "label": "Pet Friendly" }
-      ],
-      "priceRange": {
-        "min": 125,
-        "max": 175,
-        "unit": "night"
-      },
-      "available": true
-    },
-    {
-      "id": "stargazers-sanctuary",
-      "name": "Stargazer's Sanctuary",
-      "personalityTag": "Astronomer's Dream",
-      "description": "Two-bedroom cabin designed for those who love the night sky. Features a premium wrap-around deck with unobstructed views, perfect for astronomy and stargazing. Includes full kitchen, wood-burning fireplace, private hot tub, and telescope-friendly outdoor space. Located on the quietest part of our property for minimal light pollution.",
-      "shortDescription": "Premium two-bedroom cabin with exceptional stargazing deck",
-      "capacity": 6,
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "petFriendly": false,
       "hasFireplace": true,
       "featured": false,
       "images": [
@@ -147,18 +106,44 @@
         "/images/cabins/stargazer-3.jpg"
       ],
       "amenities": [
-        { "icon": "wifi", "label": "WiFi" },
-        { "icon": "tv", "label": "TV" },
-        { "icon": "kitchen", "label": "Full Kitchen" },
         { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "kitchen", "label": "Kitchenette" },
         { "icon": "parking", "label": "Parking" },
-        { "icon": "grill", "label": "BBQ Grill" },
-        { "icon": "hottub", "label": "Hot Tub" },
-        { "icon": "telescope", "label": "Stargazing Deck" }
+        { "icon": "paw", "label": "Pet Friendly" }
       ],
       "priceRange": {
-        "min": 225,
-        "max": 325,
+        "min": 100,
+        "max": 150,
+        "unit": "night"
+      },
+      "available": true
+    },
+    {
+      "id": "wildlife-lookout",
+      "name": "Wildlife Lookout",
+      "personalityTag": "Nature Explorer",
+      "description": "San Diego is one of the most rich & bio-diverse Eco-systems in the country! From high mountain peaks, forests, desert & beaches - we have it all! This diverse habitat is also home to an abundance of wildlife species. Wildlife Lookout is dedicated to this rich & bio-diverse heritage, which is one of our greatest destination hallmarks. This is our most secluded cabin with king bed, sofa bed and can sleep a family of 4. It has a bathroom/shower, a small kitchenette and living room with fireplace.",
+      "shortDescription": "Most secluded cabin celebrating San Diego's biodiversity, sleeps 4",
+      "capacity": 4,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "petFriendly": false,
+      "hasFireplace": true,
+      "featured": false,
+      "images": [
+        "/images/cabins/wildlife-lookout-1.jpg",
+        "/images/cabins/wildlife-lookout-2.jpg",
+        "/images/cabins/wildlife-lookout-3.jpg",
+        "/images/cabins/wildlife-lookout-4.jpg"
+      ],
+      "amenities": [
+        { "icon": "fireplace", "label": "Fireplace" },
+        { "icon": "kitchen", "label": "Kitchenette" },
+        { "icon": "parking", "label": "Parking" }
+      ],
+      "priceRange": {
+        "min": 149,
+        "max": 199,
         "unit": "night"
       },
       "available": true

@@ -1,7 +1,12 @@
 import 'server-only';
-import { kv } from '@vercel/kv';
 import { env } from '../env';
-import { getStoredToken, setStoredToken } from './token-store';
+import {
+  getStoredToken,
+  setStoredToken,
+  getRedisValue,
+  setRedisValue,
+  deleteRedisValue,
+} from './token-store';
 import type { OAuthTokenResponse } from './types';
 
 /**
@@ -36,7 +41,7 @@ export async function getValidToken(): Promise<string> {
   }
 
   // 🚨 CRITICAL FIX: Check if renewal is already in progress (Lock)
-  const isRenewing = await kv.get<boolean>(RENEWAL_LOCK_KEY);
+  const isRenewing = await getRedisValue(RENEWAL_LOCK_KEY);
   if (isRenewing) {
     // Another instance is renewing. Wait 500ms and retry (polling)
     console.log('[Token Manager] Renewal in progress, waiting...');
@@ -62,7 +67,7 @@ export async function getValidToken(): Promise<string> {
   }
 
   // Set Lock (expire in 10s to prevent deadlocks)
-  await kv.set(RENEWAL_LOCK_KEY, true, { ex: 10 });
+  await setRedisValue(RENEWAL_LOCK_KEY, 'true', 10);
 
   try {
     console.log('[Token Manager] Renewing token...');
@@ -82,7 +87,7 @@ export async function getValidToken(): Promise<string> {
     return newToken.access_token;
   } finally {
     // Release Lock (even if renewal fails)
-    await kv.del(RENEWAL_LOCK_KEY);
+    await deleteRedisValue(RENEWAL_LOCK_KEY);
   }
 }
 
