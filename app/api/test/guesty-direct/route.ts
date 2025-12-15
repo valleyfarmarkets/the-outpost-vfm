@@ -1,6 +1,6 @@
 import 'server-only';
 import { NextResponse } from 'next/server';
-import { env } from '@/lib/env';
+import { GUESTY_OAUTH_URL, GUESTY_CLIENT_ID, GUESTY_CLIENT_SECRET, GUESTY_API_BASE_URL } from '@/lib/env';
 
 /**
  * Direct Guesty test endpoint (bypasses Redis)
@@ -15,7 +15,7 @@ export async function GET() {
     console.log('[Test Direct] Step 1: Getting OAuth token from Guesty...');
 
     // Step 1: Get OAuth token directly
-    const tokenResponse = await fetch(env.guesty.oauthUrl, {
+    const tokenResponse = await fetch(GUESTY_OAUTH_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -23,8 +23,8 @@ export async function GET() {
       body: new URLSearchParams({
         grant_type: 'client_credentials',
         scope: 'booking_engine:api',
-        client_id: env.guesty.clientId,
-        client_secret: env.guesty.clientSecret,
+        client_id: GUESTY_CLIENT_ID,
+        client_secret: GUESTY_CLIENT_SECRET,
       }),
     });
 
@@ -49,7 +49,7 @@ export async function GET() {
     // Step 2: Fetch listings
     console.log('[Test Direct] Step 2: Fetching listings from Guesty...');
 
-    const searchResponse = await fetch(`${env.guesty.apiBaseUrl}/search`, {
+    const searchResponse = await fetch(`${GUESTY_API_BASE_URL}/search`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,

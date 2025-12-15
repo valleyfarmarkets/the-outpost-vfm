@@ -1,5 +1,9 @@
 import 'server-only';
-import { env } from '../env';
+import {
+  GUESTY_CLIENT_ID,
+  GUESTY_CLIENT_SECRET,
+  GUESTY_OAUTH_URL,
+} from '../env';
 import {
   getStoredToken,
   setStoredToken,
@@ -98,7 +102,7 @@ export async function getValidToken(): Promise<string> {
  * @throws Error if renewal request fails
  */
 async function renewToken(): Promise<OAuthTokenResponse> {
-  const response = await fetch(env.guesty.oauthUrl, {
+  const response = await fetch(GUESTY_OAUTH_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -106,8 +110,8 @@ async function renewToken(): Promise<OAuthTokenResponse> {
     body: new URLSearchParams({
       grant_type: 'client_credentials',
       scope: 'booking_engine:api',
-      client_id: env.guesty.clientId,
-      client_secret: env.guesty.clientSecret,
+      client_id: GUESTY_CLIENT_ID,
+      client_secret: GUESTY_CLIENT_SECRET,
     }),
   });
 

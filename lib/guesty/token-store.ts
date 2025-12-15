@@ -1,102 +1,77 @@
 import 'server-only';
-import { createClient } from 'redis';
-import { env } from '../env';
+import { kv } from '@vercel/kv';
 import type { TokenCache } from './types';
 
 /**
- * Redis Token Storage
+ * Vercel KV Token Storage
  *
  * This module provides persistent storage for Guesty OAuth tokens.
  * CRITICAL for serverless environments where in-memory storage is lost between function invocations.
+ *
+ * Uses Vercel KV (Redis) for:
+ * - Automatic connection pooling
+ * - Serverless-optimized client
+ * - No manual connection management needed
  */
 
 const TOKEN_KEY = 'guesty:oauth:token';
 
-// Create Redis client (singleton pattern)
-let redisClient: ReturnType<typeof createClient> | null = null;
-
-async function getRedisClient() {
-  if (!redisClient) {
-    redisClient = createClient({
-      url: env.redis.url,
-    });
-
-    redisClient.on('error', (err) => {
-      console.error('Redis Client Error:', err);
-    });
-
-    await redisClient.connect();
-  }
-
-  return redisClient;
-}
-
 /**
- * Retrieves the stored OAuth token from Redis
+ * Retrieves the stored OAuth token from Vercel KV
  * @returns TokenCache object or null if not found
  */
 export async function getStoredToken(): Promise<TokenCache | null> {
   try {
-    const client = await getRedisClient();
-    const data = await client.get(TOKEN_KEY);
-
-    if (!data) {
-      return null;
-    }
-
-    return JSON.parse(data) as TokenCache;
+    const data = await kv.get<TokenCache>(TOKEN_KEY);
+    return data;
   } catch (error) {
-    console.error('Failed to get stored token from Redis:', error);
+    console.error('Failed to get stored token from Vercel KV:', error);
     return null;
   }
 }
 
 /**
- * Stores the OAuth token in Redis with a 24-hour TTL
+ * Stores the OAuth token in Vercel KV with a 24-hour TTL
  * @param token - TokenCache object containing access token and metadata
  */
 export async function setStoredToken(token: TokenCache): Promise<void> {
   try {
-    const client = await getRedisClient();
-
     // Store with 24-hour TTL (86400 seconds) as safety net
     // Guesty tokens expire after 24 hours anyway
-    await client.setEx(TOKEN_KEY, 86400, JSON.stringify(token));
+    await kv.set(TOKEN_KEY, token, { ex: 86400 });
   } catch (error) {
-    console.error('Failed to set stored token in Redis:', error);
+    console.error('Failed to set stored token in Vercel KV:', error);
     throw new Error('Token storage failed');
   }
 }
 
 /**
- * Deletes the stored OAuth token from Redis
+ * Deletes the stored OAuth token from Vercel KV
  * Used for cleanup or forced token invalidation
  */
 export async function clearStoredToken(): Promise<void> {
   try {
-    const client = await getRedisClient();
-    await client.del(TOKEN_KEY);
+    await kv.del(TOKEN_KEY);
   } catch (error) {
-    console.error('Failed to clear stored token from Redis:', error);
+    console.error('Failed to clear stored token from Vercel KV:', error);
     // Don't throw - cleanup failure shouldn't block operations
   }
 }
 
 /**
- * Get a value from Redis (used for locks)
+ * Get a value from Vercel KV (used for locks)
  */
 export async function getRedisValue(key: string): Promise<string | null> {
   try {
-    const client = await getRedisClient();
-    return await client.get(key);
+    return await kv.get<string>(key);
   } catch (error) {
-    console.error(`Failed to get Redis value for key ${key}:`, error);
+    console.error(`Failed to get KV value for key ${key}:`, error);
     return null;
   }
 }
 
 /**
- * Set a value in Redis with expiration (used for locks)
+ * Set a value in Vercel KV with expiration (used for locks)
  */
 export async function setRedisValue(
   key: string,
@@ -104,23 +79,21 @@ export async function setRedisValue(
   expirationSeconds: number
 ): Promise<void> {
   try {
-    const client = await getRedisClient();
-    await client.setEx(key, expirationSeconds, value);
+    await kv.set(key, value, { ex: expirationSeconds });
   } catch (error) {
-    console.error(`Failed to set Redis value for key ${key}:`, error);
+    console.error(`Failed to set KV value for key ${key}:`, error);
     throw error;
   }
 }
 
 /**
- * Delete a value from Redis (used for locks)
+ * Delete a value from Vercel KV (used for locks)
  */
 export async function deleteRedisValue(key: string): Promise<void> {
   try {
-    const client = await getRedisClient();
-    await client.del(key);
+    await kv.del(key);
   } catch (error) {
-    console.error(`Failed to delete Redis value for key ${key}:`, error);
+    console.error(`Failed to delete KV value for key ${key}:`, error);
     // Don't throw - cleanup failure shouldn't block operations
   }
 }

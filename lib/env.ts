@@ -1,39 +1,56 @@
-import 'server-only';
+import { z } from 'zod';
 
-// Validate server-side environment variables
-const requiredServerEnv = [
-  'GUESTY_CLIENT_ID',
-  'GUESTY_CLIENT_SECRET',
-  'GUESTY_API_BASE_URL',
-  'GUESTY_OAUTH_URL',
-  'STORAGE_REDIS_URL',
-  'STRIPE_SECRET_KEY',
-] as const;
+// Validate server-side env vars
+const serverEnvSchema = z.object({
+  GUESTY_CLIENT_ID: z.string().min(1),
+  GUESTY_CLIENT_SECRET: z.string().min(1),
+  GUESTY_API_BASE_URL: z.string().url(),
+  GUESTY_OAUTH_URL: z.string().url().default('https://booking.guesty.com/oauth2/token'),
+  KV_URL: z.string().url(),
+  KV_REST_API_URL: z.string().url(),
+  KV_REST_API_TOKEN: z.string().min(1),
+  STRIPE_SECRET_KEY: z.string().startsWith('sk_'),
+  SENDGRID_API_KEY: z.string().optional(),
+  SENDGRID_FROM_EMAIL: z.string().email().optional(),
+  QUOTE_EXPIRATION_MINUTES: z.string().default('15'),
+  SUPPORT_EMAIL: z.string().email(),
+});
 
-for (const key of requiredServerEnv) {
-  if (!process.env[key]) {
-    throw new Error(`Missing required environment variable: ${key}`);
-  }
-}
+// Validate client-side env vars
+const clientEnvSchema = z.object({
+  NEXT_PUBLIC_ENABLE_GUESTY_BOOKING: z.enum(['true', 'false']).default('false'),
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().startsWith('pk_'),
+});
 
-// Validate client-side environment variables
-if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
-  throw new Error('Missing NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
-}
+// Parse and export (throws on invalid)
+export const serverEnv = serverEnvSchema.parse({
+  GUESTY_CLIENT_ID: process.env.GUESTY_CLIENT_ID,
+  GUESTY_CLIENT_SECRET: process.env.GUESTY_CLIENT_SECRET,
+  GUESTY_API_BASE_URL: process.env.GUESTY_API_BASE_URL,
+  GUESTY_OAUTH_URL: process.env.GUESTY_OAUTH_URL,
+  KV_URL: process.env.KV_URL,
+  KV_REST_API_URL: process.env.KV_REST_API_URL,
+  KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+  SENDGRID_FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL,
+  QUOTE_EXPIRATION_MINUTES: process.env.QUOTE_EXPIRATION_MINUTES,
+  SUPPORT_EMAIL: process.env.SUPPORT_EMAIL,
+});
 
-// Export validated environment variables (type-safe)
-export const env = {
-  guesty: {
-    clientId: process.env.GUESTY_CLIENT_ID!,
-    clientSecret: process.env.GUESTY_CLIENT_SECRET!,
-    apiBaseUrl: process.env.GUESTY_API_BASE_URL!,
-    oauthUrl: process.env.GUESTY_OAUTH_URL!,
-  },
-  stripe: {
-    secretKey: process.env.STRIPE_SECRET_KEY!,
-    publishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
-  },
-  redis: {
-    url: process.env.STORAGE_REDIS_URL!,
-  },
-} as const;
+export const clientEnv = clientEnvSchema.parse({
+  NEXT_PUBLIC_ENABLE_GUESTY_BOOKING: process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING,
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+});
+
+// Type-safe exports
+export const GUESTY_CLIENT_ID = serverEnv.GUESTY_CLIENT_ID;
+export const GUESTY_CLIENT_SECRET = serverEnv.GUESTY_CLIENT_SECRET;
+export const GUESTY_API_BASE_URL = serverEnv.GUESTY_API_BASE_URL;
+export const GUESTY_OAUTH_URL = serverEnv.GUESTY_OAUTH_URL;
+export const STRIPE_SECRET_KEY = serverEnv.STRIPE_SECRET_KEY;
+export const QUOTE_EXPIRATION_MS = parseInt(serverEnv.QUOTE_EXPIRATION_MINUTES) * 60 * 1000;
+export const SUPPORT_EMAIL = serverEnv.SUPPORT_EMAIL;
+
+export const ENABLE_GUESTY_BOOKING = clientEnv.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
+export const STRIPE_PUBLISHABLE_KEY = clientEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
