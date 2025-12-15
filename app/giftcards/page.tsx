@@ -45,13 +45,9 @@ export default function GiftCardsPage() {
                   </p>
                   <div className="mt-4 text-sm">
                     <p className="font-medium text-gray-900">Location:</p>
-                    <p className="text-gray-600">
-                      {siteInfo.contact.address.street}
-                    </p>
-                    <p className="text-gray-600">
-                      {siteInfo.contact.address.city},{" "}
-                      {siteInfo.contact.address.state}{" "}
-                      {siteInfo.contact.address.zip}
+                    <p className="text-gray-600 whitespace-pre-line">
+                      {siteInfo.contact.address.full ??
+                        `${siteInfo.contact.address.street}\n${siteInfo.contact.address.city}, ${siteInfo.contact.address.state}, ${siteInfo.contact.address.zip}`}
                     </p>
                   </div>
                 </div>

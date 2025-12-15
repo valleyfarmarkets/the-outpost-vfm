@@ -28,6 +28,11 @@ const iconMap = {
 };
 
 export function LocationExperience() {
+  const { address, coordinates } = locationData.location;
+  const addressText =
+    address.full ??
+    `${address.street}\n${address.city}, ${address.state}, ${address.zip}`;
+
   // Schema.org Place markup
   const placeSchema = {
     "@context": "https://schema.org",
@@ -35,15 +40,15 @@ export function LocationExperience() {
     name: "The Outpost VFM",
     geo: {
       "@type": "GeoCoordinates",
-      latitude: locationData.location.coordinates.lat,
-      longitude: locationData.location.coordinates.lng,
+      latitude: coordinates.lat,
+      longitude: coordinates.lng,
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: locationData.location.address.street,
-      addressLocality: locationData.location.address.city,
-      addressRegion: locationData.location.address.state,
-      postalCode: locationData.location.address.zip,
+      streetAddress: address.street,
+      addressLocality: address.city,
+      addressRegion: address.state,
+      postalCode: address.zip,
     },
   };
 
@@ -70,18 +75,16 @@ export function LocationExperience() {
               {/* TODO: Add Google Maps API key and embed URL */}
               <div className="text-center p-8">
                 <MapPin className="h-16 w-16 mx-auto text-brand-primary mb-4" />
-                <p className="text-gray-700 font-medium">
-                  10608 Sunrise Highway
-                  <br />
-                  Mount Laguna, CA 91948
+                <p className="text-gray-700 font-medium whitespace-pre-line">
+                  {addressText}
                 </p>
                 <p className="mt-2 text-sm text-gray-600">
-                  Latitude: {locationData.location.coordinates.lat}
+                  Latitude: {coordinates.lat}
                   <br />
-                  Longitude: {locationData.location.coordinates.lng}
+                  Longitude: {coordinates.lng}
                 </p>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${locationData.location.coordinates.lat},${locationData.location.coordinates.lng}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${coordinates.lat},${coordinates.lng}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-block text-brand-primary hover:text-brand-primary/80 font-semibold"

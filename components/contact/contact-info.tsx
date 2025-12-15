@@ -11,10 +11,9 @@ export function ContactInfo() {
           <div className="ml-4">
             <h3 className="text-lg font-semibold text-gray-900">Address</h3>
             <address className="mt-2 text-sm not-italic text-gray-600">
-              <p>{siteInfo.contact.address.street}</p>
-              <p>
-                {siteInfo.contact.address.city},{" "}
-                {siteInfo.contact.address.state} {siteInfo.contact.address.zip}
+              <p className="whitespace-pre-line">
+                {siteInfo.contact.address.full ??
+                  `${siteInfo.contact.address.street}\n${siteInfo.contact.address.city}, ${siteInfo.contact.address.state}, ${siteInfo.contact.address.zip}`}
               </p>
             </address>
           </div>

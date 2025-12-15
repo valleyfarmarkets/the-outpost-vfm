@@ -45,10 +45,9 @@ export function Footer() {
               Contact Us
             </h3>
             <address className="text-sm not-italic text-gray-600">
-              <p>{siteInfo.contact.address.street}</p>
-              <p>
-                {siteInfo.contact.address.city},{" "}
-                {siteInfo.contact.address.state} {siteInfo.contact.address.zip}
+              <p className="whitespace-pre-line">
+                {siteInfo.contact.address.full ??
+                  `${siteInfo.contact.address.street}\n${siteInfo.contact.address.city}, ${siteInfo.contact.address.state}, ${siteInfo.contact.address.zip}`}
               </p>
               <p className="mt-2">
                 <a

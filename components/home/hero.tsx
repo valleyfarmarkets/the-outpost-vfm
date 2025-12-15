@@ -4,8 +4,8 @@ import { Container } from "@/components/ui/container";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[600px] items-center bg-gradient-to-br from-brand-secondary to-brand-primary">
-      <div className="hero-overlay" />
+    <section className="relative flex min-h-[600px] items-center bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/outpost_hero.jpeg)' }}>
+      <div className="absolute inset-0 bg-black/70" />
       <Container className="relative z-10">
         <div className="mx-auto max-w-3xl text-center text-white">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
@@ -17,15 +17,19 @@ export function Hero() {
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Link href="/menu">
-              <Button size="lg" variant="primary">
+              <Button
+                size="lg"
+                variant="primary"
+                className="h-14 px-8 text-lg rounded-2xl shadow-xl"
+              >
                 View Menu
               </Button>
             </Link>
             <Link href="/cabins">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-brand-primary"
+                variant="primary"
+                className="h-14 px-8 text-lg rounded-2xl shadow-xl !bg-[#c87524] !text-black !hover:bg-[#b7661e] !focus-visible:ring-[#c87524] border-transparent"
               >
                 Book a Cabin
               </Button>

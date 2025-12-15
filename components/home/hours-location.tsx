@@ -36,11 +36,9 @@ export function HoursLocation() {
               <div className="ml-4">
                 <h2 className="text-2xl font-bold text-gray-900">Location</h2>
                 <address className="mt-4 text-sm not-italic text-gray-600">
-                  <p>{siteInfo.contact.address.street}</p>
-                  <p>
-                    {siteInfo.contact.address.city},{" "}
-                    {siteInfo.contact.address.state}{" "}
-                    {siteInfo.contact.address.zip}
+                  <p className="whitespace-pre-line">
+                    {siteInfo.contact.address.full ??
+                      `${siteInfo.contact.address.street}\n${siteInfo.contact.address.city}, ${siteInfo.contact.address.state}, ${siteInfo.contact.address.zip}`}
                   </p>
                 </address>
 

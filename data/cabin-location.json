@@ -7,10 +7,11 @@
       "lng": -116.4272
     },
     "address": {
-      "street": "10608 Sunrise Highway",
+      "street": "10600 Sunrise Hwy",
       "city": "Mount Laguna",
       "state": "CA",
-      "zip": "91948"
+      "zip": "91948",
+      "full": "10600 Sunrise Hwy, Mount Laguna, CA, United States, California"
     },
     "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3367.123!2d-116.4272!3d32.8642"
   },

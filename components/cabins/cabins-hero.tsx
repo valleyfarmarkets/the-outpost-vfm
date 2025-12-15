@@ -20,7 +20,7 @@ export function CabinsHero() {
       "Rustic mountain cabin rentals in Mount Laguna, San Diego County. Experience the perfect blend of wilderness beauty and modern comfort at 6,000 feet elevation.",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "10608 Sunrise Highway",
+      streetAddress: "10600 Sunrise Hwy",
       addressLocality: "Mount Laguna",
       addressRegion: "CA",
       postalCode: "91948",

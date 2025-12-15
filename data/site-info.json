@@ -14,10 +14,12 @@
     "phone": "(619) 473-8341",
     "email": "info@theoutpostvfm.com",
     "address": {
-      "street": "10608 Sunrise Hwy",
+      "street": "10600 Sunrise Hwy",
       "city": "Mount Laguna",
       "state": "CA",
       "zip": "91948",
+      "country": "United States, California",
+      "full": "10600 Sunrise Hwy, Mount Laguna, CA, United States, California",
       "coordinates": {
         "lat": 32.8642,
         "lng": -116.4272
@@ -25,7 +27,7 @@
     }
   },
   "social": {
-    "facebook": "https://facebook.com/theoutpostvfm",
-    "instagram": "https://instagram.com/theoutpostvfm"
+    "facebook": "https://www.facebook.com/outpostbyvalleyfarm/",
+    "instagram": "https://www.instagram.com/valleyfarmoutpost"
   }
 }

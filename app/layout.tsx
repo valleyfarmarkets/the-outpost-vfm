@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Providers } from "@/components/providers/providers";
+import { BookingModal } from "@/components/booking/booking-modal";
 
 export const metadata: Metadata = {
   title: "The Outpost VFM | Mountain Restaurant & Cabins",
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <BookingModal />
         </Providers>
       </body>
     </html>

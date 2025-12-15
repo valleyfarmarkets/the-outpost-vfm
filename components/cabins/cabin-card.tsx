@@ -1,17 +1,20 @@
+'use client';
+
 import { Users, Bed, Bath, Flame, PawPrint, Award } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
+import { useBookingContext } from "@/context/booking-context";
 import type { Cabin } from "@/types/cabins";
 
 interface CabinCardProps {
   cabin: Cabin;
-  bookingUrl: string;
   featured?: boolean;
 }
 
-export function CabinCard({ cabin, bookingUrl, featured = false }: CabinCardProps) {
+export function CabinCard({ cabin, featured = false }: CabinCardProps) {
+  const { actions } = useBookingContext();
   return (
     <Card hover>
       <div>
@@ -95,14 +98,7 @@ export function CabinCard({ cabin, bookingUrl, featured = false }: CabinCardProp
             </p>
             <p className="text-xs text-gray-500">per {cabin.priceRange.unit}</p>
           </div>
-          <a
-            href={bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block"
-          >
-            <Button>Book Now</Button>
-          </a>
+          <Button onClick={() => actions.openBooking(cabin)}>Book Now</Button>
         </div>
 
         {!cabin.available && (
