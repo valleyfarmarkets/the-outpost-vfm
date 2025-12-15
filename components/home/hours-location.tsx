@@ -21,7 +21,7 @@ export function HoursLocation() {
                         {day.day}
                       </span>
                       <span className="text-gray-600">
-                        {day.closed ? "Closed" : `${day.open} - ${day.close}`}
+                        {`${day.open} - ${day.close}`}
                       </span>
                     </div>
                   ))}

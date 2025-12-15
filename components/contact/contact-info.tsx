@@ -60,7 +60,7 @@ export function ContactInfo() {
                 <div key={day.day} className="flex justify-between">
                   <span className="font-medium">{day.day}</span>
                   <span>
-                    {day.closed ? "Closed" : `${day.open} - ${day.close}`}
+                    {`${day.open} - ${day.close}`}
                   </span>
                 </div>
               ))}

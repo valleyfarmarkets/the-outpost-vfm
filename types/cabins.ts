@@ -5,6 +5,71 @@ export interface CabinAmenity {
   category?: string;
 }
 
+// Enhanced cabin detail types
+export interface BedDetail {
+  type: "King" | "Queen" | "Full" | "Twin" | "Bunk" | "Sofa Bed";
+  count: number;
+}
+
+export interface BedroomInfo {
+  id: string;
+  name: string;
+  beds: BedDetail[];
+  features: string[];
+}
+
+export interface AmenityCategorized {
+  category: "Essentials" | "Kitchen" | "Outdoors" | "Entertainment" | "Features";
+  items: CabinAmenity[];
+}
+
+export interface HouseRule {
+  icon: string;
+  label: string;
+  description?: string;
+}
+
+export interface CancellationPolicy {
+  type: "Flexible" | "Moderate" | "Strict";
+  rules: {
+    timeframe: string;
+    refundPercentage: number;
+  }[];
+  additionalNotes?: string;
+}
+
+export interface CabinReview {
+  id: string;
+  author: {
+    name: string;
+    location: string;
+    avatar?: string;
+  };
+  rating: number;
+  date: string;
+  comment: string;
+  stayDate?: string;
+  verified?: boolean;
+}
+
+export interface ReviewStats {
+  averageRating: number;
+  totalReviews: number;
+  breakdown: { [key: number]: number };
+}
+
+export interface CabinHighlight {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface CabinHost {
+  name: string;
+  initials: string;
+  since?: string;
+}
+
 export interface Cabin {
   id: string;
   name: string;
@@ -26,6 +91,17 @@ export interface Cabin {
     unit: "night" | "week";
   };
   available: boolean;
+  // Enhanced detail page fields
+  bedroomDetails?: BedroomInfo[];
+  amenitiesCategorized?: AmenityCategorized[];
+  houseRules?: HouseRule[];
+  cancellationPolicy?: CancellationPolicy;
+  reviewStats?: ReviewStats;
+  highlights?: CabinHighlight[];
+  host?: CabinHost;
+  securityDeposit?: number;
+  cleaningFee?: number;
+  serviceFee?: number;
 }
 
 export interface CabinData {

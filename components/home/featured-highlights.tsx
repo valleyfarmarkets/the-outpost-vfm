@@ -22,15 +22,15 @@ const menuData: MenuData = {
   })),
 };
 
-const cabinsData: CabinData = {
+const cabinsData = {
   ...rawCabinsData,
   cabins: rawCabinsData.cabins.map((cabin) => ({
     ...cabin,
     priceRange: {
       ...cabin.priceRange,
-      unit: cabin.priceRange.unit as CabinData["cabins"][number]["priceRange"]["unit"],
+      unit: cabin.priceRange.unit as "night" | "week",
     },
-  })),
+  })) as CabinData["cabins"],
 };
 
 export function FeaturedHighlights() {

@@ -49,10 +49,10 @@ export function GuestCounter({
         <Button
           type="button"
           variant="outline"
-          size="icon"
+          size="sm"
           onClick={handleDecrement}
           disabled={value <= min}
-          className="h-8 w-8 rounded-full"
+          className="h-8 w-8 rounded-full p-0"
         >
           <Minus className="h-4 w-4" />
         </Button>
@@ -62,10 +62,10 @@ export function GuestCounter({
         <Button
           type="button"
           variant="outline"
-          size="icon"
+          size="sm"
           onClick={handleIncrement}
           disabled={value >= max}
-          className="h-8 w-8 rounded-full"
+          className="h-8 w-8 rounded-full p-0"
         >
           <Plus className="h-4 w-4" />
         </Button>

@@ -20,8 +20,72 @@ const iconMap = {
   CheckCircle,
 };
 
+// Calculate overall stats from all cabin reviews
+function getOverallStats() {
+  const cabinKeys = Object.keys(reviewsData) as Array<keyof typeof reviewsData>;
+  let totalReviews = 0;
+  let totalRatingSum = 0;
+
+  cabinKeys.forEach((key) => {
+    const cabin = reviewsData[key];
+    totalReviews += cabin.totalReviews;
+    totalRatingSum += cabin.averageRating * cabin.totalReviews;
+  });
+
+  const averageRating = totalReviews > 0 ? totalRatingSum / totalReviews : 0;
+
+  return {
+    averageRating: Math.round(averageRating * 10) / 10,
+    totalReviews,
+  };
+}
+
+// Get sample reviews from multiple cabins
+function getHighlightReviews() {
+  const cabinKeys = Object.keys(reviewsData) as Array<keyof typeof reviewsData>;
+  const allReviews: Array<{
+    rating: number;
+    snippet: string;
+    author: string;
+    cabin: string;
+  }> = [];
+
+  cabinKeys.forEach((key) => {
+    const cabin = reviewsData[key];
+    cabin.reviews.slice(0, 1).forEach((review) => {
+      allReviews.push({
+        rating: review.rating,
+        snippet: review.comment,
+        author: review.author.name,
+        cabin: key,
+      });
+    });
+  });
+
+  return allReviews.slice(0, 3);
+}
+
+const trustSignals = [
+  {
+    icon: "Shield",
+    label: "100% Secure Booking",
+    description: "Your payment information is protected and secure",
+  },
+  {
+    icon: "Clock",
+    label: "24/7 Guest Support",
+    description: "We're here to help anytime during your stay",
+  },
+  {
+    icon: "Award",
+    label: "Best Price Guarantee",
+    description: "Find a lower price? We'll match it",
+  },
+];
+
 export function CabinCTAFooter() {
-  const { reviewsSnippet, trustSignals } = reviewsData;
+  const stats = getOverallStats();
+  const highlights = getHighlightReviews();
 
   return (
     <section className="relative bg-gradient-to-br from-brand-primary via-brand-primary to-brand-secondary text-white">
@@ -33,7 +97,7 @@ export function CabinCTAFooter() {
               <Star
                 key={i}
                 className={`h-6 w-6 ${
-                  i < Math.floor(reviewsSnippet.averageRating)
+                  i < Math.floor(stats.averageRating)
                     ? "fill-brand-sunflower text-brand-sunflower"
                     : "text-white/40"
                 }`}
@@ -41,16 +105,16 @@ export function CabinCTAFooter() {
             ))}
           </div>
           <p className="text-xl font-semibold mb-1">
-            {reviewsSnippet.averageRating} out of 5 stars
+            {stats.averageRating} out of 5 stars
           </p>
           <p className="text-white/90">
-            Based on {reviewsSnippet.totalReviews} verified guest reviews
+            Based on {stats.totalReviews} verified guest reviews
           </p>
         </div>
 
         {/* Featured Reviews */}
         <div className="grid gap-6 md:grid-cols-3 mb-12 max-w-5xl mx-auto">
-          {reviewsSnippet.highlights.slice(0, 3).map((review, index) => (
+          {highlights.map((review, index) => (
             <div
               key={index}
               className="bg-white/10 backdrop-blur-sm rounded-lg p-6"

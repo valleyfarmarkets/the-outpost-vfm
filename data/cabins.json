@@ -14,9 +14,11 @@
       "hasFireplace": true,
       "featured": true,
       "images": [
-        "/images/cabins/hunters-lair-1.jpg",
-        "/images/cabins/hunters-lair-2.jpg",
-        "/images/cabins/hunters-lair-3.jpg"
+        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
+        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
+        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
+        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
+        "/images/cabins/hunters-lair/hunters-lair-hero.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
@@ -28,7 +30,135 @@
         "max": 199,
         "unit": "night"
       },
-      "available": true
+      "available": true,
+      "bedroomDetails": [
+        {
+          "id": "bedroom-1",
+          "name": "Master Bedroom",
+          "beds": [
+            { "type": "Queen", "count": 1 }
+          ],
+          "features": ["Mountain view", "Private access"]
+        },
+        {
+          "id": "bedroom-2",
+          "name": "Second Bedroom",
+          "beds": [
+            { "type": "Full", "count": 1 },
+            { "type": "Twin", "count": 2 }
+          ],
+          "features": ["Forest view", "Shared bathroom"]
+        }
+      ],
+      "amenitiesCategorized": [
+        {
+          "category": "Essentials",
+          "items": [
+            { "icon": "wifi", "label": "WiFi" },
+            { "icon": "heating", "label": "Heating" },
+            { "icon": "fireplace", "label": "Wood-burning fireplace" },
+            { "icon": "parking", "label": "Free parking" }
+          ]
+        },
+        {
+          "category": "Kitchen",
+          "items": [
+            { "icon": "kitchen", "label": "Kitchenette" },
+            { "icon": "fridge", "label": "Refrigerator" },
+            { "icon": "coffee", "label": "Coffee maker" },
+            { "icon": "microwave", "label": "Microwave" }
+          ]
+        },
+        {
+          "category": "Outdoors",
+          "items": [
+            { "icon": "deck", "label": "Private deck" },
+            { "icon": "grill", "label": "BBQ grill" },
+            { "icon": "fire-pit", "label": "Fire pit" },
+            { "icon": "mountain", "label": "Mountain views" }
+          ]
+        },
+        {
+          "category": "Features",
+          "items": [
+            { "icon": "shower", "label": "Bathroom/shower" },
+            { "icon": "linens", "label": "Linens provided" },
+            { "icon": "towels", "label": "Towels provided" }
+          ]
+        }
+      ],
+      "houseRules": [
+        {
+          "icon": "clock",
+          "label": "Check-in after 3:00 PM",
+          "description": "Self check-in available"
+        },
+        {
+          "icon": "clock",
+          "label": "Check-out before 11:00 AM"
+        },
+        {
+          "icon": "smoking",
+          "label": "No smoking inside",
+          "description": "Smoking permitted outside only"
+        },
+        {
+          "icon": "party",
+          "label": "No parties or events"
+        },
+        {
+          "icon": "paw",
+          "label": "No pets",
+          "description": "See Stargazer for pet-friendly option"
+        },
+        {
+          "icon": "quiet",
+          "label": "Quiet hours 10:00 PM - 8:00 AM"
+        }
+      ],
+      "cancellationPolicy": {
+        "type": "Moderate",
+        "rules": [
+          {
+            "timeframe": "7+ days before check-in",
+            "refundPercentage": 100
+          },
+          {
+            "timeframe": "3-7 days before check-in",
+            "refundPercentage": 50
+          },
+          {
+            "timeframe": "Less than 3 days before check-in",
+            "refundPercentage": 0
+          }
+        ],
+        "additionalNotes": "Cleaning fee is non-refundable. Full refund of accommodation fees for cancellations made 7+ days before check-in."
+      },
+      "host": {
+        "name": "Valley Farm Market",
+        "initials": "VF",
+        "since": "2019"
+      },
+      "highlights": [
+        {
+          "icon": "mountain",
+          "title": "Mountain retreat at 6,000 ft elevation",
+          "description": "Escape to the pines of Cleveland National Forest, just 45 minutes from San Diego."
+        },
+        {
+          "icon": "fireplace",
+          "title": "Wood-burning fireplace",
+          "description": "Cozy up by the fire after a day of hiking or stargazing."
+        },
+        {
+          "icon": "calendar",
+          "title": "Free cancellation up to 7 days before",
+          "description": "Plans change. We get it. Flexible cancellation for peace of mind."
+        }
+      ],
+      "securityDeposit": 250,
+      "cleaningFee": 75,
+      "serviceFee": 45
     },
     {
       "id": "fishermans-landing",
@@ -44,10 +174,11 @@
       "hasFireplace": true,
       "featured": false,
       "images": [
-        "/images/cabins/fishermans-landing-1.jpg",
-        "/images/cabins/fishermans-landing-2.jpg",
-        "/images/cabins/fishermans-landing-3.jpg",
-        "/images/cabins/fishermans-landing-4.jpg"
+        "/images/cabins/fishermans-landing/fishermans-hero.png",
+        "/images/cabins/fishermans-landing/fishermans-hero.png",
+        "/images/cabins/fishermans-landing/fishermans-hero.png",
+        "/images/cabins/fishermans-landing/fishermans-hero.png",
+        "/images/cabins/fishermans-landing/fishermans-hero.png"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
@@ -59,7 +190,136 @@
         "max": 199,
         "unit": "night"
       },
-      "available": true
+      "available": true,
+      "bedroomDetails": [
+        {
+          "id": "bedroom-1",
+          "name": "Main Bedroom & Living Area",
+          "beds": [
+            { "type": "Queen", "count": 1 },
+            { "type": "Bunk", "count": 1 },
+            { "type": "Sofa Bed", "count": 1 }
+          ],
+          "features": ["Ensuite bathroom", "Fireplace view", "Kitchenette access"]
+        },
+        {
+          "id": "loft",
+          "name": "Loft Sleeping Area",
+          "beds": [
+            { "type": "Twin", "count": 4 }
+          ],
+          "features": ["Sleeping pads provided", "Open loft design", "Mountain views"]
+        }
+      ],
+      "amenitiesCategorized": [
+        {
+          "category": "Essentials",
+          "items": [
+            { "icon": "wifi", "label": "WiFi" },
+            { "icon": "heating", "label": "Heating" },
+            { "icon": "fireplace", "label": "Large wood-burning fireplace" },
+            { "icon": "parking", "label": "Free parking" }
+          ]
+        },
+        {
+          "category": "Kitchen",
+          "items": [
+            { "icon": "kitchen", "label": "Kitchenette" },
+            { "icon": "fridge", "label": "Refrigerator" },
+            { "icon": "coffee", "label": "Coffee maker" },
+            { "icon": "microwave", "label": "Microwave" }
+          ]
+        },
+        {
+          "category": "Outdoors",
+          "items": [
+            { "icon": "deck", "label": "Private deck" },
+            { "icon": "grill", "label": "BBQ grill" },
+            { "icon": "fire-pit", "label": "Fire pit" },
+            { "icon": "mountain", "label": "Forest & mountain views" }
+          ]
+        },
+        {
+          "category": "Features",
+          "items": [
+            { "icon": "shower", "label": "Ensuite bathroom/shower" },
+            { "icon": "linens", "label": "Linens provided" },
+            { "icon": "towels", "label": "Towels provided" }
+          ]
+        }
+      ],
+      "houseRules": [
+        {
+          "icon": "clock",
+          "label": "Check-in after 3:00 PM",
+          "description": "Self check-in available"
+        },
+        {
+          "icon": "clock",
+          "label": "Check-out before 11:00 AM"
+        },
+        {
+          "icon": "smoking",
+          "label": "No smoking inside",
+          "description": "Smoking permitted outside only"
+        },
+        {
+          "icon": "party",
+          "label": "No parties or events"
+        },
+        {
+          "icon": "paw",
+          "label": "No pets",
+          "description": "See Stargazer for pet-friendly option"
+        },
+        {
+          "icon": "quiet",
+          "label": "Quiet hours 10:00 PM - 8:00 AM"
+        }
+      ],
+      "cancellationPolicy": {
+        "type": "Moderate",
+        "rules": [
+          {
+            "timeframe": "7+ days before check-in",
+            "refundPercentage": 100
+          },
+          {
+            "timeframe": "3-7 days before check-in",
+            "refundPercentage": 50
+          },
+          {
+            "timeframe": "Less than 3 days before check-in",
+            "refundPercentage": 0
+          }
+        ],
+        "additionalNotes": "Cleaning fee is non-refundable. Full refund of accommodation fees for cancellations made 7+ days before check-in."
+      },
+      "host": {
+        "name": "Valley Farm Market",
+        "initials": "VF",
+        "since": "2019"
+      },
+      "highlights": [
+        {
+          "icon": "anchor",
+          "title": "Unique nautical heritage design",
+          "description": "Commemorates San Diego's historic seafaring tradition with rustic charm."
+        },
+        {
+          "icon": "fireplace",
+          "title": "Large wood-burning fireplace",
+          "description": "Gather around the fire for cozy evenings after exploring the forest."
+        },
+        {
+          "icon": "users",
+          "title": "Spacious for families and groups",
+          "description": "Sleeps 6 with multiple bed options including loft with sleeping pads."
+        }
+      ],
+      "securityDeposit": 250,
+      "cleaningFee": 75,
+      "serviceFee": 45
     },
     {
       "id": "hikers-haven",
@@ -75,9 +335,11 @@
       "hasFireplace": true,
       "featured": false,
       "images": [
-        "/images/cabins/hikers-haven-1.jpg",
-        "/images/cabins/hikers-haven-2.jpg",
-        "/images/cabins/hikers-haven-3.jpg"
+        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
+        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
+        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
+        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
+        "/images/cabins/hikers-haven/hikers-haven-hero.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
@@ -89,7 +351,128 @@
         "max": 199,
         "unit": "night"
       },
-      "available": true
+      "available": true,
+      "bedroomDetails": [
+        {
+          "id": "bedroom-1",
+          "name": "Main Bedroom & Living Space",
+          "beds": [
+            { "type": "King", "count": 1 },
+            { "type": "Bunk", "count": 1 },
+            { "type": "Sofa Bed", "count": 1 }
+          ],
+          "features": ["California King bed", "Trail access", "Forest views", "Ensuite bathroom"]
+        }
+      ],
+      "amenitiesCategorized": [
+        {
+          "category": "Essentials",
+          "items": [
+            { "icon": "wifi", "label": "WiFi" },
+            { "icon": "heating", "label": "Heating" },
+            { "icon": "fireplace", "label": "Cozy wood-burning fireplace" },
+            { "icon": "parking", "label": "Free parking" }
+          ]
+        },
+        {
+          "category": "Kitchen",
+          "items": [
+            { "icon": "kitchen", "label": "Small kitchenette" },
+            { "icon": "fridge", "label": "Refrigerator" },
+            { "icon": "coffee", "label": "Coffee maker" },
+            { "icon": "microwave", "label": "Microwave" }
+          ]
+        },
+        {
+          "category": "Outdoors",
+          "items": [
+            { "icon": "deck", "label": "Private deck" },
+            { "icon": "grill", "label": "BBQ grill" },
+            { "icon": "fire-pit", "label": "Fire pit" },
+            { "icon": "mountain", "label": "Cleveland National Forest trails" }
+          ]
+        },
+        {
+          "category": "Features",
+          "items": [
+            { "icon": "shower", "label": "Bathroom/shower" },
+            { "icon": "linens", "label": "Linens provided" },
+            { "icon": "towels", "label": "Towels provided" }
+          ]
+        }
+      ],
+      "houseRules": [
+        {
+          "icon": "clock",
+          "label": "Check-in after 3:00 PM",
+          "description": "Self check-in available"
+        },
+        {
+          "icon": "clock",
+          "label": "Check-out before 11:00 AM"
+        },
+        {
+          "icon": "smoking",
+          "label": "No smoking inside",
+          "description": "Smoking permitted outside only"
+        },
+        {
+          "icon": "party",
+          "label": "No parties or events"
+        },
+        {
+          "icon": "paw",
+          "label": "No pets",
+          "description": "See Stargazer for pet-friendly option"
+        },
+        {
+          "icon": "quiet",
+          "label": "Quiet hours 10:00 PM - 8:00 AM"
+        }
+      ],
+      "cancellationPolicy": {
+        "type": "Moderate",
+        "rules": [
+          {
+            "timeframe": "7+ days before check-in",
+            "refundPercentage": 100
+          },
+          {
+            "timeframe": "3-7 days before check-in",
+            "refundPercentage": 50
+          },
+          {
+            "timeframe": "Less than 3 days before check-in",
+            "refundPercentage": 0
+          }
+        ],
+        "additionalNotes": "Cleaning fee is non-refundable. Full refund of accommodation fees for cancellations made 7+ days before check-in."
+      },
+      "host": {
+        "name": "Valley Farm Market",
+        "initials": "VF",
+        "since": "2019"
+      },
+      "highlights": [
+        {
+          "icon": "hiking",
+          "title": "Direct trail access",
+          "description": "Steps from Cleveland National Forest trails. Perfect for hiking enthusiasts."
+        },
+        {
+          "icon": "bed",
+          "title": "California King comfort",
+          "description": "Luxurious California King bed for ultimate relaxation after the trails."
+        },
+        {
+          "icon": "mountain",
+          "title": "Secluded mountain setting",
+          "description": "One of our more private cabins, surrounded by towering pines."
+        }
+      ],
+      "securityDeposit": 250,
+      "cleaningFee": 75,
+      "serviceFee": 45
     },
     {
       "id": "stargazer",
@@ -105,9 +488,11 @@
       "hasFireplace": true,
       "featured": false,
       "images": [
-        "/images/cabins/stargazer-1.jpg",
-        "/images/cabins/stargazer-2.jpg",
-        "/images/cabins/stargazer-3.jpg"
+        "/images/cabins/stargazer/stargazer-hero.jpg",
+        "/images/cabins/stargazer/stargazer-hero.jpg",
+        "/images/cabins/stargazer/stargazer-hero.jpg",
+        "/images/cabins/stargazer/stargazer-hero.jpg",
+        "/images/cabins/stargazer/stargazer-hero.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
@@ -120,7 +505,127 @@
         "max": 150,
         "unit": "night"
       },
-      "available": true
+      "available": true,
+      "bedroomDetails": [
+        {
+          "id": "bedroom-1",
+          "name": "Romantic Bedroom",
+          "beds": [
+            { "type": "Queen", "count": 1 }
+          ],
+          "features": ["Dark Sky views", "Secluded location", "Ensuite bathroom", "Stargazing deck access"]
+        }
+      ],
+      "amenitiesCategorized": [
+        {
+          "category": "Essentials",
+          "items": [
+            { "icon": "wifi", "label": "WiFi" },
+            { "icon": "heating", "label": "Heating" },
+            { "icon": "fireplace", "label": "Cozy wood-burning fireplace" },
+            { "icon": "parking", "label": "Free parking" }
+          ]
+        },
+        {
+          "category": "Kitchen",
+          "items": [
+            { "icon": "kitchen", "label": "Small kitchenette" },
+            { "icon": "fridge", "label": "Refrigerator" },
+            { "icon": "coffee", "label": "Coffee maker" },
+            { "icon": "microwave", "label": "Microwave" }
+          ]
+        },
+        {
+          "category": "Outdoors",
+          "items": [
+            { "icon": "deck", "label": "Private stargazing deck" },
+            { "icon": "grill", "label": "BBQ grill" },
+            { "icon": "fire-pit", "label": "Fire pit" },
+            { "icon": "mountain", "label": "Dark Sky certified area" }
+          ]
+        },
+        {
+          "category": "Features",
+          "items": [
+            { "icon": "shower", "label": "Bathroom/shower" },
+            { "icon": "linens", "label": "Linens provided" },
+            { "icon": "towels", "label": "Towels provided" },
+            { "icon": "paw", "label": "Pet friendly (one pet)" }
+          ]
+        }
+      ],
+      "houseRules": [
+        {
+          "icon": "clock",
+          "label": "Check-in after 3:00 PM",
+          "description": "Self check-in available"
+        },
+        {
+          "icon": "clock",
+          "label": "Check-out before 11:00 AM"
+        },
+        {
+          "icon": "smoking",
+          "label": "No smoking inside",
+          "description": "Smoking permitted outside only"
+        },
+        {
+          "icon": "party",
+          "label": "No parties or events"
+        },
+        {
+          "icon": "paw",
+          "label": "Pet friendly",
+          "description": "One pet allowed with $50 fee"
+        },
+        {
+          "icon": "quiet",
+          "label": "Quiet hours 10:00 PM - 8:00 AM"
+        }
+      ],
+      "cancellationPolicy": {
+        "type": "Moderate",
+        "rules": [
+          {
+            "timeframe": "7+ days before check-in",
+            "refundPercentage": 100
+          },
+          {
+            "timeframe": "3-7 days before check-in",
+            "refundPercentage": 50
+          },
+          {
+            "timeframe": "Less than 3 days before check-in",
+            "refundPercentage": 0
+          }
+        ],
+        "additionalNotes": "Cleaning fee is non-refundable. Pet fee is non-refundable. Full refund of accommodation fees for cancellations made 7+ days before check-in."
+      },
+      "host": {
+        "name": "Valley Farm Market",
+        "initials": "VF",
+        "since": "2019"
+      },
+      "highlights": [
+        {
+          "icon": "stars",
+          "title": "Dark Sky stargazing paradise",
+          "description": "San Diego's Dark Sky designation offers unparalleled night sky views."
+        },
+        {
+          "icon": "heart",
+          "title": "Perfect romantic retreat",
+          "description": "Cozy queen bed and secluded setting for an intimate mountain escape."
+        },
+        {
+          "icon": "paw",
+          "title": "Pet-friendly cabin",
+          "description": "The only cabin where your furry friends are welcome to join the adventure."
+        }
+      ],
+      "securityDeposit": 250,
+      "cleaningFee": 75,
+      "serviceFee": 45
     },
     {
       "id": "wildlife-lookout",
@@ -136,16 +641,166 @@
       "hasFireplace": true,
       "featured": false,
       "images": [
-        "/images/cabins/wildlife-lookout-1.jpg",
-        "/images/cabins/wildlife-lookout-2.jpg",
-        "/images/cabins/wildlife-lookout-3.jpg",
-        "/images/cabins/wildlife-lookout-4.jpg"
+        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
+        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
+        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
+        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
+        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
         { "icon": "kitchen", "label": "Kitchenette" },
         { "icon": "parking", "label": "Parking" }
       ],
+      "bedroomDetails": [
+        {
+          "id": "master",
+          "name": "Nature Retreat Bedroom",
+          "beds": [
+            {
+              "type": "King",
+              "count": 1
+            }
+          ],
+          "features": [
+            "Wildlife viewing window",
+            "Blackout curtains",
+            "Closet space"
+          ]
+        },
+        {
+          "id": "living-area",
+          "name": "Living Room Sleep Area",
+          "beds": [
+            {
+              "type": "Sofa Bed",
+              "count": 1
+            }
+          ],
+          "features": [
+            "Fireplace view",
+            "Privacy screen available",
+            "Reading light"
+          ]
+        }
+      ],
+      "amenitiesCategorized": [
+        {
+          "category": "Essentials",
+          "items": [
+            { "icon": "wifi", "label": "WiFi" },
+            { "icon": "heating", "label": "Heating" },
+            { "icon": "fireplace", "label": "Wood-Burning Fireplace" },
+            { "icon": "parking", "label": "Free Parking" },
+            { "icon": "smoke-detector", "label": "Smoke Detector" },
+            { "icon": "first-aid", "label": "First Aid Kit" }
+          ]
+        },
+        {
+          "category": "Kitchen",
+          "items": [
+            { "icon": "coffee", "label": "Coffee Maker" },
+            { "icon": "microwave", "label": "Microwave" },
+            { "icon": "mini-fridge", "label": "Mini Refrigerator" },
+            { "icon": "utensils", "label": "Basic Cookware" },
+            { "icon": "dishes", "label": "Dishes & Utensils" },
+            { "icon": "sink", "label": "Sink" }
+          ]
+        },
+        {
+          "category": "Outdoors",
+          "items": [
+            { "icon": "mountain", "label": "Secluded Forest Setting" },
+            { "icon": "binoculars", "label": "Wildlife Viewing Area" },
+            { "icon": "picnic-table", "label": "Outdoor Seating" },
+            { "icon": "fire-pit", "label": "Fire Pit" },
+            { "icon": "hammock", "label": "Hammock" },
+            { "icon": "nature-trail", "label": "Trail Access" }
+          ]
+        },
+        {
+          "category": "Features",
+          "items": [
+            { "icon": "book", "label": "Nature Guides & Field Books" },
+            { "icon": "camera", "label": "Bird Watching Station" },
+            { "icon": "eco", "label": "Eco-Conscious Design" },
+            { "icon": "quiet", "label": "Most Secluded Location" },
+            { "icon": "wildlife", "label": "Wildlife Education Materials" }
+          ]
+        }
+      ],
+      "houseRules": [
+        {
+          "icon": "clock",
+          "label": "Check-in after 3:00 PM",
+          "description": "Self check-in with lockbox"
+        },
+        {
+          "icon": "clock",
+          "label": "Check-out by 11:00 AM"
+        },
+        {
+          "icon": "users",
+          "label": "Maximum 4 guests"
+        },
+        {
+          "icon": "no-smoking",
+          "label": "No smoking inside",
+          "description": "Smoking permitted in designated outdoor areas only"
+        },
+        {
+          "icon": "paw-off",
+          "label": "No pets allowed"
+        },
+        {
+          "icon": "wildlife",
+          "label": "Respect wildlife",
+          "description": "Observe animals from a distance, do not feed wildlife"
+        }
+      ],
+      "cancellationPolicy": {
+        "type": "Moderate",
+        "rules": [
+          {
+            "timeframe": "7+ days before check-in",
+            "refundPercentage": 100
+          },
+          {
+            "timeframe": "3-6 days before check-in",
+            "refundPercentage": 50
+          },
+          {
+            "timeframe": "Less than 3 days before check-in",
+            "refundPercentage": 0
+          }
+        ],
+        "additionalNotes": "Cleaning fee is non-refundable."
+      },
+      "host": {
+        "name": "Valley Farm Market",
+        "initials": "VF",
+        "since": "2019"
+      },
+      "highlights": [
+        {
+          "icon": "binoculars",
+          "title": "Premier wildlife viewing",
+          "description": "Experience San Diego's rich biodiversity from our most secluded cabin."
+        },
+        {
+          "icon": "leaf",
+          "title": "Eco-conscious mountain escape",
+          "description": "Dedicated to celebrating our diverse ecosystem from peaks to beaches."
+        },
+        {
+          "icon": "shield",
+          "title": "Family-friendly seclusion",
+          "description": "King bed and sofa bed sleep 4 with complete privacy in the forest."
+        }
+      ],
+      "securityDeposit": 250,
+      "cleaningFee": 75,
+      "serviceFee": 45,
       "priceRange": {
         "min": 149,
         "max": 199,

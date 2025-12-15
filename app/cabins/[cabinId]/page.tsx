@@ -1,0 +1,111 @@
+import { notFound } from "next/navigation";
+import { getCabinById, getReviewsForCabin } from "@/lib/cabin-data";
+import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
+import { TopNav } from "@/components/cabins/detail/top-nav";
+import { PhotoGallery } from "@/components/cabins/detail/photo-gallery";
+import { HeaderSection } from "@/components/cabins/detail/header-section";
+import { HostSection } from "@/components/cabins/detail/host-section";
+import { Highlights } from "@/components/cabins/detail/highlights";
+import { DescriptionSection } from "@/components/cabins/detail/description-section";
+import { SleepingArrangements } from "@/components/cabins/detail/sleeping-arrangements";
+import { AmenitiesCategorized } from "@/components/cabins/detail/amenities-categorized";
+import { ReviewsSection } from "@/components/cabins/detail/reviews-section";
+import { HouseRulesSection } from "@/components/cabins/detail/house-rules-section";
+import { CancellationPolicy } from "@/components/cabins/detail/cancellation-policy";
+import { BookingCardInline } from "@/components/cabins/detail/booking-card-inline";
+
+interface CabinPageProps {
+  params: Promise<{
+    cabinId: string;
+  }>;
+}
+
+export function generateStaticParams() {
+  // This will be populated by the build process
+  return [
+    { cabinId: "hunters-lair" },
+    { cabinId: "fishermans-landing" },
+    { cabinId: "hikers-haven" },
+    { cabinId: "stargazer" },
+    { cabinId: "wildlife-lookout" },
+  ];
+}
+
+export default async function CabinPage({ params }: CabinPageProps) {
+  const { cabinId } = await params;
+  const cabin = getCabinById(cabinId);
+
+  if (!cabin) {
+    notFound();
+  }
+
+  const { reviews, stats } = getReviewsForCabin(cabinId);
+
+  return (
+    <div className="bg-[#FAF8F5]">
+      {/* Sticky Top Navigation */}
+      <TopNav />
+
+      {/* Photo Gallery */}
+      <div className="mx-auto max-w-[1200px] px-12 pt-8">
+        <PhotoGallery images={cabin.images} cabinName={cabin.name} />
+      </div>
+
+      {/* Header Section */}
+      <Section className="pt-6">
+        <Container className="max-w-[1200px]">
+          <HeaderSection cabin={cabin} reviewStats={stats} />
+        </Container>
+      </Section>
+
+      {/* Main Content Grid */}
+      <Section>
+        <Container className="max-w-[1200px]">
+          <div className="grid gap-20 lg:grid-cols-[1fr_380px]">
+            {/* LEFT COLUMN - Main Content */}
+            <div className="space-y-10">
+              {/* Host Section with Stats */}
+              <HostSection cabin={cabin} />
+
+              {/* Highlights */}
+              <Highlights highlights={cabin.highlights} />
+
+              {/* Description */}
+              <DescriptionSection description={cabin.description} />
+
+              {/* Sleeping Arrangements */}
+              <SleepingArrangements bedrooms={cabin.bedroomDetails} />
+
+              {/* Amenities */}
+              <AmenitiesCategorized amenities={cabin.amenitiesCategorized} />
+
+              {/* Reviews */}
+              {stats && stats.totalReviews > 0 && (
+                <ReviewsSection reviews={reviews} stats={stats} />
+              )}
+
+              {/* House Rules */}
+              <HouseRulesSection rules={cabin.houseRules} />
+
+              {/* Cancellation Policy */}
+              <CancellationPolicy
+                policy={cabin.cancellationPolicy}
+                securityDeposit={cabin.securityDeposit}
+              />
+            </div>
+
+            {/* RIGHT COLUMN - Sticky Booking Card */}
+            <div>
+              <BookingCardInline
+                cabin={cabin}
+                cleaningFee={cabin.cleaningFee}
+                serviceFee={cabin.serviceFee}
+              />
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </div>
+  );
+}

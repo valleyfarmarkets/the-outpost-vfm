@@ -1,71 +1,275 @@
 {
-  "reviewsSnippet": {
-    "averageRating": 4.8,
-    "totalReviews": 127,
-    "ratingBreakdown": {
-      "5": 98,
-      "4": 23,
-      "3": 4,
-      "2": 1,
-      "1": 1
+  "hunters-lair": {
+    "averageRating": 4.9,
+    "totalReviews": 47,
+    "breakdown": {
+      "5": 42,
+      "4": 4,
+      "3": 1,
+      "2": 0,
+      "1": 0
     },
-    "highlights": [
+    "reviews": [
       {
-        "author": "Sarah M.",
-        "location": "San Diego, CA",
+        "id": "hl-rev-001",
+        "author": {
+          "name": "Sarah M.",
+          "location": "San Diego, CA",
+          "avatar": "SM"
+        },
         "rating": 5,
-        "snippet": "The perfect mountain getaway! Our cabin was immaculate and the fireplace created such a cozy atmosphere. Waking up to pine trees and bird songs was magical. The restaurant next door is a huge bonus - their breakfast is incredible. We'll definitely be back!",
-        "date": "2024-11-15",
-        "cabin": "Eagle's Nest Retreat"
+        "date": "2024-11-15T00:00:00Z",
+        "stayDate": "November 2024",
+        "comment": "Absolutely magical! We escaped the city for a long weekend and Hunter's Lair exceeded every expectation. The fireplace was perfect for chilly evenings, and waking up to deer outside our window was surreal. The cabin is beautifully maintained with all modern conveniences. Already planning our return trip!",
+        "verified": true
       },
       {
-        "author": "Michael R.",
-        "location": "La Jolla, CA",
+        "id": "hl-rev-002",
+        "author": {
+          "name": "Michael & Jenny",
+          "location": "Orange County, CA",
+          "avatar": "MJ"
+        },
         "rating": 5,
-        "snippet": "Best stargazing we've ever experienced! The elevation and dark skies make it perfect for astronomy. The cabin had everything we needed, and being so close to hiking trails was ideal. Our kids loved exploring the forest. Highly recommend for families looking to unplug.",
-        "date": "2024-10-28",
-        "cabin": "Summit's Edge Lodge"
+        "date": "2024-10-22T00:00:00Z",
+        "stayDate": "October 2024",
+        "comment": "We've been to a lot of cabins in the area, but this one stands out. Incredibly clean, thoughtfully stocked, and the location is unbeatable. The Outpost Restaurant next door is a huge bonus—great food and live music on Saturday night! Perfect family getaway.",
+        "verified": true
       },
       {
-        "author": "Jennifer L.",
-        "location": "El Cajon, CA",
+        "id": "hl-rev-003",
+        "author": {
+          "name": "David K.",
+          "location": "Phoenix, AZ",
+          "avatar": "DK"
+        },
         "rating": 5,
-        "snippet": "Such a peaceful retreat from city life. The hot tub under the stars was absolutely worth it! Staff was friendly and responsive. The cabin was clean, well-maintained, and had all the amenities we needed. Perfect anniversary getaway - we felt like we'd traveled much farther than an hour from home!",
-        "date": "2024-09-22",
-        "cabin": "Stargazer's Sanctuary"
+        "date": "2024-09-18T00:00:00Z",
+        "stayDate": "September 2024",
+        "comment": "Drove out from Phoenix for a change of scenery and some cooler temps. The cabin is beautifully maintained with all the modern conveniences while still feeling rustic and cozy. WiFi was fast enough for a few work calls. The hiking trails nearby are excellent. Highly recommend.",
+        "verified": true
+      },
+      {
+        "id": "hl-rev-004",
+        "author": {
+          "name": "Emily R.",
+          "location": "Irvine, CA",
+          "avatar": "ER"
+        },
+        "rating": 4,
+        "date": "2024-08-10T00:00:00Z",
+        "stayDate": "August 2024",
+        "comment": "Lovely cabin in a beautiful setting. Only minor note is the road up can be a bit winding if you're not used to mountain driving. But once you arrive, it's pure relaxation. The deck with morning coffee was my favorite part. Would definitely stay again!",
+        "verified": true
       }
     ]
   },
-  "trustSignals": [
-    {
-      "icon": "Shield",
-      "label": "Verified Property",
-      "description": "Licensed & fully insured mountain lodging"
+  "fishermans-landing": {
+    "averageRating": 4.7,
+    "totalReviews": 38,
+    "breakdown": {
+      "5": 30,
+      "4": 6,
+      "3": 2,
+      "2": 0,
+      "1": 0
     },
-    {
-      "icon": "Clock",
-      "label": "Instant Confirmation",
-      "description": "Book online or call for immediate confirmation"
+    "reviews": [
+      {
+        "id": "fl-rev-001",
+        "author": {
+          "name": "Tom B.",
+          "location": "Los Angeles, CA",
+          "avatar": "TB"
+        },
+        "rating": 5,
+        "date": "2024-11-05T00:00:00Z",
+        "stayDate": "October 2024",
+        "comment": "Perfect retreat for our family! The kids loved having their own space and the location was so peaceful. We explored the nearby trails and spent evenings by the fireplace. The cabin had everything we needed and more. Excellent value for the price.",
+        "verified": true
+      },
+      {
+        "id": "fl-rev-002",
+        "author": {
+          "name": "Rachel P.",
+          "location": "San Diego, CA",
+          "avatar": "RP"
+        },
+        "rating": 5,
+        "date": "2024-09-28T00:00:00Z",
+        "stayDate": "September 2024",
+        "comment": "Absolutely loved our stay! The cabin was clean, comfortable, and had amazing mountain views. We spent our days hiking and our evenings relaxing on the deck. The location is perfect for a weekend escape from the city. Will definitely be back!",
+        "verified": true
+      },
+      {
+        "id": "fl-rev-003",
+        "author": {
+          "name": "James L.",
+          "location": "Temecula, CA",
+          "avatar": "JL"
+        },
+        "rating": 4,
+        "date": "2024-08-15T00:00:00Z",
+        "stayDate": "August 2024",
+        "comment": "Great cabin with plenty of space for our group. Everything was clean and well-maintained. The kitchen was fully equipped which made cooking easy. Only wish there was a bit more shade on the deck during the hot afternoon sun. Overall, a wonderful stay!",
+        "verified": true
+      }
+    ]
+  },
+  "hikers-haven": {
+    "averageRating": 4.8,
+    "totalReviews": 52,
+    "breakdown": {
+      "5": 45,
+      "4": 5,
+      "3": 2,
+      "2": 0,
+      "1": 0
     },
-    {
-      "icon": "Phone",
-      "label": "Local Support",
-      "description": "On-site team available 7 days a week"
+    "reviews": [
+      {
+        "id": "hh-rev-001",
+        "author": {
+          "name": "Amanda S.",
+          "location": "Encinitas, CA",
+          "avatar": "AS"
+        },
+        "rating": 5,
+        "date": "2024-11-20T00:00:00Z",
+        "stayDate": "November 2024",
+        "comment": "This cabin is PERFECT for hikers! We did the PCT section right from the door and came back to a cozy cabin. The location can't be beat if you love the outdoors. Everything was spotless and the beds were surprisingly comfortable. We'll be back every season!",
+        "verified": true
+      },
+      {
+        "id": "hh-rev-002",
+        "author": {
+          "name": "Mark & Lisa",
+          "location": "Carlsbad, CA",
+          "avatar": "ML"
+        },
+        "rating": 5,
+        "date": "2024-10-10T00:00:00Z",
+        "stayDate": "October 2024",
+        "comment": "Amazing cabin! The trail access is unreal - we could hike right from the property. The cabin itself is cozy and well-appointed. Loved the fireplace for the cool mountain evenings. The hosts were very responsive. Highly recommend for active couples or families!",
+        "verified": true
+      },
+      {
+        "id": "hh-rev-003",
+        "author": {
+          "name": "Chris W.",
+          "location": "San Diego, CA",
+          "avatar": "CW"
+        },
+        "rating": 5,
+        "date": "2024-09-05T00:00:00Z",
+        "stayDate": "September 2024",
+        "comment": "Exactly what we needed for a hiking weekend! The location is incredible with trails in every direction. The cabin was clean, comfortable, and had everything we needed. The deck is perfect for morning coffee before hitting the trails. Will definitely return!",
+        "verified": true
+      }
+    ]
+  },
+  "stargazer": {
+    "averageRating": 4.9,
+    "totalReviews": 65,
+    "breakdown": {
+      "5": 60,
+      "4": 4,
+      "3": 1,
+      "2": 0,
+      "1": 0
     },
-    {
-      "icon": "Award",
-      "label": "Top Rated",
-      "description": "4.8+ stars from over 127 guest reviews"
+    "reviews": [
+      {
+        "id": "sg-rev-001",
+        "author": {
+          "name": "Jessica & Ryan",
+          "location": "La Jolla, CA",
+          "avatar": "JR"
+        },
+        "rating": 5,
+        "date": "2024-11-25T00:00:00Z",
+        "stayDate": "November 2024",
+        "comment": "Most romantic getaway ever! The cabin is intimate and cozy, perfect for couples. The stargazing was incredible - we've never seen so many stars! The hot tub was the perfect way to end each evening. Our dog loved it too! Can't wait to come back for our anniversary.",
+        "verified": true
+      },
+      {
+        "id": "sg-rev-002",
+        "author": {
+          "name": "Morgan T.",
+          "location": "Del Mar, CA",
+          "avatar": "MT"
+        },
+        "rating": 5,
+        "date": "2024-10-18T00:00:00Z",
+        "stayDate": "October 2024",
+        "comment": "This place is pure magic! Brought our pup and he had the best time exploring. The cabin is adorable and has everything you need. The deck is incredible for stargazing. We unplugged completely and just enjoyed nature. Exactly what we needed. 10/10 recommend!",
+        "verified": true
+      },
+      {
+        "id": "sg-rev-003",
+        "author": {
+          "name": "Alex P.",
+          "location": "Phoenix, AZ",
+          "avatar": "AP"
+        },
+        "rating": 5,
+        "date": "2024-09-22T00:00:00Z",
+        "stayDate": "September 2024",
+        "comment": "Perfect romantic escape! The cabin is beautifully designed with attention to every detail. The privacy is amazing and the night sky is breathtaking. We spent hours just looking at stars from the deck. The fireplace added the perfect ambiance. Already booked our next trip!",
+        "verified": true
+      }
+    ]
+  },
+  "wildlife-lookout": {
+    "averageRating": 4.8,
+    "totalReviews": 41,
+    "breakdown": {
+      "5": 36,
+      "4": 4,
+      "3": 1,
+      "2": 0,
+      "1": 0
     },
-    {
-      "icon": "Heart",
-      "label": "Locally Owned",
-      "description": "Family-operated since our establishment"
-    },
-    {
-      "icon": "CheckCircle",
-      "label": "Flexible Policies",
-      "description": "7-day cancellation with full refund"
-    }
-  ]
+    "reviews": [
+      {
+        "id": "wl-rev-001",
+        "author": {
+          "name": "Jennifer & Kids",
+          "location": "Riverside, CA",
+          "avatar": "JK"
+        },
+        "rating": 5,
+        "date": "2024-11-10T00:00:00Z",
+        "stayDate": "November 2024",
+        "comment": "Our kids are still talking about all the wildlife we saw! Deer, rabbits, and so many birds. The cabin was perfect for our family of 4. Clean, comfortable, and the kitchen had everything we needed. The binoculars provided were a nice touch. Educational and fun vacation!",
+        "verified": true
+      },
+      {
+        "id": "wl-rev-002",
+        "author": {
+          "name": "Robert M.",
+          "location": "Escondido, CA",
+          "avatar": "RM"
+        },
+        "rating": 5,
+        "date": "2024-10-05T00:00:00Z",
+        "stayDate": "October 2024",
+        "comment": "Nature lover's paradise! We saw deer every morning and evening. The cabin is situated perfectly for wildlife viewing. Everything was clean and well-maintained. The deck is spacious and perfect for morning coffee while watching the forest come alive. Wonderful experience!",
+        "verified": true
+      },
+      {
+        "id": "wl-rev-003",
+        "author": {
+          "name": "Patricia S.",
+          "location": "San Marcos, CA",
+          "avatar": "PS"
+        },
+        "rating": 5,
+        "date": "2024-09-12T00:00:00Z",
+        "stayDate": "September 2024",
+        "comment": "Absolutely loved this cabin! The wildlife viewing opportunities are incredible. We saw deer, squirrels, and tons of birds right from the deck. The cabin itself is cozy and has everything you need. Perfect for a peaceful mountain retreat. We'll definitely be back!",
+        "verified": true
+      }
+    ]
+  }
 }

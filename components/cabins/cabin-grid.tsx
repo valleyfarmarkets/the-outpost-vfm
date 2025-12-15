@@ -4,16 +4,7 @@ import { CabinCard } from "@/components/cabins/cabin-card";
 import rawCabinsData from "@/data/cabins.json";
 import type { CabinData } from "@/types/cabins";
 
-const cabinsData: CabinData = {
-  ...rawCabinsData,
-  cabins: rawCabinsData.cabins.map((cabin) => ({
-    ...cabin,
-    priceRange: {
-      ...cabin.priceRange,
-      unit: cabin.priceRange.unit as CabinData["cabins"][number]["priceRange"]["unit"],
-    },
-  })),
-};
+const cabinsData = rawCabinsData as CabinData;
 
 export function CabinGrid() {
   const featuredCabin = cabinsData.cabins.find((cabin) => cabin.featured);
@@ -38,7 +29,6 @@ export function CabinGrid() {
             <div>
               <CabinCard
                 cabin={featuredCabin}
-                bookingUrl={cabinsData.bookingUrl}
                 featured
               />
             </div>
@@ -50,7 +40,6 @@ export function CabinGrid() {
               <CabinCard
                 key={cabin.id}
                 cabin={cabin}
-                bookingUrl={cabinsData.bookingUrl}
               />
             ))}
           </div>
