@@ -648,10 +648,12 @@
       "featured": false,
       "images": [
         "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
-        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
-        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
-        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg",
-        "/images/cabins/wildlife-lookout/wildlife-lookout-hero.jpg"
+        "/images/cabins/wildlife-lookout/111-3302.jpg",
+        "/images/cabins/wildlife-lookout/111-3306.jpg",
+        "/images/cabins/wildlife-lookout/111-3307.jpg",
+        "/images/cabins/wildlife-lookout/111-3309.jpg",
+        "/images/cabins/wildlife-lookout/111-3312.jpg",
+        "/images/cabins/wildlife-lookout/111-3313.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
