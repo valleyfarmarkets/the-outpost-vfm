@@ -89,7 +89,6 @@ const cabinOverrides: Record<
     rating: 4.9,
     reviewCount: 28,
     sqft: 1100,
-    tags: ["Largest"],
   },
   stargazer: {
     tagline: "Nights under infinite skies",
