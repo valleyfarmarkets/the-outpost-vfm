@@ -103,7 +103,7 @@ export function BookingCardInline({
       {/* Date & Guest Inputs */}
       <div className="mb-4 space-y-3">
         {/* Date Row */}
-        <div className="grid grid-cols-2 overflow-hidden rounded-lg border border-gray-300">
+        <div className="grid grid-cols-[1fr_1px_1fr] overflow-hidden rounded-lg border border-gray-300">
           <DateInputButton
             label="CHECK-IN"
             date={localCheckIn}

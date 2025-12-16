@@ -44,21 +44,19 @@ export default async function CabinPage({ params }: CabinPageProps) {
   return (
     <div className="bg-[#FAF8F5]">
       {/* Header Section */}
-      <Section className="pt-16 pb-4">
+      <Section className="pt-20 pb-4">
         <Container className="max-w-[1200px]">
           <HeaderSection cabin={cabin} reviewStats={stats} />
         </Container>
       </Section>
 
       {/* Photo Gallery */}
-      <Section className="pb-4">
-        <Container className="max-w-[1200px]">
-          <PhotoGallery images={cabin.images} cabinName={cabin.name} />
-        </Container>
-      </Section>
+      <Container className="max-w-[1200px]">
+        <PhotoGallery images={cabin.images} cabinName={cabin.name} />
+      </Container>
 
       {/* Main Content Grid */}
-      <Section>
+      <div className="pt-12">
         <Container className="max-w-[1200px]">
           <div className="grid gap-20 lg:grid-cols-[1fr_380px]">
             {/* LEFT COLUMN - Main Content */}
@@ -103,7 +101,7 @@ export default async function CabinPage({ params }: CabinPageProps) {
             </div>
           </div>
         </Container>
-      </Section>
+      </div>
     </div>
   );
 }
