@@ -160,7 +160,18 @@
       ],
       "securityDeposit": 250,
       "cleaningFee": 75,
-      "serviceFee": 45
+      "serviceFee": 45,
+      "reviewStats": {
+        "averageRating": 4.8,
+        "totalReviews": 47,
+        "breakdown": {
+          "5": 32,
+          "4": 12,
+          "3": 2,
+          "2": 1,
+          "1": 0
+        }
+      }
     },
     {
       "id": "fishermans-landing",
@@ -322,7 +333,18 @@
       ],
       "securityDeposit": 250,
       "cleaningFee": 75,
-      "serviceFee": 45
+      "serviceFee": 45,
+      "reviewStats": {
+        "averageRating": 4.9,
+        "totalReviews": 52,
+        "breakdown": {
+          "5": 40,
+          "4": 10,
+          "3": 1,
+          "2": 1,
+          "1": 0
+        }
+      }
     },
     {
       "id": "hikers-haven",
@@ -477,7 +499,18 @@
       ],
       "securityDeposit": 250,
       "cleaningFee": 75,
-      "serviceFee": 45
+      "serviceFee": 45,
+      "reviewStats": {
+        "averageRating": 4.7,
+        "totalReviews": 38,
+        "breakdown": {
+          "5": 26,
+          "4": 9,
+          "3": 2,
+          "2": 1,
+          "1": 0
+        }
+      }
     },
     {
       "id": "stargazer",
@@ -631,7 +664,18 @@
       ],
       "securityDeposit": 250,
       "cleaningFee": 75,
-      "serviceFee": 45
+      "serviceFee": 45,
+      "reviewStats": {
+        "averageRating": 4.9,
+        "totalReviews": 61,
+        "breakdown": {
+          "5": 49,
+          "4": 10,
+          "3": 1,
+          "2": 1,
+          "1": 0
+        }
+      }
     },
     {
       "id": "wildlife-lookout",
@@ -809,6 +853,17 @@
       "securityDeposit": 250,
       "cleaningFee": 75,
       "serviceFee": 45,
+      "reviewStats": {
+        "averageRating": 4.8,
+        "totalReviews": 43,
+        "breakdown": {
+          "5": 30,
+          "4": 10,
+          "3": 2,
+          "2": 1,
+          "1": 0
+        }
+      },
       "priceRange": {
         "min": 149,
         "max": 199,
