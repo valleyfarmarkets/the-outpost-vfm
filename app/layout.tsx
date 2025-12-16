@@ -3,7 +3,7 @@ import { DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { FooterToggle } from "@/components/layout/footer-toggle";
 import { Providers } from "@/components/providers/providers";
 import { BookingModal } from "@/components/booking/booking-modal";
 
@@ -86,7 +86,7 @@ export default function RootLayout({
           />
           <Header />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <FooterToggle />
           <BookingModal />
         </Providers>
       </body>
