@@ -101,7 +101,6 @@ export interface Cabin {
   host?: CabinHost;
   securityDeposit?: number;
   cleaningFee?: number;
-  serviceFee?: number;
 }
 
 export interface CabinData {

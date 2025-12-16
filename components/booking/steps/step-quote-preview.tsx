@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useBookingContext } from '@/context/booking-context';
@@ -17,8 +18,9 @@ import { useQuoteTimer } from '@/hooks/use-quote-timer';
  */
 export function StepQuotePreview() {
   const { state, actions } = useBookingContext();
-  const { fetchQuote, isLoading } = useQuote();
+  const { fetchQuote, isLoading, error } = useQuote();
   const { isExpired } = useQuoteTimer(state.quoteExpiration);
+  const hasAutoRefreshed = useRef(false);
 
   const cabin = state.cabin!;
   const quote = state.quote!;
@@ -42,6 +44,14 @@ export function StepQuotePreview() {
       actions.nextStep();
     }
   };
+
+  // Auto-refresh once when quote expires on this screen
+  useEffect(() => {
+    if (isExpired && !isLoading && !hasAutoRefreshed.current) {
+      hasAutoRefreshed.current = true;
+      void handleRefreshQuote();
+    }
+  }, [isExpired, isLoading]);
 
   const handleBack = () => {
     actions.previousStep();
@@ -84,6 +94,13 @@ export function StepQuotePreview() {
       <div className="p-4 border rounded-lg">
         <PricingBreakdown pricing={quote.pricing} nights={nights} />
       </div>
+
+      {/* Errors */}
+      {error && (
+        <div className="flex items-start gap-2 p-3 bg-red-50 rounded-lg">
+          <span className="text-sm font-medium text-red-800">{error}</span>
+        </div>
+      )}
 
       {/* Cancellation policy */}
       {quote.ratePlan.cancellationPolicy && (

@@ -55,9 +55,15 @@ export function StepPayment() {
     // Create reservation
     const reservation = await createReservation(
       quote.quoteId,
+      state.cabin!.guestyListingId, // CRITICAL: Use guestyListingId, NOT id
+      state.cabin!.id, // Internal slug
+      state.cabin!.name,
+      state.checkIn!.toISOString(),
+      state.checkOut!.toISOString(),
+      quote.pricing.total,
+      state.guests,
       guestDetails,
-      token,
-      guestDetails.notes
+      token
     );
 
     if (reservation) {

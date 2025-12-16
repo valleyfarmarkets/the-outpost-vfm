@@ -96,7 +96,6 @@ export default async function CabinPage({ params }: CabinPageProps) {
               <BookingCardInline
                 cabin={cabin}
                 cleaningFee={cabin.cleaningFee}
-                serviceFee={cabin.serviceFee}
               />
             </div>
           </div>

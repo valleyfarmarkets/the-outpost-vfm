@@ -13,15 +13,32 @@ export function useCreateReservation() {
 
   const create = async (
     quoteId: string,
+    guestyListingId: string,
+    cabinId: string,
+    cabinName: string,
+    checkIn: string,
+    checkOut: string,
+    estimatedTotal: number,
+    guests: { adults: number; children: number },
     guest: GuestDetails,
-    paymentToken: string,
-    notes?: string
+    paymentToken: string
   ): Promise<ReservationResponse | null> => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const result = await createReservation(quoteId, guest, paymentToken, notes);
+      const result = await createReservation(
+        quoteId,
+        guestyListingId,
+        cabinId,
+        cabinName,
+        checkIn,
+        checkOut,
+        estimatedTotal,
+        guests,
+        guest,
+        paymentToken
+      );
       return result;
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to create reservation';

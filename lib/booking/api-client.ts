@@ -90,18 +90,30 @@ export async function fetchQuote(
  */
 export async function createReservation(
   quoteId: string,
+  guestyListingId: string, // Guesty listing ID from cabin.guestyListingId
+  cabinId: string, // Internal slug from cabin.id
+  cabinName: string,
+  checkIn: string,
+  checkOut: string,
+  estimatedTotal: number,
+  guests: { adults: number; children: number },
   guest: GuestDetails,
-  paymentToken: string,
-  notes?: string
+  paymentToken: string
 ): Promise<ReservationResponse> {
   const response = await fetch('/api/booking/reservation', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       quoteId,
+      guestyListingId,
+      cabinId,
+      cabinName,
+      checkIn,
+      checkOut,
+      estimatedTotal,
+      guests,
       guest,
       paymentToken,
-      notes,
     }),
   });
 
@@ -113,7 +125,9 @@ export async function createReservation(
       throw new Error('Your quote has expired. Please refresh and try again.');
     }
     if (error.error?.includes('payment')) {
-      throw new Error(error.message || 'Payment failed. Please check your card details and try again.');
+      throw new Error(
+        error.message || 'Payment failed. Please check your card details and try again.'
+      );
     }
     if (error.error === 'Unavailable') {
       throw new Error('This cabin is no longer available for the selected dates.');

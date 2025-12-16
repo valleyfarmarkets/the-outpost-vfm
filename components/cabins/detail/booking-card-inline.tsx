@@ -13,14 +13,12 @@ import { differenceInDays } from "date-fns";
 interface BookingCardInlineProps {
   cabin: Cabin;
   cleaningFee?: number;
-  serviceFee?: number;
   className?: string;
 }
 
 export function BookingCardInline({
   cabin,
   cleaningFee,
-  serviceFee,
   className,
 }: BookingCardInlineProps) {
   const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
@@ -64,9 +62,9 @@ export function BookingCardInline({
 
   // Calculate price breakdown
   const basePrice = nights > 0 ? cabin.priceRange.min * nights : 0;
-  const cleaningAmount = cleaningFee || cabin.cleaningFee || 0;
-  const serviceAmount = serviceFee || cabin.serviceFee || 0;
-  const totalBeforeTaxes = basePrice + cleaningAmount + serviceAmount;
+  // Robust calculation that falls back to 0 if undefined
+  const cleaningAmount = cleaningFee ?? cabin.cleaningFee ?? 0;
+  const totalBeforeTaxes = basePrice + cleaningAmount;
 
   const totalGuests = guests.adults + guests.children;
   const exceedsCapacity = totalGuests > cabin.capacity;
@@ -169,13 +167,6 @@ export function BookingCardInline({
               <div className="flex justify-between text-gray-900">
                 <span>Cleaning fee</span>
                 <span>{formatPrice(cleaningAmount)}</span>
-              </div>
-            )}
-
-            {serviceAmount > 0 && (
-              <div className="flex justify-between text-gray-900">
-                <span>Service fee</span>
-                <span>{formatPrice(serviceAmount)}</span>
               </div>
             )}
           </div>
