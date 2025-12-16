@@ -1,6 +1,5 @@
 import 'server-only';
 import { NextResponse } from 'next/server';
-import { GUESTY_OAUTH_URL, GUESTY_CLIENT_ID, GUESTY_CLIENT_SECRET, GUESTY_API_BASE_URL } from '@/lib/env';
 
 /**
  * Direct Guesty test endpoint (bypasses Redis)
@@ -12,6 +11,9 @@ import { GUESTY_OAUTH_URL, GUESTY_CLIENT_ID, GUESTY_CLIENT_SECRET, GUESTY_API_BA
  */
 export async function GET() {
   try {
+    // Import env variables lazily to avoid build-time evaluation
+    const { GUESTY_OAUTH_URL, GUESTY_CLIENT_ID, GUESTY_CLIENT_SECRET, GUESTY_API_BASE_URL } = await import('@/lib/env');
+
     console.log('[Test Direct] Step 1: Getting OAuth token from Guesty...');
 
     // Step 1: Get OAuth token directly

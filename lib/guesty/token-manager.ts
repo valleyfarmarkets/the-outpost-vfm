@@ -1,10 +1,5 @@
 import 'server-only';
 import {
-  GUESTY_CLIENT_ID,
-  GUESTY_CLIENT_SECRET,
-  GUESTY_OAUTH_URL,
-} from '../env';
-import {
   getStoredToken,
   setStoredToken,
   getRedisValue,
@@ -102,6 +97,9 @@ export async function getValidToken(): Promise<string> {
  * @throws Error if renewal request fails
  */
 async function renewToken(): Promise<OAuthTokenResponse> {
+  // Import env variables lazily to avoid build-time evaluation
+  const { GUESTY_CLIENT_ID, GUESTY_CLIENT_SECRET, GUESTY_OAUTH_URL } = await import('../env');
+
   const response = await fetch(GUESTY_OAUTH_URL, {
     method: 'POST',
     headers: {

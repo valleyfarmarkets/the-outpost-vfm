@@ -1,5 +1,4 @@
 import 'server-only';
-import { GUESTY_API_BASE_URL } from '../env';
 import { getValidToken } from './token-manager';
 import type { GuestyError } from './types';
 
@@ -38,6 +37,9 @@ export async function guestyFetch<T>(
   return retryWithBackoff(async () => {
     // Get valid token (automatically renews if needed)
     const token = await getValidToken();
+
+    // Import env variable lazily to avoid build-time evaluation
+    const { GUESTY_API_BASE_URL } = await import('../env');
 
     // Make request with auth token
     const url = `${GUESTY_API_BASE_URL}${endpoint}`;
