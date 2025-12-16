@@ -396,7 +396,7 @@ export function CabinsListing() {
   const [showPetFriendly, setShowPetFriendly] = useState(false);
   const [sortOption, setSortOption] = useState<SortOption>("recommended");
 
-  const cabins = useMemo(() => buildCabins(), []);
+  const cabins = useMemo(buildCabins, []);
 
   const visibleCabins = useMemo(() => {
     const filtered = cabins.filter(

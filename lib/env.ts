@@ -22,25 +22,46 @@ const clientEnvSchema = z.object({
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().startsWith('pk_'),
 });
 
-// Parse and export (throws on invalid)
-export const serverEnv = serverEnvSchema.parse({
-  GUESTY_CLIENT_ID: process.env.GUESTY_CLIENT_ID,
-  GUESTY_CLIENT_SECRET: process.env.GUESTY_CLIENT_SECRET,
-  GUESTY_API_BASE_URL: process.env.GUESTY_API_BASE_URL,
-  GUESTY_OAUTH_URL: process.env.GUESTY_OAUTH_URL,
-  KV_URL: process.env.KV_URL,
-  KV_REST_API_URL: process.env.KV_REST_API_URL,
-  KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
-  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
-  SENDGRID_FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL,
-  QUOTE_EXPIRATION_MINUTES: process.env.QUOTE_EXPIRATION_MINUTES,
-  SUPPORT_EMAIL: process.env.SUPPORT_EMAIL,
+// Lazy validation - only parse when first accessed (prevents build crashes)
+let _serverEnv: z.infer<typeof serverEnvSchema> | null = null;
+let _clientEnv: z.infer<typeof clientEnvSchema> | null = null;
+
+function getServerEnv() {
+  if (!_serverEnv) {
+    _serverEnv = serverEnvSchema.parse({
+      GUESTY_CLIENT_ID: process.env.GUESTY_CLIENT_ID,
+      GUESTY_CLIENT_SECRET: process.env.GUESTY_CLIENT_SECRET,
+      GUESTY_API_BASE_URL: process.env.GUESTY_API_BASE_URL,
+      GUESTY_OAUTH_URL: process.env.GUESTY_OAUTH_URL,
+      KV_URL: process.env.KV_URL,
+      KV_REST_API_URL: process.env.KV_REST_API_URL,
+      KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+      SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+      SENDGRID_FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL,
+      QUOTE_EXPIRATION_MINUTES: process.env.QUOTE_EXPIRATION_MINUTES,
+      SUPPORT_EMAIL: process.env.SUPPORT_EMAIL,
+    });
+  }
+  return _serverEnv;
+}
+
+function getClientEnv() {
+  if (!_clientEnv) {
+    _clientEnv = clientEnvSchema.parse({
+      NEXT_PUBLIC_ENABLE_GUESTY_BOOKING: process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING,
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    });
+  }
+  return _clientEnv;
+}
+
+export const serverEnv = new Proxy({} as z.infer<typeof serverEnvSchema>, {
+  get: (_, prop) => getServerEnv()[prop as keyof z.infer<typeof serverEnvSchema>],
 });
 
-export const clientEnv = clientEnvSchema.parse({
-  NEXT_PUBLIC_ENABLE_GUESTY_BOOKING: process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING,
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+export const clientEnv = new Proxy({} as z.infer<typeof clientEnvSchema>, {
+  get: (_, prop) => getClientEnv()[prop as keyof z.infer<typeof clientEnvSchema>],
 });
 
 // Type-safe exports
