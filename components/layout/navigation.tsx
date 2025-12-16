@@ -16,7 +16,7 @@ export function Navigation({ className }: NavigationProps) {
         <Link
           key={link.href}
           href={link.href}
-          className="text-base font-semibold text-black transition-colors hover:text-white"
+          className="text-base font-semibold text-black transition-colors hover:text-brand-primary"
         >
           {link.label}
         </Link>
@@ -37,7 +37,7 @@ export function NavigationLeft({ className }: { className?: string }) {
         <Link
           key={link.href}
           href={link.href}
-          className="text-base font-semibold text-black transition-colors hover:text-white"
+          className="text-base font-semibold text-black transition-colors hover:text-brand-primary"
         >
           {link.label}
         </Link>
@@ -58,7 +58,7 @@ export function NavigationRight({ className }: { className?: string }) {
         <Link
           key={link.href}
           href={link.href}
-          className="text-base font-semibold text-black transition-colors hover:text-white"
+          className="text-base font-semibold text-black transition-colors hover:text-brand-primary"
         >
           {link.label}
         </Link>

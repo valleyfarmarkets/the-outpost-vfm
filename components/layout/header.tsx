@@ -24,7 +24,7 @@ export function Header() {
   }, []);
 
   // Hide header on pages with custom headers
-  const shouldHideHeader = pathname === "/live-music" || pathname === "/menu";
+  const shouldHideHeader = pathname === "/live-music" || pathname === "/menu" || pathname.startsWith("/cabins/");
 
   if (shouldHideHeader) {
     return null;
