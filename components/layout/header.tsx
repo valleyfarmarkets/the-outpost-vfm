@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
@@ -10,7 +9,6 @@ import { MobileMenu } from "./mobile-menu";
 import { cn } from "@/lib/utils";
 
 export function Header() {
-  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,7 +22,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 pointer-events-none">
+    <header className="fixed top-1 left-0 right-0 z-50 flex justify-center pt-6 pointer-events-none">
       {/* --- DESKTOP PILL --- */}
       <div
         className={cn(

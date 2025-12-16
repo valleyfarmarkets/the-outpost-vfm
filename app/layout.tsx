@@ -77,6 +77,13 @@ export default function RootLayout({
         className={`${dmSans.variable} ${kleaderSansRough.variable} ${kleaderSansRegular.variable} ${kleaderSansStamp.variable} ${kleaderSerifRough.variable} ${kleaderSerifRegular.variable} ${kleaderSerifStamp.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
         <Providers>
+          {/* Orange brand stripe - fixed at top of viewport */}
+          <div
+            className="fixed top-0 left-0 right-0 h-1 w-full z-[60]"
+            style={{
+              background: "linear-gradient(90deg, #B13330 0%, #CE7C23 25%, #DE9A2E 50%, #F9AC30 75%, #DE9A2E 100%)"
+            }}
+          />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

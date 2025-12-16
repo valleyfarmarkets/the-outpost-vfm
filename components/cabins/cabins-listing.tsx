@@ -427,13 +427,6 @@ export function CabinsListing() {
       className="min-h-screen bg-[#FAF8F5]"
       style={{ color: palette.charcoal, backgroundColor: palette.cream }}
     >
-      <div
-        className="h-1 w-full"
-        style={{
-          background: `linear-gradient(90deg, ${palette.deepRed} 0%, ${palette.burntOrange} 25%, ${palette.goldenAmber} 50%, ${palette.brightGold} 75%, ${palette.goldenAmber} 100%)`,
-        }}
-      />
-
       <section className="px-4 py-12 text-center md:py-16">
         <div className="mx-auto max-w-4xl">
           <h1 className="font-serif text-4xl font-semibold text-[#221F1F] sm:text-5xl md:text-6xl">
