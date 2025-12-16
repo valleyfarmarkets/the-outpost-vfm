@@ -127,7 +127,7 @@ export function MenuSpotlight() {
               <Flame className="h-4 w-4" />
               The Outpost Restaurant
             </div>
-            <h1 className="text-3xl font-bold text-[var(--menu-charcoal)] sm:text-4xl">
+            <h1 className="text-3xl font-serif text-[var(--menu-charcoal)] sm:text-4xl">
               Mountain Comfort,{" "}
               <span className="italic text-[var(--menu-burntOrange)]">
                 Served Fresh

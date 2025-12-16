@@ -76,7 +76,7 @@ export function CabinsShowcase() {
             <span className="h-2 w-2 rounded-full bg-[var(--cabins-bright)]" />
             Mt. Laguna, CA
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[var(--cabins-charcoal)] sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-serif tracking-tight text-[var(--cabins-charcoal)] sm:text-4xl">
             Rustic Mountain Cabins
           </h2>
           <p className="mt-3 text-lg text-gray-600">

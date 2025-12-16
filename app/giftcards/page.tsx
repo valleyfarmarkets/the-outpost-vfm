@@ -10,7 +10,7 @@ export default function GiftCardsPage() {
       <Container>
         <div className="text-center">
           <Gift className="mx-auto h-16 w-16 text-brand-primary" />
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-serif tracking-tight text-gray-900 sm:text-5xl">
             Gift Cards
           </h1>
           <p className="mt-4 text-lg text-gray-600">

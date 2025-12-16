@@ -691,6 +691,7 @@ export default function LiveMusicPage() {
           </div>
 
           <h1
+            className="font-serif"
             style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(48px, 10vw, 80px)",
@@ -779,6 +780,7 @@ export default function LiveMusicPage() {
             }}
           >
             <h2
+              className="font-serif"
               style={{
                 fontFamily: "'Playfair Display', serif",
                 fontSize: "32px",
@@ -872,6 +874,7 @@ export default function LiveMusicPage() {
           >
             <div>
               <h2
+                className="font-serif"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   fontSize: "32px",
@@ -959,6 +962,7 @@ export default function LiveMusicPage() {
 
           <div style={{ position: "relative" }}>
             <h2
+              className="font-serif"
               style={{
                 fontFamily: "'Playfair Display', serif",
                 fontSize: "36px",

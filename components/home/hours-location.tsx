@@ -13,7 +13,7 @@ export function HoursLocation() {
             <div className="flex items-start">
               <Clock className="mt-1 h-6 w-6 text-brand-primary" />
               <div className="ml-4">
-                <h2 className="text-2xl font-bold text-gray-900">Hours</h2>
+                <h2 className="text-2xl font-serif text-gray-900">Hours</h2>
                 <div className="mt-4 space-y-2">
                   {siteInfo.hours.map((day) => (
                     <div key={day.day} className="flex justify-between text-sm">
@@ -34,7 +34,7 @@ export function HoursLocation() {
             <div className="flex items-start">
               <MapPin className="mt-1 h-6 w-6 text-brand-primary" />
               <div className="ml-4">
-                <h2 className="text-2xl font-bold text-gray-900">Location</h2>
+                <h2 className="text-2xl font-serif text-gray-900">Location</h2>
                 <address className="mt-4 text-sm not-italic text-gray-600">
                   <p className="whitespace-pre-line">
                     {siteInfo.contact.address.full ??

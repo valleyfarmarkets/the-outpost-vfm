@@ -39,7 +39,7 @@ export function HouseRulesSection({ rules, className }: HouseRulesSectionProps) 
     <div className={cn("space-y-6", className)}>
       {/* Section Header */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">
+        <h2 className="text-2xl font-serif text-gray-900">
           House Rules
         </h2>
         <p className="mt-2 text-gray-600">

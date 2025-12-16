@@ -523,6 +523,7 @@ export default function MenuPage() {
         </div>
 
         <h1
+          className="font-serif"
           style={{
             fontSize: "clamp(32px, 6vw, 48px)",
             fontWeight: 600,

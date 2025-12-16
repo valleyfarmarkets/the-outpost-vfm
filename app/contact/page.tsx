@@ -9,7 +9,7 @@ export default function ContactPage() {
     <Section>
       <Container>
         <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <h1 className="text-4xl font-serif tracking-tight text-gray-900 sm:text-5xl">
             Contact Us
           </h1>
           <p className="mt-4 text-lg text-gray-600">
@@ -27,7 +27,7 @@ export default function ContactPage() {
         </div>
 
         <div className="mt-12">
-          <h2 className="mb-6 text-2xl font-bold text-gray-900">
+          <h2 className="mb-6 text-2xl font-serif text-gray-900">
             Find Us on the Map
           </h2>
           <MapEmbed />
