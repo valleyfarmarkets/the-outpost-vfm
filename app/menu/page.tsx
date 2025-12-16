@@ -427,7 +427,7 @@ export default function MenuPage() {
       <div
         style={{
           background: `linear-gradient(135deg, ${colors.charcoal} 0%, #3a3535 100%)`,
-          padding: "48px 24px",
+          padding: "80px 24px",
           textAlign: "center",
         }}
       >
@@ -457,12 +457,10 @@ export default function MenuPage() {
         </div>
 
         <h1
-          className="font-serif"
+          className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05]"
           style={{
-            fontSize: "clamp(32px, 6vw, 48px)",
-            fontWeight: 600,
             color: "#fff",
-            margin: "0 0 12px 0",
+            margin: "0 0 20px 0",
           }}
         >
           Our Menu
@@ -470,10 +468,10 @@ export default function MenuPage() {
 
         <p
           style={{
-            fontSize: "16px",
+            fontSize: "18px",
             color: "rgba(255,255,255,0.7)",
             maxWidth: "500px",
-            margin: "0 auto 20px",
+            margin: "0 auto 32px",
             lineHeight: 1.6,
           }}
         >

@@ -1,4 +1,4 @@
-import { Gift, Phone, Store, CreditCard } from "lucide-react";
+import { Phone, Store, CreditCard } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
@@ -6,14 +6,13 @@ import siteInfo from "@/data/site-info.json";
 
 export default function GiftCardsPage() {
   return (
-    <Section>
+    <Section className="px-6 py-20 sm:py-20 lg:py-20">
       <Container>
         <div className="text-center">
-          <Gift className="mx-auto h-16 w-16 text-brand-primary" />
-          <h1 className="mt-4 text-4xl font-serif tracking-tight text-gray-900 sm:text-5xl">
+          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-gray-900">
             Gift Cards
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-gray-600">
             Give the gift of mountain dining and mountain getaways
           </p>
         </div>

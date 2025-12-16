@@ -427,12 +427,12 @@ export function CabinsListing() {
       className="min-h-screen bg-[#FAF8F5]"
       style={{ color: palette.charcoal, backgroundColor: palette.cream }}
     >
-      <section className="px-4 pt-32 pb-12 text-center md:pt-36 md:pb-16">
+      <section className="px-6 py-20 text-center">
         <div className="mx-auto max-w-4xl">
-          <h1 className="font-serif text-4xl font-semibold text-[#221F1F] sm:text-5xl md:text-6xl">
+          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] text-[#221F1F]">
             Our Mountain Cabins
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#6B6966] sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#6B6966]">
             Five handcrafted retreats in the heart of Cleveland National
             Forest. Each cabin offers its own character, but all share one
             thing: the peace of the mountains, just 45 minutes from San Diego.

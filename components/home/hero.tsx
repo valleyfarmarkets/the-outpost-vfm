@@ -8,7 +8,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-black/70" />
       <Container className="relative z-10">
         <div className="mx-auto max-w-3xl text-center text-white">
-          <h1 className="text-4xl font-serif tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight">
             Welcome to The Outpost VFM
           </h1>
           <p className="mt-6 text-lg leading-8 sm:text-xl">

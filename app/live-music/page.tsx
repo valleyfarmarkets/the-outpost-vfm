@@ -6,7 +6,6 @@ import {
   Calendar,
   Clock,
   MapPin,
-  Music2,
   ChevronLeft,
   ChevronRight,
   Instagram,
@@ -601,40 +600,11 @@ export default function LiveMusicPage() {
         `}</style>
 
         <div style={{ position: "relative", maxWidth: "800px", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              background: "rgba(255,255,255,0.1)",
-              padding: "10px 20px",
-              borderRadius: "30px",
-              marginBottom: "24px",
-            }}
-          >
-            <Music2 className="h-5 w-5 text-[var(--menu-brightGold)]" />
-            <span
-              style={{
-                color: colors.brightGold,
-                fontSize: "14px",
-                fontWeight: 600,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-              }}
-            >
-              Every Friday Night
-            </span>
-          </div>
-
           <h1
-            className="font-serif"
+            className="font-heading text-[clamp(48px,10vw,80px)] font-bold leading-none"
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(48px, 10vw, 80px)",
-              fontWeight: 700,
               color: "#fff",
               margin: "0 0 20px 0",
-              lineHeight: 1,
               textShadow: "0 4px 30px rgba(0,0,0,0.3)",
             }}
           >
