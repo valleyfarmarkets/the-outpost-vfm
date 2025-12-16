@@ -139,10 +139,10 @@ const buildCabins = (): CabinDisplay[] => {
     if (cabin.petFriendly) {
       tagSet.add("Pet Friendly");
     }
-    if (cabin.featured) {
+    if (cabin.featured && cabin.id !== "hunters-lair") {
       tagSet.add("Most Popular");
     }
-    if (cabin.capacity === largestCapacity) {
+    if (cabin.capacity === largestCapacity && cabin.id !== "fishermans-landing") {
       tagSet.add("Largest");
     }
 

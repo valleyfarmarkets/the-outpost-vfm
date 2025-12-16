@@ -494,10 +494,11 @@
       "featured": false,
       "images": [
         "/images/cabins/stargazer/stargazer-hero.jpg",
-        "/images/cabins/stargazer/stargazer-hero.jpg",
-        "/images/cabins/stargazer/stargazer-hero.jpg",
-        "/images/cabins/stargazer/stargazer-hero.jpg",
-        "/images/cabins/stargazer/stargazer-hero.jpg"
+        "/images/cabins/stargazer/111-2054.jpg",
+        "/images/cabins/stargazer/111-2057.jpg",
+        "/images/cabins/stargazer/111-2059.jpg",
+        "/images/cabins/stargazer/111-2063-1.jpg",
+        "/images/cabins/stargazer/111-2067.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
