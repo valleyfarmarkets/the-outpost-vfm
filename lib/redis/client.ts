@@ -2,7 +2,6 @@
 
 import 'server-only';
 import { createClient, type RedisClientType } from 'redis';
-import { REDIS_URL } from '../env';
 
 let client: RedisClientType | null = null;
 
@@ -14,6 +13,9 @@ export async function getRedisClient(): Promise<RedisClientType> {
   if (client && client.isOpen) {
     return client;
   }
+
+  // Import env variable lazily to avoid build-time evaluation
+  const { REDIS_URL } = await import('../env');
 
   client = createClient({ url: REDIS_URL });
 
