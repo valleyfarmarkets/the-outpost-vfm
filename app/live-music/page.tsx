@@ -603,6 +603,7 @@ export default function LiveMusicPage() {
           <h1
             className="font-heading text-[clamp(48px,10vw,80px)] font-bold leading-none"
             style={{
+              fontFamily: "var(--font-kleader-sans-rough), 'Playfair Display', serif",
               color: "#fff",
               margin: "0 0 20px 0",
               textShadow: "0 4px 30px rgba(0,0,0,0.3)",

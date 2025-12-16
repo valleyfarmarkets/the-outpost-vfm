@@ -175,10 +175,11 @@
       "featured": false,
       "images": [
         "/images/cabins/fishermans-landing/fishermans-hero.png",
-        "/images/cabins/fishermans-landing/fishermans-hero.png",
-        "/images/cabins/fishermans-landing/fishermans-hero.png",
-        "/images/cabins/fishermans-landing/fishermans-hero.png",
-        "/images/cabins/fishermans-landing/fishermans-hero.png"
+        "/images/cabins/fishermans-landing/111-1865.jpg",
+        "/images/cabins/fishermans-landing/111-1866.jpg",
+        "/images/cabins/fishermans-landing/111-1867.jpg",
+        "/images/cabins/fishermans-landing/111-1873.jpg",
+        "/images/cabins/fishermans-landing/111-1876.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
