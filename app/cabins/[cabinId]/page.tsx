@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { getCabinById, getReviewsForCabin } from "@/lib/cabin-data";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { TopNav } from "@/components/cabins/detail/top-nav";
 import { PhotoGallery } from "@/components/cabins/detail/photo-gallery";
 import { HeaderSection } from "@/components/cabins/detail/header-section";
 import { HostSection } from "@/components/cabins/detail/host-section";
@@ -44,9 +43,6 @@ export default async function CabinPage({ params }: CabinPageProps) {
 
   return (
     <div className="bg-[#FAF8F5]">
-      {/* Sticky Top Navigation */}
-      <TopNav />
-
       {/* Photo Gallery */}
       <div className="mx-auto max-w-[1200px] px-12 pt-8">
         <PhotoGallery images={cabin.images} cabinName={cabin.name} />

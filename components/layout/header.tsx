@@ -23,13 +23,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Hide header on pages with custom headers
-  const shouldHideHeader = pathname === "/live-music" || pathname === "/menu" || pathname.startsWith("/cabins/");
-
-  if (shouldHideHeader) {
-    return null;
-  }
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 pointer-events-none">
       {/* --- DESKTOP PILL --- */}
