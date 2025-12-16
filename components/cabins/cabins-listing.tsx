@@ -427,7 +427,7 @@ export function CabinsListing() {
       className="min-h-screen bg-[#FAF8F5]"
       style={{ color: palette.charcoal, backgroundColor: palette.cream }}
     >
-      <section className="px-4 py-12 text-center md:py-16">
+      <section className="px-4 pt-32 pb-12 text-center md:pt-36 md:pb-16">
         <div className="mx-auto max-w-4xl">
           <h1 className="font-serif text-4xl font-semibold text-[#221F1F] sm:text-5xl md:text-6xl">
             Our Mountain Cabins
