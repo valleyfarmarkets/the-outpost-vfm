@@ -334,7 +334,7 @@
       "capacity": 5,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": false,
+      "petFriendly": true,
       "hasFireplace": true,
       "featured": false,
       "images": [
