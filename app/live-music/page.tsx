@@ -605,7 +605,7 @@ export default function LiveMusicPage() {
             style={{
               fontFamily: "var(--font-kleader-sans-rough), 'Playfair Display', serif",
               color: "#fff",
-              margin: "0 0 20px 0",
+              margin: "32px 0 20px 0",
               textShadow: "0 4px 30px rgba(0,0,0,0.3)",
             }}
           >

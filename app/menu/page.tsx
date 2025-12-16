@@ -460,7 +460,7 @@ export default function MenuPage() {
           className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05]"
           style={{
             color: "#fff",
-            margin: "0 0 20px 0",
+            margin: "32px 0 20px 0",
           }}
         >
           Our Menu

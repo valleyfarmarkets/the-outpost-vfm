@@ -8,14 +8,14 @@ import {
   Bed,
   ChevronLeft,
   ChevronRight,
-  Flame,
   PawPrint,
   Star,
   Users,
 } from "lucide-react";
 import rawCabinsData from "@/data/cabins.json";
 import { cn } from "@/lib/utils";
-import type { Cabin, CabinData } from "@/types/cabins";
+import type { Cabin, CabinData, CabinAmenity } from "@/types/cabins";
+import { getAmenityIcon } from "@/lib/amenity-icons";
 
 type CabinDisplay = {
   id: string;
@@ -30,7 +30,7 @@ type CabinDisplay = {
   pricePerNight: number;
   rating: number;
   reviewCount: number;
-  amenities: string[];
+  amenities: CabinAmenity[];
   tags: string[];
   images: string[];
 };
@@ -145,9 +145,7 @@ const buildCabins = (): CabinDisplay[] => {
       tagSet.add("Largest");
     }
 
-    const amenities =
-      overrides.amenities ??
-      cabin.amenities.map((amenity) => amenity.label ?? amenity.icon);
+    const amenities = overrides.amenities ?? cabin.amenities;
 
     return {
       id: cabin.id,
@@ -332,17 +330,18 @@ function CabinRow({ cabin }: CabinRowProps) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {cabin.amenities.slice(0, 5).map((amenity) => (
-              <span
-                key={`${cabin.id}-${amenity}`}
-                className="inline-flex items-center gap-2 rounded-full bg-[#FAF8F5] px-3 py-1 text-xs font-medium text-[#221F1F]"
-              >
-                {amenity.toLowerCase().includes("fire") && (
-                  <Flame className="h-3.5 w-3.5" />
-                )}
-                {amenity}
-              </span>
-            ))}
+            {cabin.amenities.slice(0, 5).map((amenity) => {
+              const Icon = getAmenityIcon(amenity.icon);
+              return (
+                <span
+                  key={`${cabin.id}-${amenity.label}`}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF8F5] px-3 py-1 text-xs font-medium text-[#221F1F]"
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {amenity.label}
+                </span>
+              );
+            })}
             {cabin.amenities.length > 5 && (
               <span className="inline-flex items-center rounded-full bg-[#FAF8F5] px-3 py-1 text-xs font-medium text-[#221F1F]">
                 +{cabin.amenities.length - 5} more
@@ -428,7 +427,7 @@ export function CabinsListing() {
     >
       <section className="px-6 py-20 text-center">
         <div className="mx-auto max-w-4xl">
-          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] text-[#221F1F]">
+          <h1 className="mt-8 font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] text-[#221F1F]">
             Our Mountain Cabins
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#6B6966]">
