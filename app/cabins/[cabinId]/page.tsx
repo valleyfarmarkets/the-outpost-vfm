@@ -44,16 +44,18 @@ export default async function CabinPage({ params }: CabinPageProps) {
   return (
     <div className="bg-[#FAF8F5]">
       {/* Header Section */}
-      <Section className="pt-8 pb-4">
+      <Section className="pt-16 pb-4">
         <Container className="max-w-[1200px]">
           <HeaderSection cabin={cabin} reviewStats={stats} />
         </Container>
       </Section>
 
       {/* Photo Gallery */}
-      <div className="mx-auto max-w-[1200px] px-12 pb-4">
-        <PhotoGallery images={cabin.images} cabinName={cabin.name} />
-      </div>
+      <Section className="pb-4">
+        <Container className="max-w-[1200px]">
+          <PhotoGallery images={cabin.images} cabinName={cabin.name} />
+        </Container>
+      </Section>
 
       {/* Main Content Grid */}
       <Section>

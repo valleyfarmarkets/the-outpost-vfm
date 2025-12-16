@@ -38,7 +38,7 @@ export function PhotoGallery({ images, cabinName, className }: PhotoGalleryProps
     <>
       {/* Gallery Grid */}
       <div className={cn("relative", className)}>
-        <div className="grid h-[400px] grid-cols-4 grid-rows-2 gap-2 md:h-[500px] lg:h-[600px]">
+        <div className="grid h-[360px] grid-cols-4 grid-rows-2 gap-2 md:h-[420px] lg:h-[480px]">
           {/* Main Image - Takes up 2 columns and 2 rows */}
           {displayImages[0] && (
             <button
