@@ -339,10 +339,12 @@
       "featured": false,
       "images": [
         "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
-        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
-        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
-        "/images/cabins/hikers-haven/hikers-haven-hero.jpg",
-        "/images/cabins/hikers-haven/hikers-haven-hero.jpg"
+        "/images/cabins/hikers-haven/111-1900.jpg",
+        "/images/cabins/hikers-haven/111-1904.jpg",
+        "/images/cabins/hikers-haven/111-1905.jpg",
+        "/images/cabins/hikers-haven/111-1914.jpg",
+        "/images/cabins/hikers-haven/111-1919.jpg",
+        "/images/cabins/hikers-haven/111-1925.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
