@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -13,10 +14,41 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-playfair",
+// Kleader Sans Fonts
+const kleaderSansRough = localFont({
+  src: "../public/fonts/Kleader Sans Rough.woff",
+  variable: "--font-kleader-sans-rough",
+  display: "swap",
+});
+
+const kleaderSansRegular = localFont({
+  src: "../public/fonts/Kleader Sans Regular.woff",
+  variable: "--font-kleader-sans-regular",
+  display: "swap",
+});
+
+const kleaderSansStamp = localFont({
+  src: "../public/fonts/Kleader Sans Stamp.woff",
+  variable: "--font-kleader-sans-stamp",
+  display: "swap",
+});
+
+// Kleader Serif Fonts
+const kleaderSerifRough = localFont({
+  src: "../public/fonts/Kleader Serif Rough.woff",
+  variable: "--font-kleader-serif-rough",
+  display: "swap",
+});
+
+const kleaderSerifRegular = localFont({
+  src: "../public/fonts/Kleader Serif Regular.woff",
+  variable: "--font-kleader-serif-regular",
+  display: "swap",
+});
+
+const kleaderSerifStamp = localFont({
+  src: "../public/fonts/Kleader Serif Stamp.woff",
+  variable: "--font-kleader-serif-stamp",
   display: "swap",
 });
 
@@ -42,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${playfair.variable} flex min-h-screen flex-col font-sans antialiased`}
+        className={`${dmSans.variable} ${kleaderSansRough.variable} ${kleaderSansRegular.variable} ${kleaderSansStamp.variable} ${kleaderSerifRough.variable} ${kleaderSerifRegular.variable} ${kleaderSerifStamp.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
         <Providers>
           <Header />

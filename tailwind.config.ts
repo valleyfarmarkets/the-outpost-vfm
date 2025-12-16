@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-dm-sans)", ...defaultTheme.fontFamily.sans],
-        serif: ["var(--font-playfair)", ...defaultTheme.fontFamily.serif],
+        serif: ["var(--font-kleader-sans-rough)", ...defaultTheme.fontFamily.serif],
       },
       colors: {
         background: "var(--background)",

@@ -9,7 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Flame,
-  MapPin,
   PawPrint,
   Star,
   Users,
@@ -437,10 +436,6 @@ export function CabinsListing() {
 
       <section className="px-4 py-12 text-center md:py-16">
         <div className="mx-auto max-w-4xl">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#FFFDF9] px-4 py-2 text-xs font-semibold text-[#221F1F] shadow-sm">
-            <MapPin className="h-4 w-4" />
-            Mt. Laguna, San Diego County · 6,000 ft elevation
-          </div>
           <h1 className="font-serif text-4xl font-semibold text-[#221F1F] sm:text-5xl md:text-6xl">
             Our Mountain Cabins
           </h1>
