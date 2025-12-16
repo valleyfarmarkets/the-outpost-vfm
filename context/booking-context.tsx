@@ -162,7 +162,13 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       ...initialState,
       cabin,
       isModalOpen: true,
-      guests: prev.guests, // Preserve guest count
+      // Preserve any selections already made on the listing page
+      guests: prev.guests,
+      checkIn: prev.checkIn,
+      checkOut: prev.checkOut,
+      blockedDates: prev.blockedDates,
+      minimumStay: prev.minimumStay,
+      maximumStay: prev.maximumStay,
     }));
   }, []);
 

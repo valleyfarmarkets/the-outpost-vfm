@@ -12,7 +12,12 @@ import { BookingWizard } from './booking-wizard';
  * Uses Radix UI Dialog for accessibility
  */
 export function BookingModal() {
+  const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
   const { state, actions } = useBookingContext();
+
+  if (!bookingEnabled) {
+    return null;
+  }
 
   const handleOpenChange = (open: boolean) => {
     if (!open) {

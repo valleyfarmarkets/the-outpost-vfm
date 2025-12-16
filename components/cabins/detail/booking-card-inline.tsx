@@ -23,6 +23,7 @@ export function BookingCardInline({
   serviceFee,
   className,
 }: BookingCardInlineProps) {
+  const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
   const { state, actions } = useBookingContext();
   const { guests } = state;
 
@@ -108,7 +109,7 @@ export function BookingCardInline({
             label="CHECK-IN"
             date={localCheckIn}
             onSelect={handleCheckInSelect}
-            blockedDates={[]}
+            blockedDates={state.blockedDates}
             minDate={new Date()}
           />
           <div className="border-l border-gray-300" />
@@ -116,7 +117,7 @@ export function BookingCardInline({
             label="CHECKOUT"
             date={localCheckOut}
             onSelect={handleCheckOutSelect}
-            blockedDates={[]}
+            blockedDates={state.blockedDates}
             minDate={localCheckIn || new Date()}
           />
         </div>
@@ -133,16 +134,22 @@ export function BookingCardInline({
       {/* Reserve Button */}
       <button
         onClick={handleReserve}
-        disabled={!localCheckIn || !localCheckOut || exceedsCapacity}
+        disabled={!bookingEnabled || !localCheckIn || !localCheckOut || exceedsCapacity}
         className="w-full rounded-lg bg-gradient-to-r from-[#A0563B] to-[#D97945] py-4 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        Reserve
+        {bookingEnabled ? 'Reserve' : 'Booking Disabled'}
       </button>
 
       {/* Reassurance Text */}
       <p className="mt-3 text-center text-sm text-gray-600">
         You won&apos;t be charged yet
       </p>
+
+      {!bookingEnabled && (
+        <p className="mt-2 text-center text-xs text-gray-500">
+          Online booking is disabled in this environment.
+        </p>
+      )}
 
       {/* Price Breakdown - Always visible when dates are selected */}
       {nights > 0 && (

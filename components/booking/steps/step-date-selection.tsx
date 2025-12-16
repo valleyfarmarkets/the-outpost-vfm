@@ -27,6 +27,7 @@ export function StepDateSelection() {
   });
 
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
   const cabin = state.cabin!;
   const nights =
@@ -53,6 +54,13 @@ export function StepDateSelection() {
           maximumStay: result.maximumStay,
           blockedDates: result.blockedDates,
         });
+
+        setIsAvailable(result.available);
+        if (!result.available) {
+          setValidationError('These dates are unavailable. Please choose different dates.');
+        } else {
+          setValidationError(null);
+        }
       }
     };
 
@@ -62,6 +70,11 @@ export function StepDateSelection() {
   const handleContinue = () => {
     if (!selectedRange.from || !selectedRange.to) {
       setValidationError('Please select check-in and check-out dates');
+      return;
+    }
+
+    if (isAvailable === false) {
+      setValidationError('These dates are unavailable. Please pick new dates.');
       return;
     }
 
@@ -89,6 +102,11 @@ export function StepDateSelection() {
         <p className="text-sm text-gray-600">
           Choose your check-in and check-out dates. Minimum stay: {state.minimumStay || 2} nights.
         </p>
+        {isAvailable === false && (
+          <p className="mt-2 text-sm text-red-600 font-medium">
+            These dates are blocked or unavailable.
+          </p>
+        )}
       </div>
 
       {/* Date picker */}
@@ -97,6 +115,7 @@ export function StepDateSelection() {
         onSelect={(range) => {
           setSelectedRange(range);
           setValidationError(null);
+          setIsAvailable(null);
         }}
         blockedDates={state.blockedDates}
         disabled={isLoading}
@@ -131,7 +150,7 @@ export function StepDateSelection() {
       <div className="flex justify-end pt-4">
         <Button
           onClick={handleContinue}
-          disabled={!selectedRange.from || !selectedRange.to || isLoading}
+          disabled={!selectedRange.from || !selectedRange.to || isLoading || isAvailable === false}
           size="lg"
         >
           Continue to Guests

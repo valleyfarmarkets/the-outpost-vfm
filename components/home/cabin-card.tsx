@@ -4,6 +4,7 @@ import { ArrowRight, Bed, Bath, Users, Mountain } from "lucide-react";
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import type { CabinData } from "@/types/cabins";
+import { getAmenityIcon } from "@/lib/amenity-icons";
 
 const palette = {
   charcoal: "#221F1F",
@@ -84,14 +85,18 @@ export function CabinCard({ cabin }: CabinCardProps) {
         <p className="text-sm text-gray-700">{cabin.shortDescription}</p>
 
         <div className="flex flex-wrap gap-2">
-          {featureBadges.map((feature) => (
-            <span
-              key={feature.label}
-              className="rounded-full border border-[var(--cabins-amber)]/20 bg-gradient-to-br from-[var(--cabins-cream)] to-[var(--cabins-gold)]/10 px-3 py-1 text-xs font-semibold text-[var(--cabins-charcoal)]"
-            >
-              {feature.label}
-            </span>
-          ))}
+          {featureBadges.map((feature) => {
+            const Icon = getAmenityIcon(feature.icon);
+            return (
+              <span
+                key={feature.label}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--cabins-amber)]/20 bg-gradient-to-br from-[var(--cabins-cream)] to-[var(--cabins-gold)]/10 px-3 py-1 text-xs font-semibold text-[var(--cabins-charcoal)]"
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {feature.label}
+              </span>
+            );
+          })}
         </div>
 
         <Link

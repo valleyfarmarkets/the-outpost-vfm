@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
 import { useBookingContext } from "@/context/booking-context";
 import type { Cabin } from "@/types/cabins";
+import { getAmenityIcon } from "@/lib/amenity-icons";
 
 interface CabinCardProps {
   cabin: Cabin;
@@ -14,6 +15,7 @@ interface CabinCardProps {
 }
 
 export function CabinCard({ cabin, featured = false }: CabinCardProps) {
+  const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
   const { actions } = useBookingContext();
   return (
     <Card hover>
@@ -74,14 +76,18 @@ export function CabinCard({ cabin, featured = false }: CabinCardProps) {
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {cabin.amenities.slice(0, 5).map((amenity) => (
-            <span
-              key={amenity.label}
-              className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
-            >
-              {amenity.label}
-            </span>
-          ))}
+          {cabin.amenities.slice(0, 5).map((amenity) => {
+            const Icon = getAmenityIcon(amenity.icon);
+            return (
+              <span
+                key={amenity.label}
+                className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {amenity.label}
+              </span>
+            );
+          })}
           {cabin.amenities.length > 5 && (
             <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
               +{cabin.amenities.length - 5} more
@@ -98,8 +104,19 @@ export function CabinCard({ cabin, featured = false }: CabinCardProps) {
             </p>
             <p className="text-xs text-gray-500">per {cabin.priceRange.unit}</p>
           </div>
-          <Button onClick={() => actions.openBooking(cabin)}>Book Now</Button>
+          <Button
+            onClick={() => actions.openBooking(cabin)}
+            disabled={!bookingEnabled}
+          >
+            {bookingEnabled ? 'Book Now' : 'Booking Unavailable'}
+          </Button>
         </div>
+
+        {!bookingEnabled && (
+          <p className="mt-2 text-xs text-gray-600">
+            Online booking is disabled in this environment.
+          </p>
+        )}
 
         {!cabin.available && (
           <div className="mt-4 rounded-md bg-orange-50 p-3">

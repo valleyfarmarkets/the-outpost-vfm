@@ -1,6 +1,6 @@
 import 'server-only';
-import { kv } from '@vercel/kv';
 import type { TokenCache } from './types';
+import { getRedisClient } from '../redis/client';
 
 /**
  * Vercel KV Token Storage
@@ -22,10 +22,11 @@ const TOKEN_KEY = 'guesty:oauth:token';
  */
 export async function getStoredToken(): Promise<TokenCache | null> {
   try {
-    const data = await kv.get<TokenCache>(TOKEN_KEY);
-    return data;
+    const client = await getRedisClient();
+    const raw = await client.get(TOKEN_KEY);
+    return raw ? (JSON.parse(raw) as TokenCache) : null;
   } catch (error) {
-    console.error('Failed to get stored token from Vercel KV:', error);
+    console.error('Failed to get stored token from Redis:', error);
     return null;
   }
 }
@@ -36,11 +37,12 @@ export async function getStoredToken(): Promise<TokenCache | null> {
  */
 export async function setStoredToken(token: TokenCache): Promise<void> {
   try {
+    const client = await getRedisClient();
     // Store with 24-hour TTL (86400 seconds) as safety net
     // Guesty tokens expire after 24 hours anyway
-    await kv.set(TOKEN_KEY, token, { ex: 86400 });
+    await client.set(TOKEN_KEY, JSON.stringify(token), { EX: 86400 });
   } catch (error) {
-    console.error('Failed to set stored token in Vercel KV:', error);
+    console.error('Failed to set stored token in Redis:', error);
     throw new Error('Token storage failed');
   }
 }
@@ -51,9 +53,10 @@ export async function setStoredToken(token: TokenCache): Promise<void> {
  */
 export async function clearStoredToken(): Promise<void> {
   try {
-    await kv.del(TOKEN_KEY);
+    const client = await getRedisClient();
+    await client.del(TOKEN_KEY);
   } catch (error) {
-    console.error('Failed to clear stored token from Vercel KV:', error);
+    console.error('Failed to clear stored token from Redis:', error);
     // Don't throw - cleanup failure shouldn't block operations
   }
 }
@@ -63,9 +66,10 @@ export async function clearStoredToken(): Promise<void> {
  */
 export async function getRedisValue(key: string): Promise<string | null> {
   try {
-    return await kv.get<string>(key);
+    const client = await getRedisClient();
+    return await client.get(key);
   } catch (error) {
-    console.error(`Failed to get KV value for key ${key}:`, error);
+    console.error(`Failed to get Redis value for key ${key}:`, error);
     return null;
   }
 }
@@ -79,9 +83,10 @@ export async function setRedisValue(
   expirationSeconds: number
 ): Promise<void> {
   try {
-    await kv.set(key, value, { ex: expirationSeconds });
+    const client = await getRedisClient();
+    await client.set(key, value, { EX: expirationSeconds });
   } catch (error) {
-    console.error(`Failed to set KV value for key ${key}:`, error);
+    console.error(`Failed to set Redis value for key ${key}:`, error);
     throw error;
   }
 }
@@ -91,9 +96,10 @@ export async function setRedisValue(
  */
 export async function deleteRedisValue(key: string): Promise<void> {
   try {
-    await kv.del(key);
+    const client = await getRedisClient();
+    await client.del(key);
   } catch (error) {
-    console.error(`Failed to delete KV value for key ${key}:`, error);
+    console.error(`Failed to delete Redis value for key ${key}:`, error);
     // Don't throw - cleanup failure shouldn't block operations
   }
 }
