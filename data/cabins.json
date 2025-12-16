@@ -15,10 +15,12 @@
       "featured": true,
       "images": [
         "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
-        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
-        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
-        "/images/cabins/hunters-lair/hunters-lair-hero.jpg",
-        "/images/cabins/hunters-lair/hunters-lair-hero.jpg"
+        "/images/cabins/hunters-lair/111-1953.jpg",
+        "/images/cabins/hunters-lair/111-1962.jpg",
+        "/images/cabins/hunters-lair/111-1972.jpg",
+        "/images/cabins/hunters-lair/111-1979.jpg",
+        "/images/cabins/hunters-lair/111-1984.jpg",
+        "/images/cabins/hunters-lair/111-1990.jpg"
       ],
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
