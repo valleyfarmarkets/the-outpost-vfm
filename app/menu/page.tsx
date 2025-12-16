@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  Flame,
   Snowflake,
   Star,
   ExternalLink,
@@ -75,17 +74,6 @@ const monthlySpecial = {
   image:
     "https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80",
 };
-
-const sides = [
-  "Fries",
-  "Sweet Potato Fries",
-  "Coleslaw",
-  "Mac & Cheese",
-  "Baked Beans",
-  "Cornbread",
-  "Collard Greens",
-  "Potato Salad",
-];
 
 function Tag({ label }: { label: string }) {
   const variants = {
@@ -309,7 +297,7 @@ function CategorySection({
       id={category.id}
       style={{
         marginBottom: "48px",
-        scrollMarginTop: "140px",
+        scrollMarginTop: "80px",
       }}
     >
       <div
@@ -372,9 +360,13 @@ export default function MenuPage() {
     (a, b) => a.displayOrder - b.displayOrder
   );
   const iconMap: Record<string, React.JSX.Element> = {
-    breakfast: <Leaf className="h-5 w-5" />,
-    lunch: <UtensilsCrossed className="h-5 w-5" />,
-    desserts: <Star className="h-5 w-5" />,
+    starters: <UtensilsCrossed className="h-5 w-5" />,
+    greens: <Leaf className="h-5 w-5" />,
+    "big-plates": <Drumstick className="h-5 w-5" />,
+    pizza: <Pizza className="h-5 w-5" />,
+    dessert: <Star className="h-5 w-5" />,
+    sides: <UtensilsCrossed className="h-5 w-5" />,
+    "kids-menu": <Star className="h-5 w-5" />,
   };
 
   const menuCategories = sortedCategories.map((category) => ({
@@ -431,36 +423,11 @@ export default function MenuPage() {
           textAlign: "center",
         }}
       >
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            background: "rgba(255,255,255,0.1)",
-            padding: "8px 16px",
-            borderRadius: "24px",
-            marginBottom: "16px",
-          }}
-        >
-          <Flame className="h-4 w-4 text-[var(--menu-brightGold)]" />
-          <span
-            style={{
-              color: colors.brightGold,
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.5px",
-              textTransform: "uppercase",
-            }}
-          >
-            Mt. Laguna, CA
-          </span>
-        </div>
-
         <h1
           className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05]"
           style={{
             color: "#fff",
-            margin: "32px 0 20px 0",
+            margin: "0 0 20px 0",
           }}
         >
           Our Menu
@@ -501,9 +468,6 @@ export default function MenuPage() {
         style={{
           background: colors.warmWhite,
           borderBottom: `1px solid ${colors.lightGray}`,
-          position: "sticky",
-          top: "60px",
-          zIndex: 90,
           overflowX: "auto",
           WebkitOverflowScrolling: "touch",
         }}
@@ -704,52 +668,6 @@ export default function MenuPage() {
         {menuCategories.map((category) => (
           <CategorySection key={category.id} category={category} />
         ))}
-
-        {/* Sides Section */}
-        <section style={{ marginBottom: "48px" }}>
-          <h3
-            style={{
-              fontSize: "24px",
-              fontWeight: 600,
-              color: colors.charcoal,
-              margin: "0 0 16px 0",
-            }}
-          >
-            Sides{" "}
-            <span
-              style={{
-                fontSize: "16px",
-                fontWeight: 400,
-                color: colors.textMuted,
-              }}
-            >
-              $5 each
-            </span>
-          </h3>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "10px",
-            }}
-          >
-            {sides.map((side) => (
-              <span
-                key={side}
-                style={{
-                  background: colors.warmWhite,
-                  border: `1px solid ${colors.lightGray}`,
-                  padding: "10px 18px",
-                  borderRadius: "24px",
-                  fontSize: "14px",
-                  color: colors.charcoal,
-                }}
-              >
-                {side}
-              </span>
-            ))}
-          </div>
-        </section>
 
         {/* Bottom CTA */}
         <section
