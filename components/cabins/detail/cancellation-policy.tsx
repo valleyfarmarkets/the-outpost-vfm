@@ -1,10 +1,12 @@
-import { Shield, AlertCircle, DollarSign } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Shield, AlertCircle, ChevronDown } from "lucide-react";
 import type { CancellationPolicy as CancellationPolicyType } from "@/types/cabins";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface CancellationPolicyProps {
   policy?: CancellationPolicyType;
-  securityDeposit?: number;
   className?: string;
 }
 
@@ -16,9 +18,10 @@ const policyTypeColors = {
 
 export function CancellationPolicy({
   policy,
-  securityDeposit,
   className,
 }: CancellationPolicyProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   if (!policy) {
     return null;
   }
@@ -27,16 +30,28 @@ export function CancellationPolicy({
 
   return (
     <div className={cn("border-t border-gray-200 pt-10", className)}>
-      {/* Section Header */}
-      <div className="mb-6 flex items-center gap-2">
-        <Shield className="h-5 w-5 text-[#221F1F]" />
-        <h2 className="font-serif text-2xl font-semibold text-[#221F1F]">
-          Cancellation Policy
-        </h2>
-      </div>
+      {/* Section Header - Clickable Toggle */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="mb-6 flex w-full items-center justify-between text-left"
+      >
+        <div className="flex items-center gap-2">
+          <Shield className="h-5 w-5 text-[#221F1F]" />
+          <h2 className="font-serif text-2xl font-semibold text-[#221F1F]">
+            Cancellation Policy
+          </h2>
+        </div>
+        <ChevronDown
+          className={cn(
+            "h-5 w-5 text-[#221F1F] transition-transform",
+            isExpanded && "rotate-180"
+          )}
+        />
+      </button>
 
-      {/* Policy Card */}
-      <div className="rounded-xl border border-gray-200 bg-white p-6">
+      {/* Policy Card - Conditionally Rendered */}
+      {isExpanded && (
+        <div className="rounded-xl border border-gray-200 bg-white p-6">
         {/* Policy Type Badge */}
         <div className="flex items-center gap-3">
           <Shield className="h-6 w-6 text-brand-primary" />
@@ -85,23 +100,8 @@ export function CancellationPolicy({
             </p>
           </div>
         )}
-
-        {/* Security Deposit Callout */}
-        {securityDeposit && securityDeposit > 0 && (
-          <div className="mt-6 flex items-start gap-3 rounded-lg border border-yellow-300 bg-yellow-50 p-4">
-            <DollarSign className="h-5 w-5 shrink-0 text-yellow-700" />
-            <div>
-              <p className="font-semibold text-yellow-900">
-                Security Deposit: {formatPrice(securityDeposit)}
-              </p>
-              <p className="mt-1 text-sm text-yellow-800">
-                A refundable security deposit is required for this cabin. It will be
-                returned within 7 days after checkout if no damage occurs.
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

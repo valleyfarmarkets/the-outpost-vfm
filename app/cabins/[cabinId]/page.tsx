@@ -85,10 +85,7 @@ export default async function CabinPage({ params }: CabinPageProps) {
               <HouseRulesSection rules={cabin.houseRules} />
 
               {/* Cancellation Policy */}
-              <CancellationPolicy
-                policy={cabin.cancellationPolicy}
-                securityDeposit={cabin.securityDeposit}
-              />
+              <CancellationPolicy policy={cabin.cancellationPolicy} />
             </div>
 
             {/* RIGHT COLUMN - Sticky Booking Card */}
