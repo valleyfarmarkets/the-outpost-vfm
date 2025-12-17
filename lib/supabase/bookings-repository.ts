@@ -44,7 +44,9 @@ export interface CreatePendingBookingParams {
   stripeToken: string;
   ipAddress?: string;
   userAgent?: string;
+  id?: string; // Optional custom ID for idempotency
 }
+
 
 /**
  * PENDING STATE PATTERN: Create booking record BEFORE calling Guesty
@@ -57,8 +59,12 @@ export async function createPendingBooking(
   const supabase = getSupabaseServerClient();
 
   const bookingData = {
+    // Use provided ID or let database generate one
+    ...(params.id && { id: params.id }),
+    
     // NULL until Guesty confirms (allows concurrent pending bookings)
     guesty_reservation_id: null,
+
     guesty_confirmation_code: null,
     guesty_listing_id: params.guestyListingId, // Guesty listing ID for API calls
     guesty_quote_id: params.quoteId,
@@ -183,3 +189,21 @@ export async function getBookingByConfirmation(
 
   return data as BookingRecord;
 }
+
+export async function getBookingById(bookingId: string): Promise<BookingRecord | null> {
+  const supabase = getSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*')
+    .eq('id', bookingId)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') return null;
+    throw new Error(`Database error: ${error.message}`);
+  }
+
+  return data as BookingRecord;
+}
+

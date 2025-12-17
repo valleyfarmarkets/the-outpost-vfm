@@ -118,7 +118,8 @@ export async function createReservation(
   estimatedTotal: number,
   guests: { adults: number; children: number },
   guest: GuestDetails,
-  paymentToken: string
+  paymentToken: string,
+  idempotencyKey?: string
 ): Promise<ReservationResponse> {
   const response = await fetch('/api/booking/reservation', {
     method: 'POST',
@@ -134,6 +135,7 @@ export async function createReservation(
       guests,
       guest,
       paymentToken,
+      idempotencyKey,
     }),
   });
 

@@ -21,7 +21,8 @@ export function useCreateReservation() {
     estimatedTotal: number,
     guests: { adults: number; children: number },
     guest: GuestDetails,
-    paymentToken: string
+    paymentToken: string,
+    idempotencyKey?: string
   ): Promise<ReservationResponse | null> => {
     setIsLoading(true);
     setError(null);
@@ -37,7 +38,8 @@ export function useCreateReservation() {
         estimatedTotal,
         guests,
         guest,
-        paymentToken
+        paymentToken,
+        idempotencyKey
       );
       return result;
     } catch (err) {

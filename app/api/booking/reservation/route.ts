@@ -9,7 +9,9 @@ import {
   createPendingBooking,
   updateBookingWithConfirmation,
   markBookingFailed,
+  getBookingById,
 } from '@/lib/supabase/bookings-repository';
+
 import { sendBookingConfirmation } from '@/lib/resend/email-client';
 import { differenceInDays } from 'date-fns';
 import { headers } from 'next/headers';
@@ -68,7 +70,9 @@ const reservationSchema = z.object({
     notes: z.string().optional(),
   }),
   paymentToken: z.string().min(1, 'Payment token is required'),
+  idempotencyKey: z.string().optional(),
 });
+
 
 export async function POST(request: NextRequest) {
   try {
@@ -84,11 +88,72 @@ export async function POST(request: NextRequest) {
       'unknown';
     const userAgent = headersList.get('user-agent') || 'unknown';
 
+    // STEP 0: Idempotency Check
+    if (validated.idempotencyKey) {
+      const existingBooking = await getBookingById(validated.idempotencyKey);
+      
+      if (existingBooking) {
+        console.log(`[Reservation] Idempotency hit: ${validated.idempotencyKey}`);
+        
+        // If confirmed, return success immediately
+        if (existingBooking.status === 'confirmed') {
+          return NextResponse.json({
+            reservationId: existingBooking.guesty_reservation_id,
+            confirmationCode: existingBooking.guesty_confirmation_code,
+            status: 'confirmed',
+            // Reconstruct partial response or fetch full details if needed
+            // For now, return what we have which is sufficient for UI
+            pricing: {
+              total: existingBooking.total_price_cents / 100,
+              currency: existingBooking.currency,
+            },
+            guest: {
+              firstName: existingBooking.guest_first_name,
+              lastName: existingBooking.guest_last_name,
+              email: existingBooking.guest_email,
+            },
+          });
+        }
+        
+        // If pending, it might be a race condition or stuck
+        // We allow proceed if it's old, or return "processing"
+        // For simplicity, if it's very recent (< 1 min), return processing
+        // Otherwise, we might want to fail or allow retry.
+        // Current decision: Fail with specific error to let client decide
+        if (existingBooking.status === 'pending') {
+           return NextResponse.json(
+            {
+              error: 'Booking In Progress',
+              message: 'A booking with this ID is currently being processed.',
+            },
+            { status: 409 }
+          );
+        }
+        
+        // If failed/cancelled, we allow retry (by recreating or updating? Recreating with same ID might fail PK)
+        // Ideally we should use a new ID for a new attempt if the previous one failed definitively.
+        // But if the client retries with SAME key, they expect SAME result.
+        // If previous failed, returning "failed" is correct.
+        if (existingBooking.status === 'failed' || existingBooking.status === 'cancelled') {
+           // Client should generate a NEW key for a NEW attempt if the previous one failed
+           // So we tell them this key is used and failed.
+           return NextResponse.json(
+            {
+              error: 'Booking Failed',
+              message: 'This booking attempt previously failed. Please try again.',
+            },
+            { status: 400 }
+          );
+        }
+      }
+    }
+
     // STEP 1: Create PENDING booking in database FIRST
     // This ensures we have a record of every booking attempt
     let bookingRecord;
     try {
       bookingRecord = await createPendingBooking({
+        id: validated.idempotencyKey, // Pass custom ID
         guestDetails: validated.guest,
         quoteId: validated.quoteId,
         guestyListingId: validated.guestyListingId, // Use Guesty listing ID for API calls

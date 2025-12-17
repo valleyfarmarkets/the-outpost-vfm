@@ -63,7 +63,8 @@ export function StepPayment() {
       quote.pricing.total,
       state.guests,
       guestDetails,
-      token
+      token,
+      state.idempotencyKey || undefined
     );
 
     if (reservation) {
