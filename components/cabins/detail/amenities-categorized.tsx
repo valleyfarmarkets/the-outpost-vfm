@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { AmenityCategorized, CabinAmenity } from "@/types/cabins";
 import { cn } from "@/lib/utils";
+import { getAmenityIcon } from "@/lib/amenity-icons";
 
 interface AmenitiesCategorizedProps {
   amenities?: AmenityCategorized[];
@@ -33,12 +34,15 @@ export function AmenitiesCategorized({ amenities, className }: AmenitiesCategori
 
       {/* Amenities Grid */}
       <div className="grid gap-4 md:grid-cols-2">
-        {displayedAmenities.map((amenity, index) => (
-          <div key={index} className="flex items-center gap-3">
-            <span className="text-xl">{amenity.icon}</span>
-            <span className="text-base text-[#221F1F]">{amenity.label}</span>
-          </div>
-        ))}
+        {displayedAmenities.map((amenity, index) => {
+          const Icon = getAmenityIcon(amenity.icon);
+          return (
+            <div key={index} className="flex items-center gap-3">
+              <Icon className="h-5 w-5 text-[#221F1F]" />
+              <span className="text-base text-[#221F1F]">{amenity.label}</span>
+            </div>
+          );
+        })}
       </div>
 
       {/* Show All Button */}
