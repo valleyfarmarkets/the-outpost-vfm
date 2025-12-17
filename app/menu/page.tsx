@@ -37,7 +37,7 @@ const seasonalItems = {
       name: "Cowboy Chili",
       description:
         "Hearty beef & bean chili with smoked brisket burnt ends, topped with cheddar, sour cream & green onions. Served with cornbread.",
-      price: 14,
+      price: 17,
       tags: ["Hearty", "Staff Pick"],
       image:
         "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80",
@@ -47,7 +47,7 @@ const seasonalItems = {
       name: "Tomato Basil Soup",
       description:
         "Creamy roasted tomato soup with fresh basil and a grilled cheese dipper. Pure comfort.",
-      price: 10,
+      price: 13,
       tags: ["Vegetarian"],
       image:
         "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80",
@@ -55,15 +55,6 @@ const seasonalItems = {
   ],
 };
 
-const monthlySpecial = {
-  title: "December Special",
-  name: "The Holiday Platter",
-  description:
-    "Feeds 4-6. Smoked turkey breast, honey-glazed ham, cranberry jalapeno glaze, all the sides, and a dozen fresh-baked rolls. Pre-order recommended.",
-  price: 89,
-  image:
-    "https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80",
-};
 
 function Tag({ label }: { label: string }) {
   const variants = {
@@ -509,91 +500,6 @@ export default function MenuPage() {
           padding: "40px 24px 80px",
         }}
       >
-        {/* Monthly Special Banner */}
-        <section
-          style={{
-            background: `linear-gradient(135deg, ${colors.deepRed} 0%, ${colors.burntOrange} 100%)`,
-            borderRadius: "20px",
-            padding: "32px",
-            marginBottom: "48px",
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "24px",
-            color: "#fff",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "-50px",
-              right: "-50px",
-              width: "200px",
-              height: "200px",
-              borderRadius: "50%",
-              background: "rgba(255,255,255,0.1)",
-            }}
-          />
-
-          <div>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                background: "rgba(0,0,0,0.2)",
-                padding: "6px 14px",
-                borderRadius: "20px",
-                marginBottom: "12px",
-              }}
-            >
-              <Star className="h-4 w-4" />
-              <span
-                style={{
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                }}
-              >
-                {monthlySpecial.title}
-              </span>
-            </div>
-
-            <h3
-              style={{
-                fontSize: "28px",
-                fontWeight: 600,
-                margin: "0 0 12px 0",
-              }}
-            >
-              {monthlySpecial.name}
-            </h3>
-
-            <p
-              style={{
-                fontSize: "15px",
-                lineHeight: 1.6,
-                opacity: 0.9,
-                margin: "0 0 16px 0",
-                maxWidth: "600px",
-              }}
-            >
-              {monthlySpecial.description}
-            </p>
-
-            <div
-              style={{
-                fontSize: "24px",
-                fontWeight: 700,
-              }}
-            >
-              ${monthlySpecial.price}
-            </div>
-          </div>
-        </section>
-
         {/* Seasonal Items */}
         <section style={{ marginBottom: "48px" }}>
           <div
