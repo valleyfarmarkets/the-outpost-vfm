@@ -45,11 +45,14 @@ export function DateRangePicker({
         disabled={disabled ? true : disabledDays}
         numberOfMonths={2}
         modifiersClassNames={{
-          selected: 'bg-brand-primary text-white hover:bg-brand-primary',
-          today: 'font-bold',
-          disabled: 'opacity-40 cursor-not-allowed',
+          selected: 'bg-brand-primary/10 text-brand-primary', // Base selected style (middle)
+          range_start: 'bg-brand-primary text-white rounded-l-md hover:bg-brand-primary hover:text-white', // Start cap
+          range_end: 'bg-brand-primary text-white rounded-r-md hover:bg-brand-primary hover:text-white', // End cap
+          range_middle: 'bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20', // Middle connection
+          today: 'font-bold text-brand-primary',
+          disabled: 'opacity-30 cursor-not-allowed text-gray-400',
         }}
-        className="rounded-lg border p-4"
+        className="rounded-lg border p-4 bg-white shadow-sm"
       />
 
       {selected.from && selected.to && (

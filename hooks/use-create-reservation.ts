@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { createReservation, type ReservationResponse } from '@/lib/booking/api-client';
 import type { GuestDetails } from '@/types/booking';
 
@@ -11,7 +11,7 @@ export function useCreateReservation() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const create = async (
+  const create = useCallback(async (
     quoteId: string,
     guestyListingId: string,
     cabinId: string,
@@ -49,7 +49,7 @@ export function useCreateReservation() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   return {
     createReservation: create,

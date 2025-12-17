@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { checkAvailability, type AvailabilityResponse } from '@/lib/booking/api-client';
 import type { GuestCount } from '@/types/booking';
 
@@ -11,7 +11,7 @@ export function useAvailability() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const check = async (
+  const check = useCallback(async (
     listingId: string,
     checkIn: Date,
     checkOut: Date,
@@ -30,7 +30,7 @@ export function useAvailability() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   return {
     checkAvailability: check,

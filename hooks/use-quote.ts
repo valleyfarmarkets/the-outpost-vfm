@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { fetchQuote } from '@/lib/booking/api-client';
 import type { GuestCount, GuestyQuote } from '@/types/booking';
 
@@ -11,7 +11,7 @@ export function useQuote() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getQuote = async (
+  const getQuote = useCallback(async (
     listingId: string,
     checkIn: Date,
     checkOut: Date,
@@ -30,7 +30,7 @@ export function useQuote() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   return {
     fetchQuote: getQuote,
