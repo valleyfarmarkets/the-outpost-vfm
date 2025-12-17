@@ -5,28 +5,201 @@
       "name": "Starters",
       "description": "Shareable plates to start your meal",
       "displayOrder": 1,
-      "items": []
+      "items": [
+        {
+          "id": "smoked-wings",
+          "name": "Smoked Wings",
+          "description": "Hickory-smoked chicken wings tossed in your choice of sauce. Served with ranch or blue cheese.",
+          "price": 16.00,
+          "available": true,
+          "featured": true
+        },
+        {
+          "id": "chips-and-dips",
+          "name": "Chips & Dips",
+          "description": "House-made tortilla chips served with fresh salsa, guacamole, and queso.",
+          "price": 8.00,
+          "available": true
+        },
+        {
+          "id": "pretzel-bites",
+          "name": "Pretzel Bites",
+          "description": "Warm soft pretzel bites served with beer cheese dip.",
+          "price": 10.00,
+          "available": true
+        },
+        {
+          "id": "carne-asada-fries",
+          "name": "Carne Asada Fries",
+          "description": "Crispy fries topped with seasoned carne asada, cheese, guacamole, and sour cream.",
+          "price": 16.00,
+          "available": true
+        },
+        {
+          "id": "quesadilla",
+          "name": "Quesadilla",
+          "description": "Grilled flour tortilla filled with melted cheese. Served with salsa and sour cream.",
+          "price": 10.00,
+          "available": true
+        }
+      ]
     },
     {
       "id": "greens",
       "name": "Greens",
       "description": "Fresh salads and lighter fare",
       "displayOrder": 2,
-      "items": []
+      "items": [
+        {
+          "id": "baja-salad",
+          "name": "Baja Salad",
+          "description": "Fresh greens with grilled chicken, black beans, corn, avocado, and chipotle ranch dressing.",
+          "price": 13.00,
+          "available": true
+        },
+        {
+          "id": "italian-antipasto-salad",
+          "name": "Italian Antipasto Salad",
+          "description": "Mixed greens with salami, pepperoni, mozzarella, olives, pepperoncini, and Italian dressing.",
+          "price": 13.00,
+          "available": true
+        },
+        {
+          "id": "mount-laguna-caesar",
+          "name": "Mount Laguna Caesar",
+          "description": "Crisp romaine lettuce, parmesan cheese, croutons, and house-made Caesar dressing.",
+          "price": 12.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        }
+      ]
     },
     {
       "id": "big-plates",
       "name": "Big Plates",
       "description": "Hearty entrees and mountain favorites",
       "displayOrder": 3,
-      "items": []
+      "items": [
+        {
+          "id": "slow-smoked-bbq-pulled-pork",
+          "name": "Slow Smoked BBQ Pulled Pork",
+          "description": "Tender pulled pork smoked low and slow, served with coleslaw and cornbread.",
+          "price": 16.00,
+          "available": true
+        },
+        {
+          "id": "southern-style-chicken-tenders",
+          "name": "Southern Style Chicken Tenders",
+          "description": "Hand-breaded chicken tenders fried golden brown. Served with fries and honey mustard.",
+          "price": 15.00,
+          "available": true
+        },
+        {
+          "id": "vfm-california-burrito",
+          "name": "VFM California Burrito",
+          "description": "Flour tortilla stuffed with carne asada, fries, cheese, guacamole, and sour cream.",
+          "price": 15.00,
+          "available": true
+        },
+        {
+          "id": "vfm-signature-smashburger",
+          "name": "VFM Signature Smashburger",
+          "description": "Two smashed patties with American cheese, pickles, onions, and our signature sauce on a toasted bun.",
+          "price": 14.00,
+          "available": true,
+          "featured": true
+        },
+        {
+          "id": "route-94-bacon-burger",
+          "name": "Route 94 Bacon Burger",
+          "description": "Beef patty with bacon, cheddar, lettuce, tomato, and BBQ sauce. Available in single ($18) or double ($22) patty.",
+          "price": 18.00,
+          "available": true
+        },
+        {
+          "id": "tomato-soup-half-grilled-cheese",
+          "name": "Tomato Soup + Half Grilled Cheese",
+          "description": "Creamy tomato basil soup paired with a crispy grilled cheese sandwich.",
+          "price": 13.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        },
+        {
+          "id": "cowboy-chili",
+          "name": "Cowboy Chili",
+          "description": "Hearty beef and bean chili topped with cheddar, sour cream, and green onions. Served with cornbread.",
+          "price": 17.00,
+          "available": true,
+          "featured": true
+        }
+      ]
     },
     {
       "id": "pizza",
       "name": "Pizza",
       "description": "Stone-fired pizzas made to order",
       "displayOrder": 4,
-      "items": []
+      "items": [
+        {
+          "id": "ono-nui",
+          "name": "Ono Nui",
+          "description": "Hawaiian-style pizza with ham, pineapple, and mozzarella cheese.",
+          "price": 19.00,
+          "available": true,
+          "featured": true
+        },
+        {
+          "id": "miss-piggy",
+          "name": "Miss Piggy",
+          "description": "BBQ sauce base with pulled pork, bacon, red onion, and mozzarella cheese.",
+          "price": 20.00,
+          "available": true
+        },
+        {
+          "id": "the-herbivore",
+          "name": "The Herbivore",
+          "description": "Garden vegetables including mushrooms, bell peppers, onions, olives, and tomatoes.",
+          "price": 18.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        },
+        {
+          "id": "butchers-pizza",
+          "name": "Butchers Pizza",
+          "description": "Loaded with pepperoni, sausage, bacon, ham, and mozzarella cheese.",
+          "price": 20.00,
+          "available": true
+        },
+        {
+          "id": "sunrise-highway",
+          "name": "Sunrise Highway",
+          "description": "Breakfast pizza with scrambled eggs, bacon, sausage, and cheddar cheese.",
+          "price": 19.00,
+          "available": true
+        },
+        {
+          "id": "el-barracho",
+          "name": "El Barracho",
+          "description": "Spicy pizza with jalapeños, chorizo, pepper jack cheese, and fresh cilantro.",
+          "price": 20.00,
+          "available": true
+        },
+        {
+          "id": "cheese-pizza",
+          "name": "Cheese Pizza",
+          "description": "Classic pizza with tomato sauce and mozzarella cheese.",
+          "price": 16.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        },
+        {
+          "id": "pepperoni-pizza",
+          "name": "Pepperoni Pizza",
+          "description": "Traditional pizza with pepperoni and mozzarella cheese.",
+          "price": 18.00,
+          "available": true
+        }
+      ]
     },
     {
       "id": "dessert",
@@ -40,14 +213,83 @@
       "name": "Sides",
       "description": "Perfect accompaniments to any meal",
       "displayOrder": 6,
-      "items": []
+      "items": [
+        {
+          "id": "cole-slaw",
+          "name": "Cole Slaw",
+          "description": "Fresh, creamy coleslaw.",
+          "price": 6.00,
+          "available": true
+        },
+        {
+          "id": "french-fries",
+          "name": "French Fries",
+          "description": "Crispy golden french fries.",
+          "price": 6.00,
+          "available": true
+        },
+        {
+          "id": "cornbread",
+          "name": "Cornbread",
+          "description": "Warm, buttery cornbread.",
+          "price": 2.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        },
+        {
+          "id": "carrots-and-celery",
+          "name": "Carrots And Celery",
+          "description": "Fresh cut vegetables with ranch dip.",
+          "price": 3.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        },
+        {
+          "id": "onion-rings",
+          "name": "Onion Rings",
+          "description": "Beer-battered onion rings fried to golden perfection.",
+          "price": 6.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        }
+      ]
     },
     {
       "id": "kids-menu",
       "name": "Kids Menu",
       "description": "Kid-friendly favorites",
       "displayOrder": 7,
-      "items": []
+      "items": [
+        {
+          "id": "grilled-cheese-sandwich",
+          "name": "Grilled Cheese Sandwich",
+          "description": "Classic grilled cheese on white bread. Served with fries.",
+          "price": 10.00,
+          "available": true
+        },
+        {
+          "id": "chicken-nuggets",
+          "name": "Chicken Nuggets",
+          "description": "Crispy chicken nuggets served with fries and dipping sauce.",
+          "price": 10.00,
+          "available": true
+        },
+        {
+          "id": "kids-burger",
+          "name": "Kids Burger",
+          "description": "Junior burger with cheese. Served with fries.",
+          "price": 10.00,
+          "available": true
+        },
+        {
+          "id": "mac-n-cheese",
+          "name": "Mac N Cheese",
+          "description": "Creamy macaroni and cheese.",
+          "price": 10.00,
+          "available": true,
+          "dietaryTags": ["vegetarian"]
+        }
+      ]
     }
   ],
   "lastUpdated": "2025-12-16"
