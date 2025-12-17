@@ -187,6 +187,7 @@ export async function sendContactMessage(data: ContactFormData) {
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
   const safePhone = data.phone ? escapeHtml(data.phone) : '';
+  const safeSubject = data.subject ? escapeHtml(data.subject) : 'New inquiry';
   const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br>');
   const submittedAt = formatPacificTimestamp();
 
@@ -194,7 +195,7 @@ export async function sendContactMessage(data: ContactFormData) {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
       to: CONTACT_RECIPIENTS,
-      subject: `[Contact] New inquiry – ${data.name}`,
+      subject: `[Contact] ${safeSubject} – ${safeName}`,
       replyTo: data.email,
       html: `<!DOCTYPE html>
 <html lang="en">

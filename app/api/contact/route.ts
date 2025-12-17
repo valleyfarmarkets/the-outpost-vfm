@@ -9,6 +9,7 @@ export async function POST(request: Request) {
       name: body.name ?? "",
       email: body.email ?? "",
       phone: body.phone ?? "",
+      subject: body.subject ?? "",
       message: body.message ?? "",
     };
 
@@ -29,17 +30,16 @@ export async function POST(request: Request) {
     }
 
     const guestResult = await sendContactConfirmation(data);
-    if (!guestResult.success && !guestResult.skipped) {
-      return NextResponse.json(
-        { success: false, message: "Failed to send confirmation" },
-        { status: 500 }
-      );
+    const guestError = !guestResult.success && !guestResult.skipped;
+    if (guestError) {
+      console.error("[Contact] Guest confirmation failed");
     }
 
     return NextResponse.json({
-      success: true,
+      success: true, // return success as long as staff notification succeeds
       skipped: staffResult.skipped ?? false,
       guestSkipped: guestResult.skipped ?? false,
+      guestError,
     });
   } catch (error) {
     console.error("[Contact] Unexpected error:", error);
