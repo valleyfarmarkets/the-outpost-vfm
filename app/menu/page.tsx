@@ -108,11 +108,19 @@ function MenuItem({
     featured?: boolean;
   };
 }) {
-  const tags: string[] = [
+  const combinedTags: string[] = [
     ...(item.tags ?? []),
     ...(item.dietaryTags ?? []),
     ...(item.featured ? ["Featured"] : []),
   ];
+
+  const tags = combinedTags.filter((tag, index) => {
+    const lowerTag = tag.toLowerCase();
+    return (
+      combinedTags.findIndex((candidate) => candidate.toLowerCase() === lowerTag) ===
+      index
+    );
+  });
 
   return (
     <div
@@ -323,13 +331,7 @@ function CategorySection({
         }}
       >
         {category.items.map((item) => (
-          <MenuItem
-            key={item.id}
-            item={{
-              ...item,
-              tags: item.dietaryTags ?? [],
-            }}
-          />
+          <MenuItem key={item.id} item={item} />
         ))}
       </div>
     </section>
