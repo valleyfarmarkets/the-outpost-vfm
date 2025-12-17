@@ -4,6 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { useBookingContext } from '@/context/booking-context';
 import { BookingWizard } from './booking-wizard';
+import { BookingErrorBoundary } from './booking-error-boundary';
 
 /**
  * Booking Modal
@@ -57,8 +58,11 @@ export function BookingModal() {
 
           {/* Modal content - scroll container */}
           <div className="overflow-y-auto max-h-[90vh]">
-            <BookingWizard />
+            <BookingErrorBoundary onReset={() => actions.reset()}>
+              <BookingWizard />
+            </BookingErrorBoundary>
           </div>
+
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

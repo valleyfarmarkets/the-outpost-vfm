@@ -37,6 +37,13 @@ export function StepDateSelection() {
 
   // Check availability when dates are selected
   useEffect(() => {
+    console.log('[StepDateSelection] Checking availability effect triggered', {
+      from: selectedRange.from,
+      to: selectedRange.to,
+      guests: state.guests,
+      fn: checkAvailability // Check if this reference changes
+    });
+
     const checkDates = async () => {
       if (!selectedRange.from || !selectedRange.to) return;
 

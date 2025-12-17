@@ -96,6 +96,9 @@ export const initialState: BookingState = {
 
 // Reducer
 export function bookingReducer(state: BookingState, action: BookingAction): BookingState {
+  // Debug Logging
+  console.log(`[BookingReducer] Action: ${action.type}`, { action, currentState: state });
+
   switch (action.type) {
     case 'OPEN_BOOKING':
       return {
