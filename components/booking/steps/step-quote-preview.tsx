@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useBookingContext } from '@/context/booking-context';
@@ -26,7 +26,7 @@ export function StepQuotePreview() {
   const quote = state.quote!;
   const nights = calculateNights(state.checkIn!, state.checkOut!);
 
-  const handleRefreshQuote = async () => {
+  const handleRefreshQuote = useCallback(async () => {
     const newQuote = await fetchQuote(
       cabin.guestyListingId,
       state.checkIn!,
@@ -37,7 +37,7 @@ export function StepQuotePreview() {
     if (newQuote) {
       actions.setQuote(newQuote);
     }
-  };
+  }, [fetchQuote, cabin.guestyListingId, state.checkIn, state.checkOut, state.guests, actions]);
 
   const handleContinue = () => {
     if (!isExpired) {
@@ -51,7 +51,7 @@ export function StepQuotePreview() {
       hasAutoRefreshed.current = true;
       void handleRefreshQuote();
     }
-  }, [isExpired, isLoading]);
+  }, [isExpired, isLoading, handleRefreshQuote]);
 
   const handleBack = () => {
     actions.previousStep();

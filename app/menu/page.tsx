@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import {
   Snowflake,
   Star,
   ExternalLink,
-  ChevronLeft,
   UtensilsCrossed,
   Drumstick,
   Leaf,
@@ -27,16 +26,7 @@ const colors = {
   lightGray: "#E8E4DE",
 };
 
-const menuData: MenuData = {
-  ...rawMenuData,
-  categories: rawMenuData.categories.map((category) => ({
-    ...category,
-    items: category.items.map((item) => ({
-      ...item,
-      dietaryTags: item.dietaryTags as DietaryTag[] | undefined,
-    })),
-  })),
-};
+const menuData: MenuData = rawMenuData as MenuData;
 
 const seasonalItems = {
   title: "Winter Warmers",
@@ -219,12 +209,12 @@ function FeaturedCard({
       }}
     >
       <div style={{ height: "160px", overflow: "hidden", position: "relative" }}>
-        <img
+        <Image
           src={item.image}
           alt={item.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 400px"
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "cover",
             transform: isHovered ? "scale(1.05)" : "scale(1)",
             transition: "transform 0.5s ease",
@@ -398,7 +388,7 @@ export default function MenuPage() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [menuCategories]);
 
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId);

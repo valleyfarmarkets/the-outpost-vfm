@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -197,11 +198,13 @@ function ImageGallery({ images, tags }: ImageGalleryProps) {
       onMouseLeave={() => setIsHovered(false)}
       className="relative h-full w-full overflow-hidden rounded-xl"
     >
-      <img
+      <Image
         src={images[currentIndex]}
         alt="Cabin exterior"
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className={cn(
-          "h-full w-full object-cover transition duration-500 ease-in-out",
+          "object-cover transition duration-500 ease-in-out",
           isHovered ? "scale-[1.03]" : "scale-100",
         )}
       />

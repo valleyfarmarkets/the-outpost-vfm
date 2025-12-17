@@ -22,8 +22,28 @@ export interface AvailabilityResponse {
 export interface ReservationResponse {
   reservationId: string;
   confirmationCode: string;
-  status: 'confirmed' | 'pending';
+  status: 'confirmed' | 'pending' | 'failed';
   paymentStatus: 'paid' | 'pending' | 'failed';
+  guest: GuestDetails;
+  listing: {
+    id: string;
+    name: string;
+  };
+  dates: {
+    checkIn: string;
+    checkOut: string;
+  };
+  pricing: {
+    basePrice: number;
+    cleaningFee: number;
+    taxAmount: number;
+    total: number;
+    currency: string;
+    nightlyRates: Array<{
+      date: string;
+      price: number;
+    }>;
+  };
 }
 
 /**

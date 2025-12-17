@@ -8,19 +8,10 @@ import { formatPrice } from "@/lib/utils";
 import rawMenuData from "@/data/menu.json";
 import rawCabinsData from "@/data/cabins.json";
 import eventsData from "@/data/events.json";
-import type { DietaryTag, MenuData } from "@/types/menu";
+import type { MenuData } from "@/types/menu";
 import type { CabinData } from "@/types/cabins";
 
-const menuData: MenuData = {
-  ...rawMenuData,
-  categories: rawMenuData.categories.map((category) => ({
-    ...category,
-    items: category.items.map((item) => ({
-      ...item,
-      dietaryTags: item.dietaryTags as DietaryTag[] | undefined,
-    })),
-  })),
-};
+const menuData: MenuData = rawMenuData as MenuData;
 
 const cabinsData = {
   ...rawCabinsData,

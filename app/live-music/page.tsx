@@ -1,12 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import {
   Calendar,
   Clock,
   MapPin,
-  ChevronLeft,
   ChevronRight,
   Instagram,
   Music,
@@ -327,12 +326,12 @@ function UpcomingShowCard({ show }: { show: MusicEvent }) {
         }}
       >
         {show.image && (
-          <img
+          <Image
             src={show.image}
             alt={show.artist}
+            fill
+            sizes="100px"
             style={{
-              width: "100%",
-              height: "100%",
               objectFit: "cover",
               opacity: 0.7,
               transform: isHovered ? "scale(1.1)" : "scale(1)",
@@ -455,14 +454,12 @@ function PosterCard({
         }}
       />
 
-      <img
+      <Image
         src={poster.image}
         alt={poster.artist}
+        fill
+        sizes="(max-width: 768px) 100vw, 400px"
         style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
           objectFit: "cover",
           opacity: 0.5,
           transform: isHovered ? "scale(1.1)" : "scale(1)",
