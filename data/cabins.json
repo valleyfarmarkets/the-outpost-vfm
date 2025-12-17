@@ -538,7 +538,7 @@
       ],
       "priceRange": {
         "min": 100,
-        "max": 150,
+        "max": 149,
         "unit": "night"
       },
       "available": true,
