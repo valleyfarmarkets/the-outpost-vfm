@@ -92,7 +92,6 @@ const cabinOverrides: Record<
     tagline: "Nights under infinite skies",
     description:
       "Intimate cabin with a skylight over the bed and private hot tub. Perfect for couples or solo travelers seeking romance and wonder.",
-    pricePerNight: 149,
     rating: 5,
     reviewCount: 53,
     sqft: 450,
@@ -102,7 +101,6 @@ const cabinOverrides: Record<
     tagline: "Nature's front row seat",
     description:
       "Elevated cabin with panoramic windows and observation deck. Binoculars included—you'll spot deer, hawks, and maybe even a bobcat.",
-    pricePerNight: 179,
     rating: 4.7,
     reviewCount: 19,
     sqft: 750,
@@ -352,7 +350,7 @@ function CabinRow({ cabin }: CabinRowProps) {
           <div className="mt-auto flex items-center justify-between pt-2">
             <div>
               <span className="font-sans text-2xl font-bold text-[#221F1F]">
-                ${cabin.pricePerNight}
+                From ${cabin.pricePerNight}
               </span>
               <span className="ml-1 font-sans text-sm text-[#6B6966]">
                 / night
