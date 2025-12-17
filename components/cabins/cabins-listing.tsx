@@ -68,7 +68,6 @@ const cabinOverrides: Record<
     tagline: "Where the wild calls home",
     description:
       "Our largest cabin, perfect for families or groups seeking adventure. Expansive deck with BBQ, wood-burning fireplace, and stunning mountain views.",
-    pricePerNight: 189,
     rating: 4.9,
     reviewCount: 47,
     sqft: 850,
@@ -77,7 +76,6 @@ const cabinOverrides: Record<
     tagline: "Rest between adventures",
     description:
       "Cozy retreat with direct trail access to the PCT. Wake up, lace up, and hit the trails—then return to comfort and warmth.",
-    pricePerNight: 159,
     rating: 4.8,
     reviewCount: 32,
     sqft: 650,
@@ -86,7 +84,6 @@ const cabinOverrides: Record<
     tagline: "Cast your worries away",
     description:
       "Our most secluded cabin with private creek access. Ideal for anglers and those seeking true tranquility in nature.",
-    pricePerNight: 229,
     rating: 4.9,
     reviewCount: 28,
     sqft: 1100,
@@ -428,9 +425,9 @@ export function CabinsListing() {
       className="min-h-screen bg-[#FAF8F5]"
       style={{ color: palette.charcoal, backgroundColor: palette.cream }}
     >
-      <section className="px-6 py-20 text-center">
+      <section className="px-6 pt-40 pb-20 text-center">
         <div className="mx-auto max-w-4xl">
-          <h1 className="mt-8 font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] text-[#221F1F]">
+          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] text-[#221F1F]">
             Our Mountain Cabins
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-[#6B6966]">

@@ -400,7 +400,7 @@ export default function MenuPage() {
       <div
         style={{
           background: `linear-gradient(135deg, ${colors.charcoal} 0%, #3a3535 100%)`,
-          padding: "80px 24px",
+          padding: "160px 24px 80px 24px",
           textAlign: "center",
         }}
       >
