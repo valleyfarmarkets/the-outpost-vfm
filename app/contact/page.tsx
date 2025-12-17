@@ -2,7 +2,6 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ContactInfo } from "@/components/contact/contact-info";
-import { MapEmbed } from "@/components/contact/map-embed";
 
 export default function ContactPage() {
   return (
@@ -24,13 +23,6 @@ export default function ContactPage() {
           <div>
             <ContactInfo />
           </div>
-        </div>
-
-        <div className="mt-12">
-          <h2 className="mb-6 text-2xl font-serif text-gray-900">
-            Find Us on the Map
-          </h2>
-          <MapEmbed />
         </div>
       </Container>
     </Section>
