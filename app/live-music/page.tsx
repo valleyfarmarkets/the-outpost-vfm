@@ -558,7 +558,7 @@ export default function LiveMusicPage() {
       <section
         style={{
           position: "relative",
-          padding: "80px 24px",
+          padding: "160px 24px 80px 24px",
           textAlign: "center",
           overflow: "hidden",
         }}

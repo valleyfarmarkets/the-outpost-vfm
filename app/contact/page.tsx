@@ -6,10 +6,10 @@ import { MapEmbed } from "@/components/contact/map-embed";
 
 export default function ContactPage() {
   return (
-    <Section className="px-6 py-20 sm:py-20 lg:py-20">
+    <Section className="px-6 pt-40 pb-20">
       <Container>
         <div className="text-center">
-          <h1 className="mt-8 font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-gray-900">
+          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-gray-900">
             Contact Us
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-gray-600">
