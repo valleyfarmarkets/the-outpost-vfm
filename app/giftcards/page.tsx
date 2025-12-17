@@ -1,12 +1,11 @@
-import { Phone, Store, CreditCard } from "lucide-react";
+import { Store, CreditCard, Globe } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import siteInfo from "@/data/site-info.json";
 
 export default function GiftCardsPage() {
   return (
-    <Section className="px-6 pt-40 pb-20">
+    <section className="px-6 pt-40 pb-20">
       <Container>
         <div className="text-center">
           <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-[#221F1F]">
@@ -55,26 +54,25 @@ export default function GiftCardsPage() {
 
             <Card>
               <div className="flex items-start">
-                <Phone className="mt-1 h-8 w-8 text-brand-primary" />
+                <Globe className="mt-1 h-8 w-8 text-brand-primary" />
                 <div className="ml-4">
                   <h3 className="text-xl font-semibold text-gray-900">
-                    Order by Phone
+                    Order Online
                   </h3>
                   <p className="mt-2 text-sm text-gray-600">
-                    Call us to purchase a gift card and we can mail it to you or
-                    the recipient.
+                    Purchase digital gift cards online and have them delivered
+                    instantly via email to you or your recipient.
                   </p>
                   <div className="mt-4">
                     <a
-                      href={`tel:${siteInfo.contact.phone}`}
-                      className="inline-flex items-center text-lg font-semibold text-brand-primary hover:text-brand-primary/80"
+                      href="https://order.toasttab.com/egiftcards/valley-farm-outpost-10600-sunrise-highway"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white hover:bg-brand-primary/90 transition"
                     >
-                      {siteInfo.contact.phone}
+                      Purchase Gift Card
                     </a>
                   </div>
-                  <p className="mt-2 text-xs text-gray-500">
-                    Available during business hours
-                  </p>
                 </div>
               </div>
             </Card>
@@ -126,6 +124,6 @@ export default function GiftCardsPage() {
           </div>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }
