@@ -23,6 +23,16 @@ const formatPacificTimestamp = () =>
     timeStyle: 'short',
   });
 
+const formatError = (error: unknown) => {
+  if (error instanceof Error) return error.message;
+  if (typeof error === 'string') return error;
+  try {
+    return JSON.stringify(error);
+  } catch {
+    return 'Unknown error';
+  }
+};
+
 export interface BookingConfirmationData {
   guestName: string;
   guestEmail: string;
@@ -406,7 +416,7 @@ export async function sendContactMessage(data: ContactFormData) {
     return { success: true };
   } catch (error) {
     console.error('[Resend] Contact email failed:', error);
-    return { success: false, error };
+    return { success: false, error: formatError(error) };
   }
 }
 
@@ -623,6 +633,6 @@ export async function sendContactConfirmation(data: ContactFormData) {
     return { success: true };
   } catch (error) {
     console.error('[Resend] Contact confirmation email failed:', error);
-    return { success: false, error };
+    return { success: false, error: formatError(error) };
   }
 }

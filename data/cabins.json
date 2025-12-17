@@ -574,7 +574,6 @@
         {
           "category": "Outdoors",
           "items": [
-            { "icon": "deck", "label": "Private stargazing deck" },
             { "icon": "grill", "label": "BBQ grill" },
             { "icon": "fire-pit", "label": "Fire pit" },
             { "icon": "mountain", "label": "Dark Sky certified area" }
@@ -739,9 +738,7 @@
             { "icon": "wifi", "label": "WiFi" },
             { "icon": "heating", "label": "Heating" },
             { "icon": "fireplace", "label": "Wood-Burning Fireplace" },
-            { "icon": "parking", "label": "Free Parking" },
-            { "icon": "smoke-detector", "label": "Smoke Detector" },
-            { "icon": "first-aid", "label": "First Aid Kit" }
+            { "icon": "parking", "label": "Free Parking" }
           ]
         },
         {
@@ -761,19 +758,14 @@
             { "icon": "mountain", "label": "Secluded Forest Setting" },
             { "icon": "binoculars", "label": "Wildlife Viewing Area" },
             { "icon": "picnic-table", "label": "Outdoor Seating" },
-            { "icon": "fire-pit", "label": "Fire Pit" },
-            { "icon": "hammock", "label": "Hammock" },
-            { "icon": "nature-trail", "label": "Trail Access" }
+            { "icon": "fire-pit", "label": "Fire Pit" }
           ]
         },
         {
           "category": "Features",
           "items": [
-            { "icon": "book", "label": "Nature Guides & Field Books" },
-            { "icon": "camera", "label": "Bird Watching Station" },
             { "icon": "eco", "label": "Eco-Conscious Design" },
-            { "icon": "quiet", "label": "Most Secluded Location" },
-            { "icon": "wildlife", "label": "Wildlife Education Materials" }
+            { "icon": "quiet", "label": "Most Secluded Location" }
           ]
         }
       ],

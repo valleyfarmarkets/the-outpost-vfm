@@ -23,6 +23,7 @@ export async function POST(request: Request) {
 
     const staffResult = await sendContactMessage(data);
     if (!staffResult.success) {
+      console.error("[Contact] Staff email failed:", staffResult.error);
       return NextResponse.json(
         { success: false, message: "Failed to send message" },
         { status: 500 }
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
     const guestResult = await sendContactConfirmation(data);
     const guestError = !guestResult.success && !guestResult.skipped;
     if (guestError) {
-      console.error("[Contact] Guest confirmation failed");
+      console.error("[Contact] Guest confirmation failed:", guestResult.error);
     }
 
     return NextResponse.json({
