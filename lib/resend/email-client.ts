@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import type { ContactFormData } from '@/lib/validations';
 
 const apiKey = process.env.RESEND_API_KEY;
 const resend = apiKey && !apiKey.includes('your_') ? new Resend(apiKey) : null;
@@ -150,6 +151,66 @@ export async function sendBookingConfirmation(
     return { success: true };
   } catch (error) {
     console.error('[Resend] Email failed:', error);
+    return { success: false, error };
+  }
+}
+
+const CONTACT_RECIPIENTS = [
+  'cam@valleyfarmmarkets.com',
+  'christine@valleyfarmmarkets.com',
+  'ashley@valleyfarmmarkets.com',
+  'derek@valleyfarmmarkets.com',
+  'diana@valleyfarmmarkets.com',
+];
+
+export async function sendContactMessage(data: ContactFormData) {
+  if (!resend) {
+    console.log('[Resend] Skipping contact email (not configured)');
+    return { success: false, skipped: true };
+  }
+
+  try {
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'hello@theoutpostvfm.com',
+      to: CONTACT_RECIPIENTS,
+      subject: `[Contact] ${data.subject || 'New inquiry'} – ${data.name}`,
+      replyTo: data.email,
+      html: `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #111; max-width: 640px; margin: 0 auto; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px;">
+          <h1 style="margin-top: 0; color: #A0563B; font-size: 22px;">New Contact Form Submission</h1>
+          <p style="margin: 0 0 16px 0;">A visitor submitted the contact form on the Outpost VFM site.</p>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600;">Name</td>
+              <td style="padding: 8px 0; text-align: right;">${data.name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600;">Email</td>
+              <td style="padding: 8px 0; text-align: right;">${data.email}</td>
+            </tr>
+            ${data.phone ? `
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600;">Phone</td>
+              <td style="padding: 8px 0; text-align: right;">${data.phone}</td>
+            </tr>
+            ` : ''}
+            <tr>
+              <td style="padding: 8px 0; font-weight: 600;">Subject</td>
+              <td style="padding: 8px 0; text-align: right;">${data.subject}</td>
+            </tr>
+          </table>
+          <div style="background: #f9f9f9; padding: 16px; border-radius: 8px; border: 1px solid #eee;">
+            <div style="font-weight: 600; margin-bottom: 8px; color: #555;">Message</div>
+            <div style="white-space: pre-wrap; color: #222;">${data.message}</div>
+          </div>
+        </div>
+      `,
+    });
+
+    console.log(`[Resend] Contact email sent for ${data.email}`);
+    return { success: true };
+  } catch (error) {
+    console.error('[Resend] Contact email failed:', error);
     return { success: false, error };
   }
 }

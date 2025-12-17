@@ -20,6 +20,7 @@ export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,6 +36,7 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitStatus("idle");
+    setServerError(null);
 
     const validation = validateContactForm(formData);
 
@@ -46,9 +48,31 @@ export function ContactForm() {
     setIsSubmitting(true);
     setErrors({});
 
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 400 && result?.errors) {
+        setErrors(result.errors);
+        setSubmitStatus("error");
+        return;
+      }
+
+      if (!response.ok || !result?.success) {
+        setSubmitStatus("error");
+        setServerError(
+          result?.message || "Something went wrong. Please try again."
+        );
+        return;
+      }
+
       setSubmitStatus("success");
       setFormData({
         name: "",
@@ -59,6 +83,7 @@ export function ContactForm() {
       });
     } catch {
       setSubmitStatus("error");
+      setServerError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -189,7 +214,8 @@ export function ContactForm() {
         {submitStatus === "error" && (
           <div className="rounded-md bg-red-50 p-4">
             <p className="text-sm font-medium text-red-800">
-              Something went wrong. Please try again or contact us directly.
+              {serverError ||
+                "Something went wrong. Please try again or contact us directly."}
             </p>
           </div>
         )}
