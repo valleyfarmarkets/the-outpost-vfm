@@ -169,42 +169,250 @@ export async function sendContactMessage(data: ContactFormData) {
     return { success: false, skipped: true };
   }
 
+  const escapeHtml = (value: string) =>
+    value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+  const safeName = escapeHtml(data.name);
+  const safeEmail = escapeHtml(data.email);
+  const safePhone = data.phone ? escapeHtml(data.phone) : '';
+  const safeSubject = escapeHtml(data.subject);
+  const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br>');
+  const submittedAt = new Date().toLocaleString('en-US', {
+    timeZone: 'America/Los_Angeles',
+    dateStyle: 'full',
+    timeStyle: 'short',
+  });
+
   try {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
       to: CONTACT_RECIPIENTS,
       subject: `[Contact] ${data.subject || 'New inquiry'} – ${data.name}`,
       replyTo: data.email,
-      html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #111; max-width: 640px; margin: 0 auto; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 12px;">
-          <h1 style="margin-top: 0; color: #A0563B; font-size: 22px;">New Contact Form Submission</h1>
-          <p style="margin: 0 0 16px 0;">A visitor submitted the contact form on the Outpost VFM site.</p>
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600;">Name</td>
-              <td style="padding: 8px 0; text-align: right;">${data.name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600;">Email</td>
-              <td style="padding: 8px 0; text-align: right;">${data.email}</td>
-            </tr>
-            ${data.phone ? `
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600;">Phone</td>
-              <td style="padding: 8px 0; text-align: right;">${data.phone}</td>
-            </tr>
-            ` : ''}
-            <tr>
-              <td style="padding: 8px 0; font-weight: 600;">Subject</td>
-              <td style="padding: 8px 0; text-align: right;">${data.subject}</td>
-            </tr>
-          </table>
-          <div style="background: #f9f9f9; padding: 16px; border-radius: 8px; border: 1px solid #eee;">
-            <div style="font-weight: 600; margin-bottom: 8px; color: #555;">Message</div>
-            <div style="white-space: pre-wrap; color: #222;">${data.message}</div>
-          </div>
-        </div>
-      `,
+      html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Contact Form Submission - The Outpost</title>
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td {font-family: Arial, sans-serif !important;}
+  </style>
+  <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="display: none; max-height: 0; overflow: hidden;">
+    New inquiry from ${safeName} - The Outpost Contact Form
+  </div>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF8F5;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #FFFDF9; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(34, 31, 31, 0.08);">
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #B13330 0%, #CE7C23 50%, #F9AC30 100%);"></td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 40px 40px 24px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center">
+                    <div style="width: 60px; height: 60px; background-color: #221F1F; border-radius: 50%; display: inline-block; text-align: center; line-height: 60px;">
+                      <span style="color: #F9AC30; font-size: 24px; font-weight: bold;">O</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 16px;">
+                    <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      The Outpost
+                    </h1>
+                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #6B6966; letter-spacing: 1px; text-transform: uppercase;">
+                      Mt. Laguna, CA
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 0 40px 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background-color: #B13330; color: #ffffff; font-size: 12px; font-weight: 600; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;">
+                    New Contact Form Submission
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 40px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Name
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #B13330;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeName}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Email
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #CE7C23;">
+                    <a href="mailto:${safeEmail}" style="font-size: 16px; color: #B13330; font-weight: 500; text-decoration: none;">
+                      ${safeEmail}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              ${safePhone ? `
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Phone
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #DE9A2E;">
+                    <a href="tel:${safePhone}" style="font-size: 16px; color: #221F1F; font-weight: 500; text-decoration: none;">
+                      ${safePhone}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              ` : ''}
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Subject
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #B13330;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeSubject}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 0;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Message
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 16px 16px; border-left: 4px solid #F9AC30;">
+                    <p style="font-size: 15px; color: #221F1F; line-height: 1.7; margin: 0;">${safeMessage}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 40px 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <a href="mailto:${safeEmail}?subject=Re: Your Inquiry to The Outpost" style="display: inline-block; background: linear-gradient(135deg, #B13330 0%, #CE7C23 100%); color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none; margin-right: 12px;">
+                      Reply to ${safeName}
+                    </a>
+                    ${safePhone ? `
+                    <a href="tel:${safePhone}" style="display: inline-block; background-color: #221F1F; color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
+                      Call
+                    </a>
+                    ` : ''}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 40px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 24px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td>
+                    <p style="margin: 0; font-size: 13px; color: #6B6966;">
+                      <strong style="color: #221F1F;">Submitted:</strong> ${submittedAt}
+                    </p>
+                  </td>
+                  <td align="right">
+                    <p style="margin: 0; font-size: 13px; color: #6B6966;">
+                      <strong style="color: #221F1F;">Source:</strong> Website Contact Form
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #221F1F; padding: 28px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin: 0 0 8px 0; font-size: 14px; color: #ffffff; font-weight: 500;">
+                      The Outpost by Valley Farm Market
+                    </p>
+                    <p style="margin: 0; font-size: 13px; color: rgba(255,255,255,0.6);">
+                      Mt. Laguna, CA · (619) 555-1234
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px;">
+          <tr>
+            <td align="center" style="padding: 24px 20px;">
+              <p style="margin: 0; font-size: 12px; color: #6B6966;">
+                This is an automated notification from your website contact form.<br>
+                Please respond to inquiries within 24 hours.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
     });
 
     console.log(`[Resend] Contact email sent for ${data.email}`);
