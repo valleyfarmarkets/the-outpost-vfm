@@ -5,7 +5,7 @@ import siteInfo from "@/data/site-info.json";
 
 export default function GiftCardsPage() {
   return (
-    <section className="px-6 pt-40 pb-20">
+    <section className="px-6 pt-40 pb-12">
       <Container>
         <div className="text-center">
           <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-[#221F1F]">
