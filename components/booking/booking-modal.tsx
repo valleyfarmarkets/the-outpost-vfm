@@ -12,9 +12,12 @@ import { BookingWizard } from './booking-wizard';
  * Uses Radix UI Dialog for accessibility
  */
 export function BookingModal() {
-  const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
+  // Always call hooks first (Rules of Hooks - hooks must be at top level)
   const { state, actions } = useBookingContext();
 
+  const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
+
+  // Then check conditions and return early if needed
   if (!bookingEnabled) {
     return null;
   }

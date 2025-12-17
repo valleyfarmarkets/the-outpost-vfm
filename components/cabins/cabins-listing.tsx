@@ -494,7 +494,7 @@ export function CabinsListing() {
             </a>
             <a
               href="mailto:reservations@theoutpostvfm.com"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/30 px-5 py-3 text-base font-semibold text-white"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/30 px-5 py-3 text-base font-semibold text-white transition hover:bg-white/10"
             >
               Email Us
             </a>
