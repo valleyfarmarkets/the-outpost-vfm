@@ -1,11 +1,10 @@
 import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ContactInfo } from "@/components/contact/contact-info";
 
 export default function ContactPage() {
   return (
-    <Section className="px-6 pt-40 pb-20">
+    <section className="px-6 pt-40 pb-20">
       <Container>
         <div className="text-center">
           <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-[#221F1F]">
@@ -25,6 +24,6 @@ export default function ContactPage() {
           </div>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }
