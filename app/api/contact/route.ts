@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateContactForm, type ContactFormData } from "@/lib/validations";
-import { sendContactMessage } from "@/lib/resend/email-client";
+import { sendContactMessage, sendContactConfirmation } from "@/lib/resend/email-client";
 
 export async function POST(request: Request) {
   try {
@@ -9,7 +9,6 @@ export async function POST(request: Request) {
       name: body.name ?? "",
       email: body.email ?? "",
       phone: body.phone ?? "",
-      subject: body.subject ?? "",
       message: body.message ?? "",
     };
 
@@ -21,15 +20,27 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await sendContactMessage(data);
-    if (!result.success) {
+    const staffResult = await sendContactMessage(data);
+    if (!staffResult.success) {
       return NextResponse.json(
         { success: false, message: "Failed to send message" },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ success: true, skipped: result.skipped ?? false });
+    const guestResult = await sendContactConfirmation(data);
+    if (!guestResult.success && !guestResult.skipped) {
+      return NextResponse.json(
+        { success: false, message: "Failed to send confirmation" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      skipped: staffResult.skipped ?? false,
+      guestSkipped: guestResult.skipped ?? false,
+    });
   } catch (error) {
     console.error("[Contact] Unexpected error:", error);
     return NextResponse.json(

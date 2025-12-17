@@ -10,7 +10,6 @@ export function ContactForm() {
     name: "",
     email: "",
     phone: "",
-    subject: "",
     message: "",
   });
   const [errors, setErrors] = useState<
@@ -78,7 +77,6 @@ export function ContactForm() {
         name: "",
         email: "",
         phone: "",
-        subject: "",
         message: "",
       });
     } catch {
@@ -157,28 +155,6 @@ export function ContactForm() {
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary"
           />
-        </div>
-
-        <div>
-          <label
-            htmlFor="subject"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Subject <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary"
-            aria-required="true"
-            aria-invalid={!!errors.subject}
-          />
-          {errors.subject && (
-            <p className="mt-1 text-sm text-red-600">{errors.subject}</p>
-          )}
         </div>
 
         <div>

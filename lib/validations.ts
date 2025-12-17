@@ -2,7 +2,6 @@ export interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
-  subject: string;
   message: string;
 }
 
@@ -25,10 +24,6 @@ export function validateContactForm(data: ContactFormData): {
     errors.email = "Email is required";
   } else if (!validateEmail(data.email)) {
     errors.email = "Invalid email address";
-  }
-
-  if (!data.subject.trim()) {
-    errors.subject = "Subject is required";
   }
 
   if (!data.message.trim()) {

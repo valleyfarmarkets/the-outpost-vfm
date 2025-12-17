@@ -8,6 +8,21 @@ if (!resend) {
   console.warn('[Resend] API key not configured. Emails disabled.');
 }
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const formatPacificTimestamp = () =>
+  new Date().toLocaleString('en-US', {
+    timeZone: 'America/Los_Angeles',
+    dateStyle: 'full',
+    timeStyle: 'short',
+  });
+
 export interface BookingConfirmationData {
   guestName: string;
   guestEmail: string;
@@ -169,30 +184,17 @@ export async function sendContactMessage(data: ContactFormData) {
     return { success: false, skipped: true };
   }
 
-  const escapeHtml = (value: string) =>
-    value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
   const safePhone = data.phone ? escapeHtml(data.phone) : '';
-  const safeSubject = escapeHtml(data.subject);
   const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br>');
-  const submittedAt = new Date().toLocaleString('en-US', {
-    timeZone: 'America/Los_Angeles',
-    dateStyle: 'full',
-    timeStyle: 'short',
-  });
+  const submittedAt = formatPacificTimestamp();
 
   try {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
       to: CONTACT_RECIPIENTS,
-      subject: `[Contact] ${data.subject || 'New inquiry'} – ${data.name}`,
+      subject: `[Contact] New inquiry – ${data.name}`,
       replyTo: data.email,
       html: `<!DOCTYPE html>
 <html lang="en">
@@ -308,22 +310,6 @@ export async function sendContactMessage(data: ContactFormData) {
                 </tr>
               </table>
               ` : ''}
-              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
-                <tr>
-                  <td style="padding-bottom: 6px;">
-                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
-                      Subject
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #B13330;">
-                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
-                      ${safeSubject}
-                    </span>
-                  </td>
-                </tr>
-              </table>
               <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 0;">
                 <tr>
                   <td style="padding-bottom: 6px;">
@@ -419,6 +405,223 @@ export async function sendContactMessage(data: ContactFormData) {
     return { success: true };
   } catch (error) {
     console.error('[Resend] Contact email failed:', error);
+    return { success: false, error };
+  }
+}
+
+export async function sendContactConfirmation(data: ContactFormData) {
+  if (!resend) {
+    console.log('[Resend] Skipping contact confirmation email (not configured)');
+    return { success: false, skipped: true };
+  }
+
+  const safeName = escapeHtml(data.name);
+  const trimmedName = safeName.trim();
+  const firstName = (trimmedName && trimmedName.split(' ')[0]) || 'there';
+  const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br>');
+
+  try {
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
+      to: data.email,
+      subject: 'We received your message – The Outpost',
+      html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Got Your Message - The Outpost</title>
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td {font-family: Arial, sans-serif !important;}
+  </style>
+  <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="display: none; max-height: 0; overflow: hidden;">
+    Thanks for reaching out! We'll get back to you soon.
+  </div>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF8F5;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #FFFDF9; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(34, 31, 31, 0.08);">
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #B13330 0%, #CE7C23 50%, #F9AC30 100%);"></td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 48px 40px 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center">
+                    <div style="width: 70px; height: 70px; background-color: #221F1F; border-radius: 50%; display: inline-block; text-align: center; line-height: 70px;">
+                      <span style="color: #F9AC30; font-size: 28px; font-weight: bold;">O</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 20px;">
+                    <h1 style="margin: 0; font-size: 28px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      The Outpost
+                    </h1>
+                    <p style="margin: 6px 0 0 0; font-size: 13px; color: #6B6966; letter-spacing: 1.5px; text-transform: uppercase;">
+                      Mt. Laguna, California
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 48px 40px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <div style="width: 56px; height: 56px; background-color: #4A7C59; border-radius: 50%; display: inline-block; text-align: center; line-height: 56px; margin-bottom: 24px;">
+                      <span style="color: #ffffff; font-size: 28px;">✓</span>
+                    </div>
+                    <h2 style="margin: 0 0 16px 0; font-size: 26px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      We Got Your Message!
+                    </h2>
+                    <p style="margin: 0 0 24px 0; font-size: 16px; color: #6B6966; line-height: 1.7; max-width: 420px;">
+                      Thanks for reaching out, ${firstName}. We've received your message and a member of our team will get back to you as soon as possible.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                      <tr>
+                        <td style="background-color: #FAF8F5; border-radius: 12px; padding: 20px 32px; text-align: center;">
+                          <p style="margin: 0 0 4px 0; font-size: 13px; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                            Expected Response Time
+                          </p>
+                          <p style="margin: 0; font-size: 20px; font-weight: 600; color: #B13330;">
+                            Within 24 Hours
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 48px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td>
+                    <h3 style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; color: #221F1F; text-transform: uppercase; letter-spacing: 1px;">
+                      Here's What You Sent
+                    </h3>
+                    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF8F5; border-radius: 12px; overflow: hidden;">
+                      <tr>
+                        <td style="padding: 20px; border-left: 4px solid #CE7C23;">
+                          <p style="margin: 0; font-size: 15px; color: #221F1F; line-height: 1.7; white-space: pre-wrap; font-style: italic;">${safeMessage}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 48px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <h3 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      Need a Faster Response?
+                    </h3>
+                    <p style="margin: 0 0 20px 0; font-size: 15px; color: #6B6966; line-height: 1.6;">
+                      For urgent matters, give us a call. We're happy to help.
+                    </p>
+                    <a href="tel:+16195551234" style="display: inline-block; background-color: #221F1F; color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
+                      Call (619) 555-1234
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 16px 48px 40px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin: 0; font-size: 16px; color: #6B6966; line-height: 1.7;">
+                      In the meantime, we hope you're having a great day.<br>
+                      <span style="color: #221F1F; font-weight: 500;">Talk soon!</span>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #221F1F; padding: 36px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin: 0 0 12px 0; font-size: 16px; color: #ffffff; font-weight: 500; font-family: Georgia, 'Times New Roman', serif;">
+                      The Outpost
+                    </p>
+                    <p style="margin: 0 0 16px 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+                      Rustic Cabins & Mountain Dining<br>
+                      Mt. Laguna, CA
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                      <tr>
+                        <td style="padding: 0 12px;">
+                          <a href="https://theoutpostvfm.com/cabins" style="color: #F9AC30; font-size: 13px; text-decoration: none;">Our Cabins</a>
+                        </td>
+                        <td style="color: rgba(255,255,255,0.3);">|</td>
+                        <td style="padding: 0 12px;">
+                          <a href="https://theoutpostvfm.com/menu" style="color: #F9AC30; font-size: 13px; text-decoration: none;">Menu</a>
+                        </td>
+                        <td style="color: rgba(255,255,255,0.3);">|</td>
+                        <td style="padding: 0 12px;">
+                          <a href="https://theoutpostvfm.com/live-music" style="color: #F9AC30; font-size: 13px; text-decoration: none;">Live Music</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.5);">
+                      © 2024 The Outpost by Valley Farm Market. All rights reserved.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px;">
+          <tr>
+            <td align="center" style="padding: 24px 20px;">
+              <p style="margin: 0; font-size: 12px; color: #6B6966;">
+                You're receiving this email because you submitted a form on our website.<br>
+                <a href="#" style="color: #6B6966;">Unsubscribe</a> from future marketing emails.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
+    });
+
+    console.log(`[Resend] Contact confirmation email sent to ${data.email}`);
+    return { success: true };
+  } catch (error) {
+    console.error('[Resend] Contact confirmation email failed:', error);
     return { success: false, error };
   }
 }
