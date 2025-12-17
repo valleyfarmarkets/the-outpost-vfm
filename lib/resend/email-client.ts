@@ -171,7 +171,7 @@ export async function sendContactMessage(data: ContactFormData) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@theoutpostvfm.com',
+      from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
       to: CONTACT_RECIPIENTS,
       subject: `[Contact] ${data.subject || 'New inquiry'} – ${data.name}`,
       replyTo: data.email,
