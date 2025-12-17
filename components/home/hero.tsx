@@ -4,10 +4,10 @@ import { Container } from "@/components/ui/container";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[600px] items-center bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/outpost_hero.jpeg)' }}>
+    <section className="relative flex min-h-[600px] items-start bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/outpost_hero.jpeg)' }}>
       <div className="absolute inset-0 bg-black/70" />
-      <Container className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center text-white">
+      <Container className="relative z-10 pt-40">
+        <div className="mx-auto max-w-xl text-center text-white">
           <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight">
             Welcome to The Outpost VFM
           </h1>
