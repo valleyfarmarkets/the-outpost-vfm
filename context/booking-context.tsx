@@ -288,9 +288,30 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
   const hydrateFromStorage = useCallback(() => { /* handled by effect, kept for interface compat */ }, []);
   const persistToStorage = useCallback(() => { /* handled by effect, kept for interface compat */ }, []);
 
-  const value: BookingContextValue = {
-    state,
-    actions: {
+  const value = React.useMemo<BookingContextValue>(
+    () => ({
+      state,
+      actions: {
+        openBooking,
+        closeModal,
+        setDates,
+        setGuests,
+        setAvailability,
+        setQuote,
+        setGuestDetails,
+        setReservation,
+        nextStep,
+        previousStep,
+        goToStep,
+        setLoading,
+        setError,
+        reset,
+        hydrateFromStorage,
+        persistToStorage,
+      },
+    }),
+    [
+      state,
       openBooking,
       closeModal,
       setDates,
@@ -307,8 +328,8 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       reset,
       hydrateFromStorage,
       persistToStorage,
-    },
-  };
+    ]
+  );
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;
 }
