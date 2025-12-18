@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, type DateRange } from "react-day-picker";
 import { format } from "date-fns";
 import * as Popover from "@radix-ui/react-popover";
 import { Calendar } from "lucide-react";
@@ -61,7 +61,7 @@ export function DateRangeInputButton({
     ...blockedDates.map((dateStr) => new Date(dateStr)),
   ];
 
-  const handleSelect = (range: { from: Date | undefined; to: Date | undefined } | undefined) => {
+  const handleSelect = (range: DateRange | undefined) => {
     if (range) {
       setSelected({ from: range.from, to: range.to });
     }
