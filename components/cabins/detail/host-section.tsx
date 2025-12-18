@@ -1,5 +1,6 @@
 import type { Cabin } from "@/types/cabins";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface HostSectionProps {
   cabin: Cabin;
@@ -40,11 +41,14 @@ export function HostSection({ cabin, className }: HostSectionProps) {
       </div>
 
       {/* Right Side: Profile Badge */}
-      <div
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#B13330] to-[#CE7C23] text-white"
-        aria-label={`Hosted by ${hostName}`}
-      >
-        <span className="font-sans text-lg font-semibold">{hostInitials}</span>
+      <div className="relative h-14 w-14 overflow-hidden rounded-full" aria-label={`Hosted by ${hostName}`}>
+        <Image
+          src="/images/outpost_logo_2.svg"
+          alt={`${hostName} Logo`}
+          width={56}
+          height={56}
+          className="object-cover"
+        />
       </div>
     </div>
   );
