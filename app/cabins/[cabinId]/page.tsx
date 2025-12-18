@@ -44,7 +44,7 @@ export default async function CabinPage({ params }: CabinPageProps) {
   return (
     <div className="bg-[#FAF8F5]">
       {/* Header Section */}
-      <Section className="pt-32 pb-0">
+      <Section className="pt-36 pb-0 mb-6">
         <Container className="max-w-[1200px]">
           <HeaderSection cabin={cabin} reviewStats={stats} />
         </Container>
