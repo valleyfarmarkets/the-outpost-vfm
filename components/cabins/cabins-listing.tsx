@@ -1,6 +1,5 @@
 'use client';
 
-import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import {
@@ -21,6 +20,7 @@ import { getAmenityIcon } from "@/lib/amenity-icons";
 type CabinDisplay = {
   id: string;
   name: string;
+  guestyListingId: string;
   tagline?: string;
   description: string;
   sleeps: number;
@@ -146,6 +146,7 @@ const buildCabins = (): CabinDisplay[] => {
     return {
       id: cabin.id,
       name: cabin.name,
+      guestyListingId: cabin.guestyListingId,
       tagline:
         overrides.tagline ?? cabin.personalityTag ?? cabin.shortDescription,
       description: overrides.description ?? cabin.description,
@@ -356,8 +357,10 @@ function CabinRow({ cabin }: CabinRowProps) {
                 / night
               </span>
             </div>
-            <Link
-              href={`/cabins/${cabin.id}`}
+            <a
+              href={`https://theoutpostvfm.guestybookings.com/en/properties/${cabin.guestyListingId}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center gap-2 rounded-lg px-4 py-3 font-semibold text-white transition",
                 hovered
@@ -372,7 +375,7 @@ function CabinRow({ cabin }: CabinRowProps) {
                   hovered ? "translate-x-1" : "translate-x-0",
                 )}
               />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

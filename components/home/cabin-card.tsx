@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, Bed, Bath, Users, Mountain } from "lucide-react";
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
@@ -99,8 +98,10 @@ export function CabinCard({ cabin }: CabinCardProps) {
           })}
         </div>
 
-        <Link
-          href={`/cabins/${cabin.id}`}
+        <a
+          href={`https://theoutpostvfm.guestybookings.com/en/properties/${cabin.guestyListingId}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className={cn(
             "mt-auto inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all",
             "bg-gradient-to-r from-[var(--cabins-charcoal)] to-[var(--cabins-red)]",
@@ -109,7 +110,7 @@ export function CabinCard({ cabin }: CabinCardProps) {
         >
           View Cabin
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </Link>
+        </a>
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[var(--cabins-red)] via-[var(--cabins-burnt)] to-[var(--cabins-amber)]" />
