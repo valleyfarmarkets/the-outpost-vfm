@@ -291,30 +291,28 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
   const hydrateFromStorage = useCallback(() => { /* handled by effect, kept for interface compat */ }, []);
   const persistToStorage = useCallback(() => { /* handled by effect, kept for interface compat */ }, []);
 
-  const value = React.useMemo<BookingContextValue>(
+  // Step 1: Create stable actions object (NO state dependency)
+  // This prevents infinite loops by maintaining same identity across renders
+  const actions = React.useMemo(
     () => ({
-      state,
-      actions: {
-        openBooking,
-        closeModal,
-        setDates,
-        setGuests,
-        setAvailability,
-        setQuote,
-        setGuestDetails,
-        setReservation,
-        nextStep,
-        previousStep,
-        goToStep,
-        setLoading,
-        setError,
-        reset,
-        hydrateFromStorage,
-        persistToStorage,
-      },
+      openBooking,
+      closeModal,
+      setDates,
+      setGuests,
+      setAvailability,
+      setQuote,
+      setGuestDetails,
+      setReservation,
+      nextStep,
+      previousStep,
+      goToStep,
+      setLoading,
+      setError,
+      reset,
+      hydrateFromStorage,
+      persistToStorage,
     }),
     [
-      state,
       openBooking,
       closeModal,
       setDates,
@@ -332,6 +330,15 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       hydrateFromStorage,
       persistToStorage,
     ]
+  );
+
+  // Step 2: Combine state and stable actions
+  const value = React.useMemo<BookingContextValue>(
+    () => ({
+      state,
+      actions, // ✅ Now referentially stable!
+    }),
+    [state, actions] // actions only changes if individual functions change (they won't)
   );
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;

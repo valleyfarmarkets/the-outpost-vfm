@@ -5,6 +5,12 @@ import { checkAvailability, type AvailabilityResponse } from '@/lib/booking/api-
 import type { GuestCount } from '@/types/booking';
 
 /**
+ * @deprecated Use useBookingAvailability instead
+ *
+ * This hook is kept for backward compatibility but should not be used in new code.
+ * The new hook (useBookingAvailability) handles debouncing, race conditions, and
+ * auto-dispatch to booking context, preventing infinite loops and improving performance.
+ *
  * Hook for checking cabin availability
  */
 export function useAvailability() {

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
-import { format } from "date-fns";
+import { format, differenceInDays } from "date-fns";
 import * as Popover from "@radix-ui/react-popover";
 import { Calendar } from "lucide-react";
 import "react-day-picker/dist/style.css";
@@ -48,24 +48,32 @@ export function DateRangeInputButton({
     });
   }, [checkIn, checkOut]);
 
-  // Auto-close when both dates are selected
+  // Auto-close when both dates are selected and they are different
   useEffect(() => {
-    if (selected.from && selected.to) {
+    if (selected.from && selected.to && selected.from.getTime() !== selected.to.getTime()) {
       onSelect(selected.from, selected.to);
       setOpen(false);
     }
   }, [selected, onSelect]);
 
-  const disabledDays = [
+  const disabledDays = useMemo(() => [
     { before: minDate || new Date() }, // Past dates or custom min date
     ...blockedDates.map((dateStr) => new Date(dateStr)),
-  ];
+  ], [blockedDates, minDate]);
 
-  const handleSelect = (range: DateRange | undefined) => {
+  const handleSelect = useCallback((range: DateRange | undefined) => {
     if (range) {
       setSelected({ from: range.from, to: range.to });
     }
-  };
+  }, []);
+
+  // Calculate nights for display
+  const nights = useMemo(() => {
+    if (selected.from && selected.to && selected.from.getTime() !== selected.to.getTime()) {
+      return differenceInDays(selected.to, selected.from);
+    }
+    return 0;
+  }, [selected.from, selected.to]);
 
   // Format display text
   const displayText = checkIn && checkOut
@@ -114,6 +122,14 @@ export function DateRangeInputButton({
             }}
             className="rounded-lg"
           />
+
+          {nights > 0 && (
+            <div className="mt-3 pt-3 border-t border-gray-200">
+              <p className="text-sm text-gray-700 text-center">
+                <span className="font-semibold">{nights}</span> {nights === 1 ? 'night' : 'nights'}
+              </p>
+            </div>
+          )}
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

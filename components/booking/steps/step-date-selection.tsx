@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useBookingContext } from '@/context/booking-context';
-import { useAvailability } from '@/hooks/use-availability';
+import { useBookingAvailability } from '@/hooks/use-booking-availability';
 import { DateRangePicker } from '../date-range-picker';
 import { calculateNights, validateDateRange } from '@/lib/booking/date-utils';
 
@@ -16,7 +16,6 @@ import { calculateNights, validateDateRange } from '@/lib/booking/date-utils';
  */
 export function StepDateSelection() {
   const { state, actions } = useBookingContext();
-  const { checkAvailability, isLoading, error } = useAvailability();
 
   const [selectedRange, setSelectedRange] = useState<{
     from: Date | undefined;
@@ -27,52 +26,21 @@ export function StepDateSelection() {
   });
 
   const [validationError, setValidationError] = useState<string | null>(null);
-  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
   const cabin = state.cabin!;
+
+  // Use smart hook for availability checking (handles debouncing and race conditions)
+  const { isLoading, error: availabilityError, isAvailable } = useBookingAvailability(
+    cabin.guestyListingId,
+    selectedRange.from || null,
+    selectedRange.to || null,
+    state.guests
+  );
+
   const nights =
     selectedRange.from && selectedRange.to
       ? calculateNights(selectedRange.from, selectedRange.to)
       : 0;
-
-  // Check availability when dates are selected
-  useEffect(() => {
-    console.log('[StepDateSelection] Checking availability effect triggered', {
-      from: selectedRange.from,
-      to: selectedRange.to,
-      guests: state.guests,
-      fn: checkAvailability // Check if this reference changes
-    });
-
-    const checkDates = async () => {
-      if (!selectedRange.from || !selectedRange.to) return;
-
-      const result = await checkAvailability(
-        cabin.guestyListingId,
-        selectedRange.from,
-        selectedRange.to,
-        state.guests
-      );
-
-      if (result) {
-        // Store availability data
-        actions.setAvailability({
-          minimumStay: result.minimumStay,
-          maximumStay: result.maximumStay,
-          blockedDates: result.blockedDates,
-        });
-
-        setIsAvailable(result.available);
-        if (!result.available) {
-          setValidationError('These dates are unavailable. Please choose different dates.');
-        } else {
-          setValidationError(null);
-        }
-      }
-    };
-
-    checkDates();
-  }, [selectedRange.from, selectedRange.to, cabin.guestyListingId, state.guests, checkAvailability, actions]);
 
   const handleContinue = () => {
     if (!selectedRange.from || !selectedRange.to) {
@@ -122,7 +90,6 @@ export function StepDateSelection() {
         onSelect={(range) => {
           setSelectedRange(range);
           setValidationError(null);
-          setIsAvailable(null);
         }}
         blockedDates={state.blockedDates}
         disabled={isLoading}
@@ -146,10 +113,10 @@ export function StepDateSelection() {
       )}
 
       {/* Errors */}
-      {(error || validationError) && (
+      {(availabilityError || validationError) && (
         <div className="flex items-start gap-2 p-3 bg-red-50 rounded-lg">
           <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-red-900">{error || validationError}</p>
+          <p className="text-sm text-red-900">{availabilityError || validationError}</p>
         </div>
       )}
 

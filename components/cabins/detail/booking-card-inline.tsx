@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Star } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Star, Loader2, AlertCircle } from "lucide-react";
 import { useBookingContext } from "@/context/booking-context";
+import { useBookingAvailability } from "@/hooks/use-booking-availability";
 import { DateRangeInputButton } from "@/components/booking/date-range-input-button";
 import { GuestSelectorDropdown } from "@/components/booking/guest-selector-dropdown";
 import { formatPrice } from "@/lib/utils";
@@ -21,13 +22,24 @@ export function BookingCardInline({
   cleaningFee,
   className,
 }: BookingCardInlineProps) {
-  const bookingEnabled = process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
+  const bookingEnabled =
+    process.env.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === "true";
   const { state, actions } = useBookingContext();
   const { guests } = state;
 
   // Local state for dates to allow selecting them independently
   const [localCheckIn, setLocalCheckIn] = useState<Date | null>(state.checkIn);
-  const [localCheckOut, setLocalCheckOut] = useState<Date | null>(state.checkOut);
+  const [localCheckOut, setLocalCheckOut] = useState<Date | null>(
+    state.checkOut
+  );
+
+  // Use smart hook for availability checking (handles debouncing and race conditions)
+  const { isLoading, error, isAvailable } = useBookingAvailability(
+    cabin.guestyListingId,
+    localCheckIn,
+    localCheckOut,
+    guests
+  );
 
   // Sync to context when both dates are selected
   useEffect(() => {
@@ -36,12 +48,15 @@ export function BookingCardInline({
     }
   }, [localCheckIn, localCheckOut, actions]);
 
-  const handleDateRangeSelect = (checkIn: Date, checkOut: Date) => {
+  const handleDateRangeSelect = useCallback((checkIn: Date, checkOut: Date) => {
     setLocalCheckIn(checkIn);
     setLocalCheckOut(checkOut);
-  };
+  }, []);
 
-  const handleGuestsChange = (newGuests: { adults: number; children: number }) => {
+  const handleGuestsChange = (newGuests: {
+    adults: number;
+    children: number;
+  }) => {
     actions.setGuests(newGuests);
   };
 
@@ -55,7 +70,9 @@ export function BookingCardInline({
 
   // Calculate nights from selected dates
   const nights =
-    localCheckIn && localCheckOut ? differenceInDays(localCheckOut, localCheckIn) : 0;
+    localCheckIn && localCheckOut
+      ? differenceInDays(localCheckOut, localCheckIn)
+      : 0;
 
   // Calculate price breakdown
   const basePrice = nights > 0 ? cabin.priceRange.min * nights : 0;
@@ -119,11 +136,33 @@ export function BookingCardInline({
       {/* Reserve Button */}
       <button
         onClick={handleReserve}
-        disabled={!bookingEnabled || !localCheckIn || !localCheckOut || exceedsCapacity}
-        className="w-full rounded-lg bg-gradient-to-r from-[#A0563B] to-[#D97945] py-4 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={
+          !bookingEnabled || 
+          !localCheckIn || 
+          !localCheckOut || 
+          exceedsCapacity || 
+          isLoading || 
+          isAvailable === false
+        }
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#A0563B] to-[#D97945] py-4 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {bookingEnabled ? 'Reserve' : 'Booking Disabled'}
+        {isLoading ? (
+          <>
+            <Loader2 className="h-5 w-5 animate-spin" />
+            Checking...
+          </>
+        ) : (
+          bookingEnabled ? 'Reserve' : 'Booking Disabled'
+        )}
       </button>
+
+      {/* Validation / Error Message */}
+      {error && (
+        <div className="mt-3 flex items-start gap-2 rounded-md bg-red-50 p-2 text-sm text-red-600">
+          <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
 
       {/* Reassurance Text */}
       <p className="mt-3 text-center text-sm text-gray-600">
@@ -143,7 +182,7 @@ export function BookingCardInline({
 
           <div className="space-y-3 text-base">
             <div className="flex justify-between">
-              <button className="text-left underline text-gray-900 hover:text-gray-700">
+              <button className="text-left text-gray-900 underline hover:text-gray-700">
                 {formatPrice(cabin.priceRange.min)} x {nights}{" "}
                 {nights === 1 ? "night" : "nights"}
               </button>
@@ -160,7 +199,9 @@ export function BookingCardInline({
 
           <div className="mt-6 flex justify-between border-t border-gray-200 pt-4 text-xl font-bold">
             <span className="text-gray-900">Total before taxes</span>
-            <span className="text-gray-900">{formatPrice(totalBeforeTaxes)}</span>
+            <span className="text-gray-900">
+              {formatPrice(totalBeforeTaxes)}
+            </span>
           </div>
         </>
       )}
