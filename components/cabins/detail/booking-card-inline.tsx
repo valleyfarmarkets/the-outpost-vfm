@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Star } from "lucide-react";
 import { useBookingContext } from "@/context/booking-context";
-import { DateInputButton } from "@/components/booking/date-input-button";
+import { DateRangeInputButton } from "@/components/booking/date-range-input-button";
 import { GuestSelectorDropdown } from "@/components/booking/guest-selector-dropdown";
 import { formatPrice } from "@/lib/utils";
 import type { Cabin } from "@/types/cabins";
@@ -36,12 +36,9 @@ export function BookingCardInline({
     }
   }, [localCheckIn, localCheckOut, actions]);
 
-  const handleCheckInSelect = (date: Date) => {
-    setLocalCheckIn(date);
-  };
-
-  const handleCheckOutSelect = (date: Date) => {
-    setLocalCheckOut(date);
+  const handleDateRangeSelect = (checkIn: Date, checkOut: Date) => {
+    setLocalCheckIn(checkIn);
+    setLocalCheckOut(checkOut);
   };
 
   const handleGuestsChange = (newGuests: { adults: number; children: number }) => {
@@ -101,24 +98,14 @@ export function BookingCardInline({
 
       {/* Date & Guest Inputs */}
       <div className="mb-4 space-y-3">
-        {/* Date Row */}
-        <div className="grid grid-cols-[1fr_1px_1fr] overflow-hidden rounded-lg border border-gray-300">
-          <DateInputButton
-            label="CHECK-IN"
-            date={localCheckIn}
-            onSelect={handleCheckInSelect}
-            blockedDates={state.blockedDates}
-            minDate={new Date()}
-          />
-          <div className="border-l border-gray-300" />
-          <DateInputButton
-            label="CHECKOUT"
-            date={localCheckOut}
-            onSelect={handleCheckOutSelect}
-            blockedDates={state.blockedDates}
-            minDate={localCheckIn || new Date()}
-          />
-        </div>
+        {/* Date Range Picker */}
+        <DateRangeInputButton
+          checkIn={localCheckIn}
+          checkOut={localCheckOut}
+          onSelect={handleDateRangeSelect}
+          blockedDates={state.blockedDates}
+          minDate={new Date()}
+        />
 
         {/* Guests Row */}
         <GuestSelectorDropdown
