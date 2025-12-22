@@ -65,7 +65,7 @@ export default async function ContactDashboardPage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge variant={submission.status === "handled" ? "default" : "secondary"}>
+                  <Badge variant={submission.status === "handled" ? "green" : "gray"}>
                     {submission.status}
                   </Badge>
                   <StatusToggle
