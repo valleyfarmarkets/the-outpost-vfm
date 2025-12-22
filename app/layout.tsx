@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { FooterToggle } from "@/components/layout/footer-toggle";
 import { Providers } from "@/components/providers/providers";
 import { BookingModal } from "@/components/booking/booking-modal";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -64,6 +65,9 @@ export const metadata: Metadata = {
     "cabin rentals",
     "San Diego backcountry",
   ],
+  icons: {
+    icon: "/images/outpost_logo_2.svg",
+  },
 };
 
 export default function RootLayout({
@@ -76,6 +80,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${kleaderSansRough.variable} ${kleaderSansRegular.variable} ${kleaderSansStamp.variable} ${kleaderSerifRough.variable} ${kleaderSerifRegular.variable} ${kleaderSerifStamp.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
+        <GoogleAnalytics />
         <Providers>
           {/* Orange brand stripe - fixed at top of viewport */}
           <div
