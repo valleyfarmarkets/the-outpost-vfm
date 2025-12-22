@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { NavigationLeft, NavigationRight } from "./navigation";
 import { MobileMenu } from "./mobile-menu";
+import { UserMenu } from "./user-menu";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -74,6 +75,11 @@ export function Header() {
 
         {/* 4. RIGHT NAV - Maintains spacing when scrolled */}
         <NavigationRight className={cn(isScrolled && "ml-4")} />
+
+        {/* 5. USER MENU - Shows when logged in */}
+        <div className="ml-4">
+          <UserMenu />
+        </div>
       </div>
 
       {/* --- MOBILE NAV --- */}
