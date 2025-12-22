@@ -20,33 +20,30 @@ const palette = {
 const menuHighlights = [
   {
     id: 1,
-    name: "Smoked BBQ Platter",
+    name: "Big Laguna BBQ Board",
     description:
-      "Brisket, pulled pork, ribs & smoked chicken with all the fixings. Low and slow, just like the mountains taught us.",
+      "A shareable spread of smoked meats, pickles, jalapeños, onions & all the fixings. Perfect for the table.",
     tag: "Weekend Special",
     tagColor: palette.deepRed,
-    imageUrl:
-      "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&auto=format&fit=crop",
+    imageUrl: "/images/food/big_laguna_bbq_board.jpg",
   },
   {
     id: 2,
-    name: "Loaded Brisket Fries",
+    name: "El Barracho Pizza",
     description:
-      "Crispy fries piled high with chopped brisket, jalapeño crema, chipotle aioli, corn & green onions.",
+      "Wood-fired pizza loaded with smoked meats, fresh toppings & melted cheese. A mountain favorite.",
     tag: "Fan Favorite",
     tagColor: palette.burntOrange,
-    imageUrl:
-      "https://images.unsplash.com/photo-1585109649139-366815a0d713?w=800&q=80&auto=format&fit=crop",
+    imageUrl: "/images/food/el_barracho.jpg",
   },
   {
     id: 3,
-    name: "Burgers & More",
+    name: "Pulled Pork Sandwich",
     description:
-      "Smash burgers, loaded wraps, fresh salads & craft beers. Mountain comfort food done right.",
+      "Slow-smoked pulled pork piled high on a toasted bun with house slaw & tangy BBQ sauce.",
     tag: "Served Daily",
     tagColor: palette.goldenAmber,
-    imageUrl:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80&auto=format&fit=crop",
+    imageUrl: "/images/food/pulled_pork.jpg",
   },
 ];
 
@@ -140,7 +137,7 @@ export function MenuSpotlight() {
             </p>
           </div>
 
-          <div className="min-w-[220px] rounded-2xl bg-[var(--menu-charcoal)] p-5 text-white shadow-lg">
+          <div className="hidden sm:block min-w-[220px] rounded-2xl bg-[var(--menu-charcoal)] p-5 text-white shadow-lg">
             <div className="mb-3 flex items-center gap-2 text-[var(--menu-brightGold)]">
               <Clock3 className="h-4 w-4" />
               <span className="text-xs font-semibold uppercase tracking-[0.08em]">

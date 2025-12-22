@@ -22,7 +22,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-1 left-0 right-0 z-50 flex justify-center pt-6 pointer-events-none">
+    <header className="fixed top-0 lg:top-1 left-0 right-0 z-50 flex justify-center lg:pt-6 pointer-events-none">
       {/* --- DESKTOP PILL --- */}
       <div
         className={cn(
@@ -78,7 +78,7 @@ export function Header() {
 
       {/* --- MOBILE NAV --- */}
       <div className="lg:hidden pointer-events-auto w-full">
-        <div className="bg-white/95 backdrop-blur-md shadow-sm py-4">
+        <div className="bg-black backdrop-blur-md shadow-sm py-4">
           <Container>
             <div className="flex items-center justify-between">
               <Link href="/">

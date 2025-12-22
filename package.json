@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "seed:admin": "tsx scripts/seed-admin.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -19,11 +20,13 @@
     "@sendgrid/mail": "^8.1.6",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.5.3",
+    "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.88.0",
     "@vercel/kv": "^3.0.0",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "embla-carousel-react": "^8.6.0",
     "gsap": "^3.14.1",
     "lucide-react": "^0.561.0",
