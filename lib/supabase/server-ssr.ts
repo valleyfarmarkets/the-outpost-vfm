@@ -12,8 +12,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
  * Server-side Supabase client that reads auth cookies and forwards the session.
  * Note: setAll is a no-op here because server components/actions can't mutate response cookies.
  */
-export function createSupabaseServerClient() {
-  const cookieStore = cookies();
+export async function createSupabaseServerClient() {
+  const cookieStore = await cookies();
 
   return createServerClient(supabaseUrl, supabaseAnonKey, {
     cookieOptions: {
@@ -32,7 +32,7 @@ export function createSupabaseServerClient() {
 }
 
 export async function requireAdminSession() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const {
     data: { session },
   } = await supabase.auth.getSession();

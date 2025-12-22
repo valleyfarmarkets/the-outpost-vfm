@@ -17,13 +17,14 @@ interface LiveMusicEvent {
 export default async function EditLiveMusicPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const supabase = createSupabaseServerClient();
+  const { id } = await params;
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("live_music_events")
     .select("id, title, starts_at, description, is_published")
-    .eq("id", params.id)
+    .eq("id", id)
     .maybeSingle();
 
   if (error) {

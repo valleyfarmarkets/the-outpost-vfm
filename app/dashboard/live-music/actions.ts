@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { zonedTimeToUtc } from "date-fns-tz";
+import { fromZonedTime } from "date-fns-tz";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { requireAdminSession } from "@/lib/supabase/server-ssr";
@@ -69,7 +69,7 @@ async function generateUniqueSlug(
 }
 
 function toUtcIso(date: string, time: string) {
-  const iso = zonedTimeToUtc(`${date}T${time}`, VENUE_TIMEZONE).toISOString();
+  const iso = fromZonedTime(`${date}T${time}`, VENUE_TIMEZONE).toISOString();
   return iso;
 }
 

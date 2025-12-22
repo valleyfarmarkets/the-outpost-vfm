@@ -2,7 +2,6 @@ import Link from "next/link";
 import { formatInTimeZone } from "date-fns-tz";
 
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { createSupabaseServerClient } from "@/lib/supabase/server-ssr";
 
 import { PublishToggle } from "./_components/publish-toggle";
@@ -19,7 +18,7 @@ interface LiveMusicEvent {
 }
 
 export default async function LiveMusicDashboardPage() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("live_music_events")
     .select("*")
@@ -48,9 +47,12 @@ export default async function LiveMusicDashboardPage() {
             Manage events in venue timezone (America/Los_Angeles).
           </p>
         </div>
-        <Button asChild>
-          <Link href="/dashboard/live-music/new">New event</Link>
-        </Button>
+        <Link
+          href="/dashboard/live-music/new"
+          className="inline-flex h-11 items-center justify-center rounded-md bg-brand-primary px-6 font-medium text-white transition-colors hover:bg-brand-primary/90"
+        >
+          New event
+        </Link>
       </div>
 
       {events.length === 0 ? (
@@ -83,9 +85,12 @@ export default async function LiveMusicDashboardPage() {
                 </div>
                 <div className="text-gray-700">{event.slug}</div>
                 <div className="flex items-center justify-end gap-2">
-                  <Button asChild size="sm" variant="outline">
-                    <Link href={`/dashboard/live-music/${event.id}`}>Edit</Link>
-                  </Button>
+                  <Link
+                    href={`/dashboard/live-music/${event.id}`}
+                    className="inline-flex h-9 items-center justify-center rounded-md border-2 border-brand-primary px-3 text-sm font-medium text-brand-primary transition-colors hover:bg-brand-primary hover:text-white"
+                  >
+                    Edit
+                  </Link>
                   <PublishToggle eventId={event.id} initialPublished={event.is_published} />
                 </div>
               </div>

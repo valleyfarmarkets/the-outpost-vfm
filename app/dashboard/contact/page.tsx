@@ -2,7 +2,6 @@ import { format } from "date-fns";
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { createSupabaseServerClient } from "@/lib/supabase/server-ssr";
 
 import { StatusToggle } from "./_components/status-toggle";
@@ -17,7 +16,7 @@ interface ContactSubmission {
 }
 
 export default async function ContactDashboardPage() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("contact_submissions")
     .select("id, name, email, message, status, created_at")
@@ -76,14 +75,12 @@ export default async function ContactDashboardPage() {
               </div>
               <p className="whitespace-pre-line text-sm text-gray-800">{submission.message}</p>
               <div className="flex justify-end">
-                <Button
-                  asChild
-                  size="sm"
-                  variant="outline"
-                  className="text-xs font-semibold uppercase tracking-wide"
+                <a
+                  href={`mailto:${submission.email}`}
+                  className="inline-flex h-9 items-center justify-center rounded-md border-2 border-brand-primary px-3 text-xs font-semibold uppercase tracking-wide text-brand-primary transition-colors hover:bg-brand-primary hover:text-white"
                 >
-                  <a href={`mailto:${submission.email}`}>Reply via email</a>
-                </Button>
+                  Reply via email
+                </a>
               </div>
             </Card>
           ))}

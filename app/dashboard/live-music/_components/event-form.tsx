@@ -9,12 +9,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const VENUE_TIMEZONE = "America/Los_Angeles";
-type FormAction = (prevState: any, formData: FormData) => Promise<any>;
 
 type ActionState = {
   message?: string;
   fieldErrors?: Record<string, string[]>;
 } | null;
+
+type FormAction = (prevState: ActionState, formData: FormData) => Promise<ActionState | void>;
 
 interface EventFormProps {
   action: FormAction;
@@ -41,7 +42,7 @@ function getDefaultDateTime(startsAt?: string) {
 
 export function EventForm({ action, initialEvent, submitLabel }: EventFormProps) {
   const [state, formAction, pending] = useActionState<ActionState, FormData>(
-    action as any,
+    action as (state: ActionState, payload: FormData) => Promise<ActionState>,
     null
   );
 

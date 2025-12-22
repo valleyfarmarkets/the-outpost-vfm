@@ -22,7 +22,8 @@ export async function POST(request: Request) {
     }
 
     const staffResult = await sendContactMessage(data);
-    if (!staffResult.success) {
+    const staffOk = staffResult.success || staffResult.skipped;
+    if (!staffOk) {
       console.error("[Contact] Staff email failed:", staffResult.error);
       return NextResponse.json(
         { success: false, message: "Failed to send message" },

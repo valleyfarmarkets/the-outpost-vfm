@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { User, LogOut, LayoutDashboard } from "lucide-react";
+import { LogOut, LayoutDashboard } from "lucide-react";
 import * as Popover from "@radix-ui/react-popover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
