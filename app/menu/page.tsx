@@ -39,8 +39,7 @@ const seasonalItems = {
         "Hearty beef & bean chili with smoked brisket burnt ends, topped with cheddar, sour cream & green onions. Served with cornbread.",
       price: 17,
       tags: ["Hearty", "Staff Pick"],
-      image:
-        "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80",
+      image: "/images/food/cowboy_chili.png",
     },
     {
       id: "s2",
@@ -49,8 +48,7 @@ const seasonalItems = {
         "Creamy roasted tomato soup with fresh basil and a grilled cheese dipper. Pure comfort.",
       price: 13,
       tags: ["Vegetarian"],
-      image:
-        "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80",
+      image: "/images/food/tomato_basil.png",
     },
   ],
 };
