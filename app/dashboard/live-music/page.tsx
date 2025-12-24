@@ -4,6 +4,8 @@ import { formatInTimeZone } from "date-fns-tz";
 import { Card } from "@/components/ui/card";
 import { createSupabaseServerClient } from "@/lib/supabase/server-ssr";
 
+export const dynamic = "force-dynamic";
+
 import { PublishToggle } from "./_components/publish-toggle";
 
 const VENUE_TIMEZONE = "America/Los_Angeles";

@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { createSupabaseServerClient } from "@/lib/supabase/server-ssr";
 
+export const dynamic = "force-dynamic";
+
 import { StatusToggle } from "./_components/status-toggle";
 
 interface ContactSubmission {

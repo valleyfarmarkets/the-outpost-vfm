@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { createSupabaseServerClient } from "@/lib/supabase/server-ssr";
 
+export const dynamic = "force-dynamic";
+
 import { EventForm } from "../_components/event-form";
 import { updateEvent } from "../actions";
 
