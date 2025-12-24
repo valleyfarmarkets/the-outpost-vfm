@@ -23,8 +23,8 @@ export default function GiftCardsPage() {
                 Perfect for Any Occasion
               </h2>
               <p className="mt-2 text-gray-600">
-                Our gift cards can be used for dining at our restaurant or cabin
-                rentals
+                Our gift cards can be used for food and beverage purchases at
+                our restaurant
               </p>
             </div>
           </Card>
@@ -95,7 +95,7 @@ export default function GiftCardsPage() {
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
                     <span>
-                      Apply gift card credit toward cabin rental bookings
+                      Use gift card credit toward food and beverage purchases
                     </span>
                   </li>
                   <li className="flex items-start">
