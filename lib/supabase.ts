@@ -3,17 +3,28 @@ import { createBrowserClient } from "@supabase/ssr";
 type SupabaseClient = ReturnType<typeof createBrowserClient>;
 
 let supabaseInstance: SupabaseClient | null = null;
+let initAttempted = false;
 
-function getSupabaseClient(): SupabaseClient {
+/**
+ * Get the Supabase browser client.
+ * Returns null if environment variables are not configured.
+ */
+export function getSupabase(): SupabaseClient | null {
   if (supabaseInstance) {
     return supabaseInstance;
   }
+
+  if (initAttempted) {
+    return null;
+  }
+
+  initAttempted = true;
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Missing Supabase environment variables");
+    return null;
   }
 
   supabaseInstance = createBrowserClient(supabaseUrl, supabaseAnonKey, {
@@ -24,10 +35,3 @@ function getSupabaseClient(): SupabaseClient {
 
   return supabaseInstance;
 }
-
-// Lazy-initialized client using Proxy to defer creation until runtime
-export const supabase = new Proxy({} as SupabaseClient, {
-  get(_, prop: keyof SupabaseClient) {
-    return getSupabaseClient()[prop];
-  },
-});

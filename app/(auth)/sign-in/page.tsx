@@ -2,7 +2,7 @@
 
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,13 @@ function SignInForm() {
     event.preventDefault();
     setError(null);
     setLoading(true);
+
+    const supabase = getSupabase();
+    if (!supabase) {
+      setError("Authentication is not configured");
+      setLoading(false);
+      return;
+    }
 
     const redirectTo = searchParams.get("redirect") || "/dashboard";
     const redirectBase =

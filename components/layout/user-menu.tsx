@@ -5,7 +5,7 @@ import { LogOut, LayoutDashboard } from "lucide-react";
 import * as Popover from "@radix-ui/react-popover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 
 export function UserMenu() {
@@ -14,6 +14,9 @@ export function UserMenu() {
   const router = useRouter();
 
   useEffect(() => {
+    const supabase = getSupabase();
+    if (!supabase) return;
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
       setSession(session);
@@ -30,12 +33,15 @@ export function UserMenu() {
   }, []);
 
   const handleSignOut = async () => {
+    const supabase = getSupabase();
+    if (!supabase) return;
+
     await supabase.auth.signOut();
     setOpen(false);
     router.push("/");
   };
 
-  // Logged out state - show nothing
+  // Logged out state or no Supabase - show nothing
   if (!session) {
     return null;
   }
