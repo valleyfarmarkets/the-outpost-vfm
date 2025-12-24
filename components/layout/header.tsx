@@ -23,7 +23,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-10 lg:top-11 left-0 right-0 z-50 flex justify-center lg:pt-6 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center lg:pt-6 pointer-events-none">
       {/* --- DESKTOP PILL --- */}
       <div
         className={cn(
