@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { validateContactForm, type ContactFormData } from "@/lib/validations";
@@ -20,6 +21,8 @@ export function ContactForm() {
     "idle" | "success" | "error"
   >("idle");
   const [serverError, setServerError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -44,6 +47,11 @@ export function ContactForm() {
       return;
     }
 
+    if (!turnstileToken) {
+      setServerError("Please complete the captcha verification.");
+      return;
+    }
+
     setIsSubmitting(true);
     setErrors({});
 
@@ -53,7 +61,7 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       });
 
       const result = await response.json();
@@ -61,6 +69,8 @@ export function ContactForm() {
       if (response.status === 400 && result?.errors) {
         setErrors(result.errors);
         setSubmitStatus("error");
+        turnstileRef.current?.reset();
+        setTurnstileToken(null);
         return;
       }
 
@@ -69,6 +79,8 @@ export function ContactForm() {
         setServerError(
           result?.message || "Something went wrong. Please try again."
         );
+        turnstileRef.current?.reset();
+        setTurnstileToken(null);
         return;
       }
 
@@ -79,9 +91,13 @@ export function ContactForm() {
         phone: "",
         message: "",
       });
+      setTurnstileToken(null);
+      turnstileRef.current?.reset();
     } catch {
       setSubmitStatus("error");
       setServerError("Something went wrong. Please try again.");
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
     } finally {
       setIsSubmitting(false);
     }
@@ -196,7 +212,17 @@ export function ContactForm() {
           </div>
         )}
 
-        <Button type="submit" disabled={isSubmitting} className="w-full">
+        <div className="flex justify-center">
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+            onSuccess={(token) => setTurnstileToken(token)}
+            onError={() => setTurnstileToken(null)}
+            onExpire={() => setTurnstileToken(null)}
+          />
+        </div>
+
+        <Button type="submit" disabled={isSubmitting || !turnstileToken} className="w-full">
           {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
       </form>
