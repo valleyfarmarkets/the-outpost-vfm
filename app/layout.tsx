@@ -89,9 +89,9 @@ export default function RootLayout({
               background: "linear-gradient(90deg, #B13330 0%, #CE7C23 25%, #DE9A2E 50%, #F9AC30 75%, #DE9A2E 100%)"
             }}
           />
-          {/* Christmas closure banner */}
+          {/* New Year's hours banner */}
           <div className="fixed top-1 left-0 right-0 z-[55] bg-brand-primary py-2 text-center text-sm font-medium text-white">
-            Closed On Christmas Eve & Christmas
+            Closing at 7 PM on New Year's Eve and New Year's Day.
           </div>
           <Header />
           <main className="flex-1">{children}</main>
