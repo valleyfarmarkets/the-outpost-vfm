@@ -186,6 +186,7 @@ const CONTACT_RECIPIENTS = [
   'ashley@valleyfarmmarkets.com',
   'derek@valleyfarmmarkets.com',
   'diana@valleyfarmmarkets.com',
+  'martha@valleyfarmmarkets.com',
 ];
 
 export async function sendContactMessage(data: ContactFormData) {
