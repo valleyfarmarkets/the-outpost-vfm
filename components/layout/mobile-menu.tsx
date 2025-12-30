@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/lib/constants";
 
 export function MobileMenu() {
@@ -20,74 +21,107 @@ export function MobileMenu() {
     };
   }, [isOpen]);
 
+  // Handle drag-to-close
+  const handleDragEnd = (_: unknown, info: { offset: { y: number }; velocity: { y: number } }) => {
+    // Close if dragged down more than 150px or with significant velocity
+    if (info.offset.y > 150 || info.velocity.y > 500) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div className="lg:hidden">
-      {/* Trigger Button */}
+      {/* Animated Hamburger Button */}
       <button
-        onClick={() => setIsOpen(true)}
-        className="relative z-[60] inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-white/10 focus:outline-none cursor-pointer"
-        aria-label="Open menu"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`relative z-[60] p-2 transition-colors ${
+          isOpen ? "text-white hover:text-gray-300" : "text-white hover:text-gray-300"
+        }`}
+        aria-label={isOpen ? "Close menu" : "Open menu"}
       >
-        <Menu className="h-6 w-6" aria-hidden="true" />
+        <div className="w-6 h-6 flex flex-col justify-center items-center">
+          <span
+            className={`w-full h-0.5 bg-current transition-all duration-300 ${
+              isOpen ? "rotate-45 translate-y-[5px]" : ""
+            }`}
+          />
+          <span
+            className={`w-full h-0.5 bg-current transition-all duration-300 my-1 ${
+              isOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`w-full h-0.5 bg-current transition-all duration-300 ${
+              isOpen ? "-rotate-45 -translate-y-[5px]" : ""
+            }`}
+          />
+        </div>
       </button>
 
-      {/* Overlay / Drawer Container */}
-      {/* We use distinct states for visibility to allow animations if desired, 
-          but keeping it simple and functional here */}
-      {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex justify-end">
-          
-          {/* 1. The Backdrop (Darkens the site behind the menu) */}
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
-            onClick={() => setIsOpen(false)}
-          />
-
-          {/* 2. The Drawer Panel (The actual menu) */}
-          <div className="relative z-10 h-full w-full max-w-sm bg-stone-900 shadow-2xl flex flex-col p-6">
-            
-            {/* Close Button Header */}
-            <div className="flex justify-end mb-8">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="rounded-md p-2 text-white hover:bg-white/10"
-                aria-label="Close menu"
-              >
-                <X className="h-8 w-8" />
-              </button>
+      {/* Full-screen Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            className="fixed inset-0 z-[9999] bg-black flex flex-col"
+          >
+            {/* Header with Logo */}
+            <div className="flex items-center justify-between p-4">
+              <Link href="/" onClick={() => setIsOpen(false)}>
+                <Image
+                  src="/images/outpost_logo_2.svg"
+                  width={140}
+                  height={40}
+                  alt="The Outpost VFM"
+                  className="h-10 w-auto"
+                />
+              </Link>
+              {/* Spacer for hamburger button position */}
+              <div className="w-10" />
             </div>
 
-            {/* Navigation Links - Centered Vertically and Horizontally */}
-            <nav
-              className="flex flex-col items-center justify-center flex-1 gap-8"
-              aria-label="Mobile navigation"
-            >
+            {/* Navigation Links - Centered */}
+            <nav className="flex flex-col items-center justify-center flex-1 gap-6">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-serif text-3xl font-medium text-white tracking-wide hover:text-brand-primary transition-colors"
                   onClick={() => setIsOpen(false)}
+                  className="text-5xl font-serif font-medium text-white tracking-tight
+                    hover:text-brand-primary hover:scale-105
+                    transition-all duration-300 ease-out"
                 >
                   {link.label}
                 </Link>
               ))}
+
+              {/* Book a Cabin CTA */}
+              <Link
+                href="/book"
+                onClick={() => setIsOpen(false)}
+                className="mt-8 px-8 py-4 bg-brand-primary text-white text-xl font-bold
+                  uppercase tracking-wider rounded-md
+                  hover:bg-brand-primary/90 transition-colors"
+              >
+                Book a Cabin
+              </Link>
             </nav>
 
-            {/* Optional: Footer or CTA in the drawer */}
-            <div className="mt-auto pt-8 border-t border-white/10 text-center">
-               <Link 
-                 href="/book" 
-                 className="inline-block w-full rounded-md bg-brand-primary px-4 py-3 text-white font-bold uppercase tracking-wider"
-                 onClick={() => setIsOpen(false)}
-               >
-                 Book a Cabin
-               </Link>
+            {/* Drag Handle / Close Hint */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+              <p className="text-white/50 text-sm font-medium">Swipe down to close</p>
+              <div className="w-12 h-1 bg-white/30 rounded-full" />
             </div>
-
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
