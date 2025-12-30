@@ -91,7 +91,7 @@ export default function RootLayout({
           />
           {/* New Year's hours banner */}
           <div className="fixed top-1 left-0 right-0 z-[55] bg-brand-primary py-2 text-center text-sm font-medium text-white">
-            Closing at 7 PM on New Year's Eve and New Year's Day.
+            Closing at 7 PM on New Year&apos;s Eve and New Year&apos;s Day.
           </div>
           <Header />
           <main className="flex-1">{children}</main>

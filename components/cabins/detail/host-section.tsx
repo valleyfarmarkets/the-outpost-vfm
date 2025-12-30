@@ -18,7 +18,6 @@ export function HostSection({ cabin, className }: HostSectionProps) {
     : cabin.bedrooms;
 
   const hostName = cabin.host?.name || "Valley Farm Market";
-  const hostInitials = cabin.host?.initials || "VF";
 
   return (
     <div
