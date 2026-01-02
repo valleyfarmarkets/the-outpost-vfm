@@ -17,13 +17,12 @@ export function Header() {
       setIsScrolled(window.scrollY > 50);
     };
 
-    // { passive: true } improves scroll performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className="fixed top-10 lg:top-11 left-0 right-0 z-50 flex justify-center lg:pt-6 pointer-events-none">
+    <header className="fixed top-1 lg:top-11 left-0 right-0 z-50 flex justify-center lg:pt-6 pointer-events-none">
       {/* --- DESKTOP PILL --- */}
       <div
         className={cn(
@@ -84,7 +83,8 @@ export function Header() {
 
       {/* --- MOBILE NAV --- */}
       <div className="lg:hidden pointer-events-auto w-full">
-        <div className="bg-black backdrop-blur-md shadow-sm py-4">
+        {/* Added bg-black explicitly here to ensure the bar itself is visible */}
+        <div className="bg-black text-white shadow-sm py-3">
           <Container>
             <div className="flex items-center justify-between">
               <Link href="/">
@@ -93,7 +93,7 @@ export function Header() {
                   width={140}
                   height={40}
                   alt="The Outpost VFM"
-                  className="h-10 w-auto"
+                  className="h-10 w-auto invert brightness-0 filter"
                 />
               </Link>
               <MobileMenu />
