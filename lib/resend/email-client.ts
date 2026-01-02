@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import type { ContactFormData } from '@/lib/validations';
+import type { ContactFormData, PerformerFormData } from '@/lib/validations';
 
 const apiKey = process.env.RESEND_API_KEY;
 const resend = apiKey && !apiKey.includes('your_') ? new Resend(apiKey) : null;
@@ -634,6 +634,496 @@ export async function sendContactConfirmation(data: ContactFormData) {
     return { success: true };
   } catch (error) {
     console.error('[Resend] Contact confirmation email failed:', error);
+    return { success: false, error: formatError(error) };
+  }
+}
+
+const PERFORMER_RECIPIENTS = [
+  'music@theoutpostvfm.com',
+];
+
+export async function sendPerformerSubmission(data: PerformerFormData) {
+  if (!resend) {
+    console.log('[Resend] Skipping performer email (not configured)');
+    return { success: false, skipped: true };
+  }
+
+  const safeStageName = escapeHtml(data.stageName);
+  const safeEmail = escapeHtml(data.email);
+  const safePhone = data.phone ? escapeHtml(data.phone) : '';
+  const safeLocation = escapeHtml(data.location);
+  const safeSocialMedia = data.socialMedia ? escapeHtml(data.socialMedia) : '';
+  const safeGenre = escapeHtml(data.genre);
+  const safeRate = data.desiredRate ? escapeHtml(data.desiredRate) : '';
+  const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br>');
+  const submittedAt = formatPacificTimestamp();
+
+  try {
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
+      to: PERFORMER_RECIPIENTS,
+      subject: `[Performer] ${safeStageName} – ${safeGenre}`,
+      replyTo: data.email,
+      html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Performer Application - The Outpost</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="display: none; max-height: 0; overflow: hidden;">
+    New performer application from ${safeStageName}
+  </div>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF8F5;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #FFFDF9; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(34, 31, 31, 0.08);">
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #B13330 0%, #CE7C23 50%, #F9AC30 100%);"></td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 40px 40px 24px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center">
+                    <div style="width: 60px; height: 60px; background-color: #221F1F; border-radius: 50%; display: inline-block; text-align: center; line-height: 60px;">
+                      <span style="color: #F9AC30; font-size: 24px; font-weight: bold;">O</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 16px;">
+                    <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      The Outpost
+                    </h1>
+                    <p style="margin: 4px 0 0 0; font-size: 13px; color: #6B6966; letter-spacing: 1px; text-transform: uppercase;">
+                      Mt. Laguna, CA
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 0 40px 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background-color: #4A7C59; color: #ffffff; font-size: 12px; font-weight: 600; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;">
+                    New Performer Application
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 40px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Stage Name
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #B13330;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeStageName}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Genre/Style
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #CE7C23;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeGenre}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Email
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #DE9A2E;">
+                    <a href="mailto:${safeEmail}" style="font-size: 16px; color: #B13330; font-weight: 500; text-decoration: none;">
+                      ${safeEmail}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              ${safePhone ? `
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Phone
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #F9AC30;">
+                    <a href="tel:${safePhone}" style="font-size: 16px; color: #221F1F; font-weight: 500; text-decoration: none;">
+                      ${safePhone}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              ` : ''}
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Location
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #4A7C59;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeLocation}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              ${safeSocialMedia ? `
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Social Media / Website
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #6B6966;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeSocialMedia}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              ` : ''}
+              ${safeRate ? `
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      Desired Rate
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; border-left: 4px solid #B13330;">
+                    <span style="font-size: 16px; color: #221F1F; font-weight: 500;">
+                      ${safeRate}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              ` : ''}
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 0;">
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 600; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                      About Themselves
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #FAF8F5; border-radius: 8px; padding: 16px 16px; border-left: 4px solid #CE7C23;">
+                    <p style="font-size: 15px; color: #221F1F; line-height: 1.7; margin: 0;">${safeMessage}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 40px 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <a href="mailto:${safeEmail}?subject=Re: Your Performance Application at The Outpost" style="display: inline-block; background: linear-gradient(135deg, #B13330 0%, #CE7C23 100%); color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none; margin-right: 12px;">
+                      Reply to ${safeStageName}
+                    </a>
+                    ${safePhone ? `
+                    <a href="tel:${safePhone}" style="display: inline-block; background-color: #221F1F; color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
+                      Call
+                    </a>
+                    ` : ''}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 40px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 24px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td>
+                    <p style="margin: 0; font-size: 13px; color: #6B6966;">
+                      <strong style="color: #221F1F;">Submitted:</strong> ${submittedAt}
+                    </p>
+                  </td>
+                  <td align="right">
+                    <p style="margin: 0; font-size: 13px; color: #6B6966;">
+                      <strong style="color: #221F1F;">Source:</strong> Live Music Page
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #221F1F; padding: 28px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin: 0 0 8px 0; font-size: 14px; color: #ffffff; font-weight: 500;">
+                      The Outpost by Valley Farm Market
+                    </p>
+                    <p style="margin: 0; font-size: 13px; color: rgba(255,255,255,0.6);">
+                      Mt. Laguna, CA
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
+    });
+
+    console.log(`[Resend] Performer email sent for ${data.email}`);
+    return { success: true };
+  } catch (error) {
+    console.error('[Resend] Performer email failed:', error);
+    return { success: false, error: formatError(error) };
+  }
+}
+
+export async function sendPerformerConfirmation(data: PerformerFormData) {
+  if (!resend) {
+    console.log('[Resend] Skipping performer confirmation email (not configured)');
+    return { success: false, skipped: true };
+  }
+
+  const safeStageName = escapeHtml(data.stageName);
+  const safeGenre = escapeHtml(data.genre);
+
+  try {
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'team@theoutpostvfm.com',
+      to: data.email,
+      subject: 'We received your application – The Outpost',
+      html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Received - The Outpost</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="display: none; max-height: 0; overflow: hidden;">
+    Thanks for your interest in performing at The Outpost!
+  </div>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF8F5;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #FFFDF9; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(34, 31, 31, 0.08);">
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #B13330 0%, #CE7C23 50%, #F9AC30 100%);"></td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 48px 40px 32px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center">
+                    <div style="width: 70px; height: 70px; background-color: #221F1F; border-radius: 50%; display: inline-block; text-align: center; line-height: 70px;">
+                      <span style="color: #F9AC30; font-size: 28px; font-weight: bold;">O</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 20px;">
+                    <h1 style="margin: 0; font-size: 28px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      The Outpost
+                    </h1>
+                    <p style="margin: 6px 0 0 0; font-size: 13px; color: #6B6966; letter-spacing: 1.5px; text-transform: uppercase;">
+                      Mt. Laguna, California
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 48px 40px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <div style="width: 56px; height: 56px; background-color: #4A7C59; border-radius: 50%; display: inline-block; text-align: center; line-height: 56px; margin-bottom: 24px;">
+                      <span style="color: #ffffff; font-size: 28px;">&#9835;</span>
+                    </div>
+                    <h2 style="margin: 0 0 16px 0; font-size: 26px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      Application Received!
+                    </h2>
+                    <p style="margin: 0 0 24px 0; font-size: 16px; color: #6B6966; line-height: 1.7; max-width: 420px;">
+                      Hey ${safeStageName}, thanks for your interest in performing at The Outpost! We love connecting with local talent and bringing live music to our mountain community.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                      <tr>
+                        <td style="background-color: #FAF8F5; border-radius: 12px; padding: 20px 32px; text-align: center;">
+                          <p style="margin: 0 0 4px 0; font-size: 13px; color: #6B6966; text-transform: uppercase; letter-spacing: 1px;">
+                            Your Genre
+                          </p>
+                          <p style="margin: 0; font-size: 20px; font-weight: 600; color: #B13330;">
+                            ${safeGenre}
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 48px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td>
+                    <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      What Happens Next?
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #6B6966; font-size: 15px; line-height: 1.8;">
+                      <li style="margin-bottom: 8px;">Our team will review your application</li>
+                      <li style="margin-bottom: 8px;">If we think you'd be a good fit, we'll reach out to discuss available dates</li>
+                      <li style="margin-bottom: 8px;">We typically book shows on Saturday evenings</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 48px;">
+              <div style="height: 1px; background-color: #E8E4DE;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <h3 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #221F1F; font-family: Georgia, 'Times New Roman', serif;">
+                      Questions?
+                    </h3>
+                    <p style="margin: 0 0 20px 0; font-size: 15px; color: #6B6966; line-height: 1.6;">
+                      Feel free to reach out if you have any questions about performing at The Outpost.
+                    </p>
+                    <a href="mailto:music@theoutpostvfm.com" style="display: inline-block; background: linear-gradient(135deg, #B13330 0%, #CE7C23 100%); color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
+                      Contact Us
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 16px 48px 40px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin: 0; font-size: 16px; color: #6B6966; line-height: 1.7;">
+                      Thanks again for reaching out.<br>
+                      <span style="color: #221F1F; font-weight: 500;">We look forward to possibly making music together!</span>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #221F1F; padding: 36px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <p style="margin: 0 0 12px 0; font-size: 16px; color: #ffffff; font-weight: 500; font-family: Georgia, 'Times New Roman', serif;">
+                      The Outpost
+                    </p>
+                    <p style="margin: 0 0 16px 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+                      Live Music in the Mountains<br>
+                      Mt. Laguna, CA
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                      <tr>
+                        <td style="padding: 0 12px;">
+                          <a href="https://theoutpostvfm.com/live-music" style="color: #F9AC30; font-size: 13px; text-decoration: none;">Live Music</a>
+                        </td>
+                        <td style="color: rgba(255,255,255,0.3);">|</td>
+                        <td style="padding: 0 12px;">
+                          <a href="https://theoutpostvfm.com/menu" style="color: #F9AC30; font-size: 13px; text-decoration: none;">Menu</a>
+                        </td>
+                        <td style="color: rgba(255,255,255,0.3);">|</td>
+                        <td style="padding: 0 12px;">
+                          <a href="https://theoutpostvfm.com/cabins" style="color: #F9AC30; font-size: 13px; text-decoration: none;">Our Cabins</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.5);">
+                      The Outpost by Valley Farm Market
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
+    });
+
+    console.log(`[Resend] Performer confirmation email sent to ${data.email}`);
+    return { success: true };
+  } catch (error) {
+    console.error('[Resend] Performer confirmation email failed:', error);
     return { success: false, error: formatError(error) };
   }
 }

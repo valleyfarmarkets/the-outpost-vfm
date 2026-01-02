@@ -11,6 +11,7 @@ import {
   Music,
 } from "lucide-react";
 import eventsData from "@/data/events.json";
+import { PerformerDialog } from "@/components/performers/performer-dialog";
 import type { EventData, MusicEvent } from "@/types/events";
 
 const colors = {
@@ -521,6 +522,7 @@ function PosterCard({
 }
 
 export default function LiveMusicPage() {
+  const [performerDialogOpen, setPerformerDialogOpen] = useState(false);
   const eventData: EventData = eventsData;
   const today = new Date();
   const upcoming = (eventData.upcoming ?? []).filter(
@@ -888,8 +890,8 @@ export default function LiveMusicPage() {
             >
               We are always looking for talented local artists. Reach out and let us make some music together.
             </p>
-            <a
-              href="mailto:music@theoutpostvfm.com"
+            <button
+              onClick={() => setPerformerDialogOpen(true)}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -901,10 +903,12 @@ export default function LiveMusicPage() {
                 fontSize: "16px",
                 fontWeight: 600,
                 textDecoration: "none",
+                border: "none",
+                cursor: "pointer",
               }}
             >
               Book a Show
-            </a>
+            </button>
           </div>
         </section>
       </main>
@@ -950,6 +954,11 @@ export default function LiveMusicPage() {
           The Outpost by Valley Farm Market · Mt. Laguna, CA
         </p>
       </footer>
+
+      <PerformerDialog
+        open={performerDialogOpen}
+        onOpenChange={setPerformerDialogOpen}
+      />
     </div>
   );
 }
