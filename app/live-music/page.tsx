@@ -46,10 +46,10 @@ export default async function LiveMusicPage() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
-      <main className="max-w-5xl mx-auto px-6 py-12 pt-32">
+      <main className="max-w-5xl mx-auto px-6 py-12 pt-40">
         {/* Page Title */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-wide mb-3 text-amber-100">Live Music</h1>
+          <h1 className="font-serif text-[clamp(48px,10vw,80px)] font-bold leading-[1.05] tracking-tight text-white">Live Music</h1>
           <p className="text-neutral-400 max-w-md mx-auto">
             Local artists, mountain vibes, and good times every Friday from 5-8 PM at The Outpost,
             Mt. Laguna.
