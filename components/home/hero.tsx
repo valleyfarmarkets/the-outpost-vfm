@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { LiveMusicOverlay, type LiveMusicOverlayProps } from "./live-music-overlay";
 
-export function Hero() {
+interface HeroProps {
+  nextEvent?: LiveMusicOverlayProps | null;
+}
+
+export function Hero({ nextEvent }: HeroProps) {
   return (
     <section className="relative flex min-h-[600px] items-start bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/outpost_hero.jpeg)' }}>
       <div className="absolute inset-0 bg-black/70" />
@@ -37,6 +42,8 @@ export function Hero() {
           </div>
         </div>
       </Container>
+
+      {nextEvent && <LiveMusicOverlay {...nextEvent} />}
     </section>
   );
 }
