@@ -70,10 +70,10 @@ export function CabinFAQ() {
             <p className="text-gray-600">
               Still have questions?{" "}
               <a
-                href="tel:(619) 473-8341"
+                href="tel:+16194582864"
                 className="font-semibold text-brand-primary hover:text-brand-primary/80"
               >
-                Call us at (619) 473-8341
+                Call us at (619) 458-2864
               </a>{" "}
               or{" "}
               <a

@@ -31,7 +31,7 @@ export function CabinsHero() {
       latitude: 32.8642,
       longitude: -116.4272,
     },
-    telephone: "(619) 473-8341",
+    telephone: "(619) 458-2864",
     priceRange: "$125-$400",
     starRating: {
       "@type": "Rating",
@@ -76,7 +76,7 @@ export function CabinsHero() {
               View Available Cabins
             </Button>
             <a
-              href="tel:(619) 473-8341"
+              href="tel:+16194582864"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-white rounded-md text-base font-semibold text-white hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               <Phone className="mr-2 h-5 w-5" />

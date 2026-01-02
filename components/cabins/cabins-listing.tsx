@@ -490,10 +490,10 @@ export function CabinsListing() {
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="tel:+16195551234"
+              href="tel:+16194582864"
               className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#F9AC30] to-[#DE9A2E] px-5 py-3 text-base font-semibold text-[#221F1F]"
             >
-              Call (619) 555-1234
+              Call (619) 458-2864
             </a>
             <a
               href="mailto:reservations@theoutpostvfm.com"

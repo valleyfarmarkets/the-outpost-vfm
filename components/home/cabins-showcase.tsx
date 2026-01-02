@@ -125,10 +125,10 @@ export function CabinsShowcase() {
           <p className="text-sm text-gray-600">
             Prefer to chat? Call us at{" "}
             <a
-              href="tel:6194738341"
+              href="tel:+16194582864"
               className="font-semibold text-[var(--cabins-charcoal)] underline underline-offset-2"
             >
-              (619) 473-8341
+              (619) 458-2864
             </a>
           </p>
         </div>

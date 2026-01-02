@@ -155,7 +155,7 @@ export async function sendBookingConfirmation(
 
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 30px 0; text-align: center;">
               <p style="margin: 0 0 10px 0; font-weight: 600;">Questions or need to make changes?</p>
-              <p style="margin: 0; font-size: 14px;">Contact us at <a href="tel:+16194738341" style="color: #A0563B; text-decoration: none;">(619) 473-8341</a></p>
+              <p style="margin: 0; font-size: 14px;">Contact us at <a href="tel:+16195148002" style="color: #A0563B; text-decoration: none;">(619) 514-8002</a></p>
             </div>
 
             <p style="font-size: 16px; margin-bottom: 0;">We look forward to welcoming you!</p>
@@ -165,7 +165,7 @@ export async function sendBookingConfirmation(
           <div style="text-align: center; padding: 20px; color: #666; font-size: 12px;">
             <p style="margin: 5px 0;">The Outpost VFM</p>
             <p style="margin: 5px 0;">Pine Valley, CA</p>
-            <p style="margin: 5px 0;">(619) 473-8341</p>
+            <p style="margin: 5px 0;">(619) 514-8002</p>
           </div>
         </body>
         </html>
@@ -388,7 +388,7 @@ export async function sendContactMessage(data: ContactFormData) {
                       The Outpost by Valley Farm Market
                     </p>
                     <p style="margin: 0; font-size: 13px; color: rgba(255,255,255,0.6);">
-                      Mt. Laguna, CA · (619) 555-1234
+                      Mt. Laguna, CA · (619) 514-8002
                     </p>
                   </td>
                 </tr>
@@ -555,8 +555,8 @@ export async function sendContactConfirmation(data: ContactFormData) {
                     <p style="margin: 0 0 20px 0; font-size: 15px; color: #6B6966; line-height: 1.6;">
                       For urgent matters, give us a call. We're happy to help.
                     </p>
-                    <a href="tel:+16195551234" style="display: inline-block; background-color: #221F1F; color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
-                      Call (619) 555-1234
+                    <a href="tel:+16195148002" style="display: inline-block; background-color: #221F1F; color: #ffffff; font-size: 15px; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
+                      Call (619) 514-8002
                     </a>
                   </td>
                 </tr>
