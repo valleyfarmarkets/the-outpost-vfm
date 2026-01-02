@@ -1,7 +1,3 @@
-"use client";
-
-import { useMemo, useState } from "react";
-import Image from "next/image";
 import {
   Calendar,
   Clock,
@@ -10,9 +6,20 @@ import {
   Instagram,
   Music,
 } from "lucide-react";
-import eventsData from "@/data/events.json";
-import { PerformerDialog } from "@/components/performers/performer-dialog";
-import type { EventData, MusicEvent } from "@/types/events";
+import { formatInTimeZone } from "date-fns-tz";
+
+import { createSupabaseServerClient } from "@/lib/supabase/server-ssr";
+import type { MusicEvent } from "@/types/events";
+
+import { FeaturedShowCard } from "./_components/featured-show-card";
+import { UpcomingShowCard } from "./_components/upcoming-show-card";
+import { PosterCard, type PosterData } from "./_components/poster-card";
+import { SoundWave } from "./_components/sound-wave";
+import { PerformerSection } from "./_components/performer-section";
+
+export const dynamic = "force-dynamic";
+
+const VENUE_TIMEZONE = "America/Los_Angeles";
 
 const colors = {
   charcoal: "#221F1F",
@@ -26,7 +33,7 @@ const colors = {
   lightGray: "#E8E4DE",
 };
 
-const defaultPosters = [
+const defaultPosters: PosterData[] = [
   {
     id: 1,
     artist: "Sierra Gold",
@@ -77,476 +84,45 @@ const defaultPosters = [
   },
 ];
 
-function SoundWave({ color = colors.brightGold }: { color?: string }) {
-  return (
-    <div style={{ display: "flex", alignItems: "flex-end", gap: "3px", height: "24px" }}>
-      {[0.6, 1, 0.4, 0.8, 0.5, 0.9, 0.3].map((height, i) => (
-        <div
-          key={i}
-          style={{
-            width: "4px",
-            height: `${height * 100}%`,
-            background: color,
-            borderRadius: "2px",
-            animation: `pulse 1s ease-in-out ${i * 0.1}s infinite alternate`,
-          }}
-        />
-      ))}
-      <style>{`
-        @keyframes pulse {
-          0% { transform: scaleY(0.5); }
-          100% { transform: scaleY(1); }
-        }
-      `}</style>
-    </div>
-  );
+interface LiveMusicEventDB {
+  id: string;
+  title: string;
+  slug: string;
+  starts_at: string;
+  ends_at: string | null;
+  description: string | null;
+  is_published: boolean;
 }
 
-function FeaturedShowCard({ show }: { show: MusicEvent }) {
-  const [isHovered, setIsHovered] = useState(false);
+function transformEvent(dbEvent: LiveMusicEventDB): MusicEvent {
+  const startsAt = new Date(dbEvent.starts_at);
+  const endsAt = dbEvent.ends_at ? new Date(dbEvent.ends_at) : null;
 
-  return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        position: "relative",
-        borderRadius: "24px",
-        overflow: "hidden",
-        background: `linear-gradient(135deg, ${colors.deepRed} 0%, #8B2331 100%)`,
-        minHeight: "500px",
-        display: "flex",
-        flexDirection: "column",
-        cursor: "pointer",
-        boxShadow: isHovered
-          ? "0 30px 60px rgba(0,0,0,0.4)"
-          : "0 15px 40px rgba(0,0,0,0.25)",
-        transform: isHovered ? "translateY(-8px) scale(1.01)" : "translateY(0) scale(1)",
-        transition: "all 0.4s cubic-bezier(0.23, 1, 0.32, 1)",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: show.image ? `url(${show.image})` : undefined,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.3,
-          transform: isHovered ? "scale(1.1)" : "scale(1)",
-          transition: "transform 0.6s ease",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%)",
-        }}
-      />
-
-      <div
-        style={{
-          position: "relative",
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          padding: "32px",
-          color: "#fff",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: "auto",
-          }}
-        >
-          <div
-            style={{
-              background: colors.brightGold,
-              color: colors.charcoal,
-              padding: "8px 16px",
-              borderRadius: "20px",
-              fontSize: "12px",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "1px",
-            }}
-          >
-            Up Next
-          </div>
-          <SoundWave />
-        </div>
-
-        <div style={{ marginTop: "auto" }}>
-          {show.genre && (
-            <div
-              style={{
-                fontSize: "14px",
-                fontWeight: 500,
-                opacity: 0.8,
-                marginBottom: "8px",
-                textTransform: "uppercase",
-                letterSpacing: "2px",
-              }}
-            >
-              {show.genre}
-            </div>
-          )}
-
-          <h2
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(36px, 6vw, 56px)",
-              fontWeight: 700,
-              margin: "0 0 16px 0",
-              lineHeight: 1.1,
-              textShadow: "0 4px 20px rgba(0,0,0,0.3)",
-            }}
-          >
-            {show.artist}
-          </h2>
-
-          {show.description && (
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: 1.6,
-                opacity: 0.9,
-                marginBottom: "24px",
-                maxWidth: "500px",
-              }}
-            >
-              {show.description}
-            </p>
-          )}
-
-          <div
-            style={{
-              display: "flex",
-              gap: "24px",
-              flexWrap: "wrap",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                fontSize: "15px",
-                fontWeight: 600,
-              }}
-            >
-              <Calendar className="h-4 w-4" />
-              {new Date(show.date).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                fontSize: "15px",
-              }}
-            >
-              <Clock className="h-4 w-4" />
-              {show.startTime}
-              {show.endTime ? ` - ${show.endTime}` : ""}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          top: "20px",
-          left: "20px",
-          width: "40px",
-          height: "40px",
-          borderTop: "3px solid rgba(255,255,255,0.3)",
-          borderLeft: "3px solid rgba(255,255,255,0.3)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          right: "20px",
-          width: "40px",
-          height: "40px",
-          borderBottom: "3px solid rgba(255,255,255,0.3)",
-          borderRight: "3px solid rgba(255,255,255,0.3)",
-        }}
-      />
-    </div>
-  );
+  return {
+    id: dbEvent.slug,
+    title: dbEvent.title,
+    artist: dbEvent.title,
+    date: formatInTimeZone(startsAt, VENUE_TIMEZONE, "yyyy-MM-dd"),
+    startTime: formatInTimeZone(startsAt, VENUE_TIMEZONE, "h:mm a"),
+    endTime: endsAt ? formatInTimeZone(endsAt, VENUE_TIMEZONE, "h:mm a") : undefined,
+    description: dbEvent.description ?? undefined,
+  };
 }
 
-function UpcomingShowCard({ show }: { show: MusicEvent }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const day = useMemo(
-    () => new Date(show.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-    [show.date]
-  );
+export default async function LiveMusicPage() {
+  const supabase = await createSupabaseServerClient();
 
-  return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        display: "flex",
-        gap: "20px",
-        padding: "20px",
-        background: colors.warmWhite,
-        borderRadius: "16px",
-        border: `1px solid ${colors.lightGray}`,
-        cursor: "pointer",
-        boxShadow: isHovered
-          ? "0 12px 32px rgba(0,0,0,0.12)"
-          : "0 2px 8px rgba(0,0,0,0.04)",
-        transform: isHovered ? "translateX(8px)" : "translateX(0)",
-        transition: "all 0.3s ease",
-      }}
-    >
-      <div
-        style={{
-          width: "100px",
-          height: "120px",
-          borderRadius: "12px",
-          overflow: "hidden",
-          flexShrink: 0,
-          position: "relative",
-          background: colors.burntOrange,
-        }}
-      >
-        {show.image && (
-          <Image
-            src={show.image}
-            alt={show.artist}
-            fill
-            sizes="100px"
-            style={{
-              objectFit: "cover",
-              opacity: 0.7,
-              transform: isHovered ? "scale(1.1)" : "scale(1)",
-              transition: "transform 0.4s ease",
-            }}
-          />
-        )}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.25) 100%)",
-          }}
-        />
-      </div>
+  const { data: dbEvents } = await supabase
+    .from("live_music_events")
+    .select("*")
+    .eq("is_published", true)
+    .gte("starts_at", new Date().toISOString())
+    .order("starts_at", { ascending: true });
 
-      <div style={{ flex: 1, minWidth: 0 }}>
-        {show.genre && (
-          <div
-            style={{
-              fontSize: "12px",
-              fontWeight: 600,
-              color: colors.burntOrange,
-              marginBottom: "4px",
-              textTransform: "uppercase",
-              letterSpacing: "0.5px",
-            }}
-          >
-            {show.genre}
-          </div>
-        )}
-        <h4
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "20px",
-            fontWeight: 600,
-            color: colors.charcoal,
-            margin: "0 0 8px 0",
-          }}
-        >
-          {show.artist}
-        </h4>
-        {show.description && (
-          <p
-            style={{
-              fontSize: "13px",
-              color: colors.textMuted,
-              margin: "0 0 12px 0",
-              lineHeight: 1.4,
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {show.description}
-          </p>
-        )}
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            fontSize: "13px",
-            color: colors.charcoal,
-          }}
-        >
-          <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            <Calendar className="h-4 w-4" /> {day}
-          </span>
-          <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            <Clock className="h-4 w-4" /> {show.startTime}
-            {show.endTime ? ` - ${show.endTime}` : ""}
-          </span>
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          color: isHovered ? colors.burntOrange : colors.lightGray,
-          transition: "color 0.3s ease",
-        }}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </div>
-    </div>
-  );
-}
-
-function PosterCard({
-  poster,
-}: {
-  poster: { id: number; artist: string; date: string; image: string; bg: string };
-}) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        position: "relative",
-        aspectRatio: "3/4",
-        borderRadius: "12px",
-        overflow: "hidden",
-        cursor: "pointer",
-        boxShadow: isHovered
-          ? "0 20px 40px rgba(0,0,0,0.3)"
-          : "0 4px 12px rgba(0,0,0,0.15)",
-        transform: isHovered ? "translateY(-8px) rotate(-1deg)" : "translateY(0) rotate(0deg)",
-        transition: "all 0.4s cubic-bezier(0.23, 1, 0.32, 1)",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: poster.bg,
-        }}
-      />
-
-      <Image
-        src={poster.image}
-        alt={poster.artist}
-        fill
-        sizes="(max-width: 768px) 100vw, 400px"
-        style={{
-          objectFit: "cover",
-          opacity: 0.5,
-          transform: isHovered ? "scale(1.1)" : "scale(1)",
-          transition: "transform 0.5s ease",
-        }}
-      />
-
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8) 100%)",
-        }}
-      />
-
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: "20px",
-          color: "#fff",
-        }}
-      >
-        <div
-          style={{
-            fontSize: "11px",
-            opacity: 0.7,
-            marginBottom: "4px",
-          }}
-        >
-          {poster.date}
-        </div>
-        <h4
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "16px",
-            fontWeight: 600,
-            margin: 0,
-          }}
-        >
-          {poster.artist}
-        </h4>
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
-          opacity: 0.05,
-          pointerEvents: "none",
-        }}
-      />
-    </div>
-  );
-}
-
-export default function LiveMusicPage() {
-  const [performerDialogOpen, setPerformerDialogOpen] = useState(false);
-  const eventData: EventData = eventsData;
-  const today = new Date();
-  const upcoming = (eventData.upcoming ?? []).filter(
-    (event) => new Date(event.date) >= today
-  );
-  const sortedUpcoming = [...upcoming].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
-  const featuredShow = sortedUpcoming.find((e) => e.featured) ?? sortedUpcoming[0];
-  const otherShows = sortedUpcoming.filter((e) => e.id !== featuredShow?.id);
-  const posters =
-    eventData.past && eventData.past.length > 0
-      ? eventData.past.map((p, idx) => ({
-          id: idx,
-          artist: p.artist,
-          date: new Date(p.date).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          }),
-          image: p.image ?? "",
-          bg: colors.deepRed,
-        }))
-      : defaultPosters;
+  const upcoming: MusicEvent[] = (dbEvents || []).map(transformEvent);
+  const featuredShow = upcoming[0];
+  const otherShows = upcoming.slice(1);
+  const posters = defaultPosters;
 
   return (
     <div
@@ -832,85 +408,7 @@ export default function LiveMusicPage() {
           </div>
         </section>
 
-        <section
-          style={{
-            marginTop: "80px",
-            background: `linear-gradient(135deg, ${colors.deepRed} 0%, ${colors.burntOrange} 100%)`,
-            borderRadius: "24px",
-            padding: "48px",
-            textAlign: "center",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "-50px",
-              right: "-50px",
-              width: "200px",
-              height: "200px",
-              borderRadius: "50%",
-              border: "2px solid rgba(255,255,255,0.2)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-30px",
-              left: "-30px",
-              width: "150px",
-              height: "150px",
-              borderRadius: "50%",
-              border: "2px solid rgba(255,255,255,0.1)",
-            }}
-          />
-
-          <div style={{ position: "relative" }}>
-            <h2
-              className="font-serif"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "36px",
-                fontWeight: 600,
-                color: "#fff",
-                margin: "0 0 16px 0",
-              }}
-            >
-              Want to perform?
-            </h2>
-            <p
-              style={{
-                fontSize: "16px",
-                color: "rgba(255,255,255,0.9)",
-                maxWidth: "400px",
-                margin: "0 auto 28px",
-                lineHeight: 1.6,
-              }}
-            >
-              We are always looking for talented local artists. Reach out and let us make some music together.
-            </p>
-            <button
-              onClick={() => setPerformerDialogOpen(true)}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "#fff",
-                color: colors.charcoal,
-                padding: "16px 32px",
-                borderRadius: "12px",
-                fontSize: "16px",
-                fontWeight: 600,
-                textDecoration: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              Book a Show
-            </button>
-          </div>
-        </section>
+        <PerformerSection />
       </main>
 
       <footer
@@ -954,11 +452,6 @@ export default function LiveMusicPage() {
           The Outpost by Valley Farm Market · Mt. Laguna, CA
         </p>
       </footer>
-
-      <PerformerDialog
-        open={performerDialogOpen}
-        onOpenChange={setPerformerDialogOpen}
-      />
     </div>
   );
 }
