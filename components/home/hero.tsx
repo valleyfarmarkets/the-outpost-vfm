@@ -43,8 +43,9 @@ export function Hero({ nextEvent }: HeroProps) {
         </div>
       </Container>
 
-      {/* Live music overlay hidden for now */}
-      {false && nextEvent && <LiveMusicOverlay {...nextEvent} />}
+      {/* Live music overlay hidden for now
+      {nextEvent && <LiveMusicOverlay {...nextEvent} />}
+      */}
     </section>
   );
 }
