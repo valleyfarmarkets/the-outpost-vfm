@@ -182,7 +182,7 @@
       "capacity": 6,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": false,
+      "petFriendly": true,
       "hasFireplace": true,
       "featured": false,
       "images": [
@@ -282,8 +282,8 @@
         },
         {
           "icon": "paw",
-          "label": "No pets",
-          "description": "See Stargazer for pet-friendly option"
+          "label": "Pets welcome",
+          "description": "This cabin is pet-friendly"
         },
         {
           "icon": "quiet",
@@ -354,7 +354,7 @@
       "capacity": 5,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": true,
+      "petFriendly": false,
       "hasFireplace": true,
       "featured": false,
       "images": [
