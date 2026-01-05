@@ -91,7 +91,7 @@ const cabinOverrides: Record<
   stargazer: {
     tagline: "Nights under infinite skies",
     description:
-      "Intimate cabin with a skylight over the bed and private hot tub. Perfect for couples or solo travelers seeking romance and wonder.",
+      "Intimate cabin with a skylight over the bed. Perfect for couples or solo travelers seeking romance and wonder.",
     rating: 5,
     reviewCount: 53,
     sqft: 450,
