@@ -5,8 +5,8 @@
       "name": "Hunter's Lair",
       "guestyListingId": "644c4e9987a657002fada980",
       "personalityTag": "Family Gathering",
-      "description": "Hunters Lair is our largest cabin and is dedicated to the spirit of the hunt in our San Diego Backcountry. This rustic cabin is ideal for small family gatherings and can sleep 6. It's the nearest cabin to our restaurant and closest to Sunrise Highway. The Lair features 2 cozy bedrooms, bathroom/shower, a small kitchenette and living room with fireplace.",
-      "shortDescription": "Largest cabin dedicated to the spirit of the hunt, sleeps 6",
+      "description": "Hunter's Lair is our largest cabin, perfect for families and small groups looking to gather in the San Diego backcountry. With two cozy bedrooms including bunk beds, a kitchenette, bathroom with shower, and a warm fireplace, you'll have everything you need for a comfortable mountain retreat. Sleeps 6.",
+      "shortDescription": "Our largest cabin with two bedrooms, sleeps 6",
       "capacity": 6,
       "bedrooms": 2,
       "bathrooms": 1,
@@ -75,7 +75,6 @@
           "category": "Outdoors",
           "items": [
             { "icon": "deck", "label": "Private deck" },
-            { "icon": "grill", "label": "BBQ grill" },
             { "icon": "fire-pit", "label": "Fire pit" },
             { "icon": "mountain", "label": "Mountain views" }
           ]
@@ -111,7 +110,7 @@
         {
           "icon": "paw",
           "label": "No pets",
-          "description": "See Stargazer for pet-friendly option"
+          "description": "See Stargazer or Hiker's Haven for pet-friendly options"
         },
         {
           "icon": "quiet",
@@ -177,12 +176,12 @@
       "name": "Fisherman's Landing",
       "guestyListingId": "644c59cd94d16e00419c1875",
       "personalityTag": "Seafaring Heritage",
-      "description": "Fisherman's Landing is one of our larger cabins and commemorates our historic seafaring tradition in San Diego. This rustic cabin is ideal for small family gatherings and can sleep 6. The Landing is outfitted with a Queen bed, bunk bed with a full bed & twin bed, and a sofa bed. It features a large fireplace and small kitchenette, as well as in-suite bathroom/shower. There is also a loft with 4 sleeping pads.",
-      "shortDescription": "Spacious cabin commemorating San Diego's seafaring tradition, sleeps 6",
+      "description": "Fisherman's Landing is a spacious cabin that welcomes families and groups with its warm, inviting atmosphere. The main level features a queen bed, bunk beds, and a cozy living area with fireplace, while a small upstairs loft offers additional sleeping space. Enjoy a well-equipped kitchenette and bathroom with shower. Sleeps 6.",
+      "shortDescription": "Spacious cabin with loft sleeping area, sleeps 6",
       "capacity": 6,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": true,
+      "petFriendly": false,
       "hasFireplace": true,
       "featured": false,
       "images": [
@@ -282,8 +281,8 @@
         },
         {
           "icon": "paw",
-          "label": "Pets welcome",
-          "description": "This cabin is pet-friendly"
+          "label": "No pets",
+          "description": "See Stargazer or Hiker's Haven for pet-friendly options"
         },
         {
           "icon": "quiet",
@@ -349,12 +348,12 @@
       "name": "Hiker's Haven",
       "guestyListingId": "644c5e7a94d16e00419c4add",
       "personalityTag": "Trail Lover's Retreat",
-      "description": "Hikers Haven is for our trail lovers and is dedicated to our intricate network of trails through the Cleveland National Forest. This rustic cabin is one of our more secluded options and features a cozy fireplace, small kitchenette and bathroom/shower. It is outfitted with a California king bed, bunk bed and sofa bed and can sleep 5 people.",
-      "shortDescription": "Trail lover's retreat with secluded mountain setting, sleeps 5",
+      "description": "Hiker's Haven offers a peaceful retreat nestled among the trails of Cleveland National Forest. This cozy, pet-friendly cabin features a California king bed, bunk beds, and a sofa bed to comfortably sleep 5. Enjoy a kitchenette, bathroom with shower, and a warm fireplace after a day on the trails.",
+      "shortDescription": "Pet-friendly trail retreat in a secluded setting, sleeps 5",
       "capacity": 5,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": false,
+      "petFriendly": true,
       "hasFireplace": true,
       "featured": false,
       "images": [
@@ -369,7 +368,8 @@
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
         { "icon": "kitchen", "label": "Kitchenette" },
-        { "icon": "parking", "label": "Parking" }
+        { "icon": "parking", "label": "Parking" },
+        { "icon": "paw", "label": "Pet Friendly" }
       ],
       "priceRange": {
         "min": 149,
@@ -422,7 +422,8 @@
           "items": [
             { "icon": "shower", "label": "Bathroom/shower" },
             { "icon": "linens", "label": "Linens provided" },
-            { "icon": "towels", "label": "Towels provided" }
+            { "icon": "towels", "label": "Towels provided" },
+            { "icon": "paw", "label": "Pet friendly (one pet)" }
           ]
         }
       ],
@@ -447,8 +448,8 @@
         },
         {
           "icon": "paw",
-          "label": "No pets",
-          "description": "See Stargazer for pet-friendly option"
+          "label": "Pets welcome",
+          "description": "One pet allowed with $50 fee"
         },
         {
           "icon": "quiet",
@@ -514,8 +515,8 @@
       "name": "Stargazer",
       "guestyListingId": "644c641366b10c00519b823a",
       "personalityTag": "Romantic Escape",
-      "description": "Stargazer is dedicated to our starry night skies and our Dark Sky designation in the San Backcountry. It is one of our most secluded cabins and is perfect for a romantic getaway for 2. Stargazer features a cozy fireplace, small kitchenette and bathroom/shower. It is outfitted with one queen bed and is the only pet friendly cabin we offer.",
-      "shortDescription": "Romantic getaway under dark skies, pet friendly, sleeps 2",
+      "description": "Stargazer is a cozy retreat perfect for couples seeking a romantic mountain escape. Nestled in our most secluded setting, this pet-friendly cabin offers stunning views of San Diego's Dark Sky-certified night skies. Features a comfortable queen bed, kitchenette, bathroom with shower, and a warm fireplace to enjoy after an evening of stargazing. Sleeps 2.",
+      "shortDescription": "Pet-friendly romantic retreat under dark skies, sleeps 2",
       "capacity": 2,
       "bedrooms": 1,
       "bathrooms": 1,
@@ -655,7 +656,7 @@
         {
           "icon": "paw",
           "title": "Pet-friendly cabin",
-          "description": "The only cabin where your furry friends are welcome to join the adventure."
+          "description": "Bring your furry friend along for a mountain adventure together."
         }
       ],
       "securityDeposit": 250,
@@ -677,8 +678,8 @@
       "name": "Wildlife Lookout",
       "guestyListingId": "64c282fbd8d5430038155b72",
       "personalityTag": "Nature Explorer",
-      "description": "San Diego is one of the most rich & bio-diverse Eco-systems in the country! From high mountain peaks, forests, desert & beaches - we have it all! This diverse habitat is also home to an abundance of wildlife species. Wildlife Lookout is dedicated to this rich & bio-diverse heritage, which is one of our greatest destination hallmarks. This is our most secluded cabin with king bed, sofa bed and can sleep a family of 4. It has a bathroom/shower, a small kitchenette and living room with fireplace.",
-      "shortDescription": "Most secluded cabin celebrating San Diego's biodiversity, sleeps 4",
+      "description": "Wildlife Lookout is our most secluded cabin, offering a peaceful escape surrounded by the natural beauty of the San Diego backcountry. Perfect for families or couples seeking privacy, this cozy retreat features a king bed, sofa bed, kitchenette, bathroom with shower, and a warm fireplace. Sleeps 4.",
+      "shortDescription": "Our most secluded cabin with forest views, sleeps 4",
       "capacity": 4,
       "bedrooms": 1,
       "bathrooms": 1,
@@ -790,7 +791,8 @@
         },
         {
           "icon": "paw-off",
-          "label": "No pets allowed"
+          "label": "No pets allowed",
+          "description": "See Stargazer or Hiker's Haven for pet-friendly options"
         },
         {
           "icon": "wildlife",
