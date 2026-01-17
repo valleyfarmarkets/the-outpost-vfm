@@ -1,67 +1,17 @@
-"use client";
-
-import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/container";
 import { NAV_LINKS } from "@/lib/constants";
 import siteInfo from "@/data/site-info.json";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const footerRef = useRef<HTMLElement>(null);
-  const columnsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Animate footer container
-      gsap.from(footerRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom-=100",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Stagger animate columns
-      const columns = columnsRef.current?.children;
-      if (columns) {
-        gsap.from(columns, {
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power2.out",
-          delay: 0.2,
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }
-    });
-
-    return () => ctx.revert();
-  }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#221e1e]">
+    <footer className="bg-[#221e1e]">
       <Container>
-        <div ref={columnsRef} className="grid gap-6 py-8 md:grid-cols-3">
+        <div className="grid gap-6 py-8 md:grid-cols-3">
           <div>
             <Image
               src="/images/outpost_logo_2.svg"
