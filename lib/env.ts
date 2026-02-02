@@ -70,7 +70,13 @@ export const GUESTY_CLIENT_ID = serverEnv.GUESTY_CLIENT_ID;
 export const GUESTY_CLIENT_SECRET = serverEnv.GUESTY_CLIENT_SECRET;
 export const GUESTY_API_BASE_URL = serverEnv.GUESTY_API_BASE_URL;
 export const GUESTY_OAUTH_URL = serverEnv.GUESTY_OAUTH_URL;
-export const REDIS_URL = serverEnv.REDIS_URL;
+// Validate REDIS_URL independently to avoid triggering full schema validation
+// This allows Redis to work even if other env vars are missing
+export const REDIS_URL = (() => {
+  const url = process.env.REDIS_URL || process.env.STORAGE_REDIS_URL;
+  if (!url) throw new Error('REDIS_URL environment variable is required');
+  return url;
+})();
 export const STRIPE_SECRET_KEY = serverEnv.STRIPE_SECRET_KEY;
 export const QUOTE_EXPIRATION_MS = parseInt(serverEnv.QUOTE_EXPIRATION_MINUTES) * 60 * 1000;
 export const SUPPORT_EMAIL = serverEnv.SUPPORT_EMAIL;
