@@ -39,8 +39,15 @@ export async function getValidToken(): Promise<string> {
     return cached.accessToken;
   }
 
-  // 🚨 CRITICAL FIX: Check if renewal is already in progress (Lock)
-  const isRenewing = await getRedisValue(RENEWAL_LOCK_KEY);
+  // Check if renewal is already in progress (Lock)
+  // If Redis fails, proceed without lock (acceptable for degraded mode)
+  let isRenewing: string | null = null;
+  try {
+    isRenewing = await getRedisValue(RENEWAL_LOCK_KEY);
+  } catch {
+    console.warn('[Token Manager] Redis unavailable, proceeding without lock check');
+  }
+
   if (isRenewing) {
     // Another instance is renewing. Wait 500ms and retry (polling)
     console.log('[Token Manager] Renewal in progress, waiting...');
@@ -66,7 +73,12 @@ export async function getValidToken(): Promise<string> {
   }
 
   // Set Lock (expire in 10s to prevent deadlocks)
-  await setRedisValue(RENEWAL_LOCK_KEY, 'true', 10);
+  // If Redis fails, proceed without lock (may cause duplicate renewals, but that's acceptable)
+  try {
+    await setRedisValue(RENEWAL_LOCK_KEY, 'true', 10);
+  } catch {
+    console.warn('[Token Manager] Redis unavailable, proceeding without lock');
+  }
 
   try {
     console.log('[Token Manager] Renewing token...');
@@ -74,19 +86,27 @@ export async function getValidToken(): Promise<string> {
     // Renew token
     const newToken = await renewToken();
 
-    // Save to Redis
-    await setStoredToken({
-      accessToken: newToken.access_token,
-      expiresAt: now + newToken.expires_in * 1000,
-      renewalCount: (cached?.renewalCount || 0) + 1,
-      renewalResetTime: cached?.renewalResetTime || now,
-    });
+    // Save to Redis (non-critical - token works even if not cached)
+    try {
+      await setStoredToken({
+        accessToken: newToken.access_token,
+        expiresAt: now + newToken.expires_in * 1000,
+        renewalCount: (cached?.renewalCount || 0) + 1,
+        renewalResetTime: cached?.renewalResetTime || now,
+      });
+      console.log('[Token Manager] Token renewed and cached successfully');
+    } catch {
+      console.warn('[Token Manager] Token renewed but caching failed (Redis unavailable)');
+    }
 
-    console.log('[Token Manager] Token renewed successfully');
     return newToken.access_token;
   } finally {
     // Release Lock (even if renewal fails)
-    await deleteRedisValue(RENEWAL_LOCK_KEY);
+    try {
+      await deleteRedisValue(RENEWAL_LOCK_KEY);
+    } catch {
+      // Ignore - lock will expire anyway
+    }
   }
 }
 
@@ -100,26 +120,52 @@ async function renewToken(): Promise<OAuthTokenResponse> {
   // Import env variables lazily to avoid build-time evaluation
   const { GUESTY_CLIENT_ID, GUESTY_CLIENT_SECRET, GUESTY_OAUTH_URL } = await import('../env');
 
-  const response = await fetch(GUESTY_OAUTH_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      grant_type: 'client_credentials',
-      scope: 'booking_engine:api',
-      client_id: GUESTY_CLIENT_ID,
-      client_secret: GUESTY_CLIENT_SECRET,
-    }),
-  });
+  // Retry token renewal when Guesty rate-limits (429) with backoff
+  const MAX_RENEWAL_RETRIES = 3;
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Token renewal failed (${response.status}): ${errorText}`);
+  let lastError: Error | null = null;
+
+  for (let attempt = 0; attempt < MAX_RENEWAL_RETRIES; attempt++) {
+    const response = await fetch(GUESTY_OAUTH_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'client_credentials',
+        scope: 'booking_engine:api',
+        client_id: GUESTY_CLIENT_ID,
+        client_secret: GUESTY_CLIENT_SECRET,
+      }),
+    });
+
+    // Handle Guesty rate limits on the OAuth endpoint
+    if (response.status === 429) {
+      const retryAfterHeader = response.headers.get('Retry-After');
+      const retryAfterSeconds = retryAfterHeader ? parseInt(retryAfterHeader, 10) : NaN;
+      // Use Retry-After if present, otherwise exponential backoff (1s, 2s, 4s)
+      const delayMs =
+        Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0
+          ? retryAfterSeconds * 1000
+          : 1000 * Math.pow(2, attempt);
+
+      lastError = new Error(`Token renewal rate limited (429). Retrying in ${delayMs}ms.`);
+      console.warn('[Token Manager] OAuth rate limited. Retrying...', { attempt: attempt + 1, delayMs });
+      await sleep(delayMs);
+      continue;
+    }
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      lastError = new Error(`Token renewal failed (${response.status}): ${errorText}`);
+      break;
+    }
+
+    const data: OAuthTokenResponse = await response.json();
+    return data;
   }
 
-  const data: OAuthTokenResponse = await response.json();
-  return data;
+  throw lastError || new Error('Token renewal failed after retries');
 }
 
 /**
