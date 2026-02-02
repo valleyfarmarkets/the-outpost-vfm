@@ -17,7 +17,8 @@ const serverEnvSchema = z.object({
 // Validate client-side env vars
 const clientEnvSchema = z.object({
   NEXT_PUBLIC_ENABLE_GUESTY_BOOKING: z.enum(['true', 'false']).default('false'),
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().startsWith('pk_'),
+  // Make optional so server imports that don't need Stripe don't crash
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().startsWith('pk_').optional(),
   NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
 });
@@ -82,6 +83,6 @@ export const QUOTE_EXPIRATION_MS = parseInt(serverEnv.QUOTE_EXPIRATION_MINUTES) 
 export const SUPPORT_EMAIL = serverEnv.SUPPORT_EMAIL;
 
 export const ENABLE_GUESTY_BOOKING = clientEnv.NEXT_PUBLIC_ENABLE_GUESTY_BOOKING === 'true';
-export const STRIPE_PUBLISHABLE_KEY = clientEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+export const STRIPE_PUBLISHABLE_KEY = clientEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? '';
 export const SUPABASE_URL = clientEnv.NEXT_PUBLIC_SUPABASE_URL;
 export const SUPABASE_ANON_KEY = clientEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY;
