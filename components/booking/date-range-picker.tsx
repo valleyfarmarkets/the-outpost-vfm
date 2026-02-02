@@ -38,17 +38,21 @@ export function DateRangePicker({
         mode="range"
         selected={selected}
         onSelect={(range) => {
-          if (range) {
+          // If both dates were already selected and user clicks a new date,
+          // start fresh with clicked date as check-in
+          if (selected.from && selected.to && range?.from && !range?.to) {
+            onSelect({ from: range.from, to: undefined });
+          } else if (range) {
             onSelect({ from: range.from, to: range.to });
           }
         }}
         disabled={disabled ? true : disabledDays}
         numberOfMonths={2}
         modifiersClassNames={{
-          selected: 'bg-brand-primary/10 text-brand-primary', // Base selected style (middle)
-          range_start: 'bg-brand-primary text-white rounded-l-md hover:bg-brand-primary hover:text-white', // Start cap
-          range_end: 'bg-brand-primary text-white rounded-r-md hover:bg-brand-primary hover:text-white', // End cap
-          range_middle: 'bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20', // Middle connection
+          selected: 'bg-brand-primary/10 text-brand-primary',
+          range_start: 'bg-brand-primary text-white rounded-full hover:bg-brand-primary hover:text-white',
+          range_end: 'bg-brand-primary text-white rounded-full hover:bg-brand-primary hover:text-white',
+          range_middle: 'bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20',
           today: 'font-bold text-brand-primary',
           disabled: 'opacity-30 cursor-not-allowed text-gray-400',
         }}
