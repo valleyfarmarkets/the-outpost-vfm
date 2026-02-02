@@ -52,22 +52,22 @@
       "items": [
         {
           "id": "baja-salad",
-          "name": "Baja Salad",
-          "description": "Fresh greens with grilled chicken, black beans, corn, avocado, and chipotle ranch dressing.",
+          "name": "Baja Green Salad",
+          "description": "Chopped Romaine, Roasted Corn Elote, Sauteed Peppers and Onions, Pico De Gallo, Cotija Cheese, Chipotle Aioli, and Avocado Crema, Choice of Ranch, Red Wine Vinaigrette, or Blue Cheese Dressing.",
           "price": 13.00,
           "available": true
         },
         {
           "id": "italian-antipasto-salad",
           "name": "Italian Antipasto Salad",
-          "description": "Mixed greens with salami, pepperoni, mozzarella, olives, pepperoncini, and Italian dressing.",
+          "description": "Chopped Romaine, Pepperoni, Kalamata Olives, Red Onion, Oven Roasted Tomatoes, Mushrooms, Pepperoncini, topped with fresh Parmesan, Choice of Red Wine Vinaigrette, Ranch or Blue Cheese Dressing.",
           "price": 13.00,
           "available": true
         },
         {
           "id": "mount-laguna-caesar",
           "name": "Mount Laguna Caesar",
-          "description": "Crisp romaine lettuce, parmesan cheese, croutons, and house-made Caesar dressing.",
+          "description": "Chopped Romaine, Topped with House Made Croutons, Parmesan Cheese and Oven Roasted Tomatoes, Served with Creamy Caesar Dressing.",
           "price": 12.00,
           "available": true,
           "dietaryTags": ["vegetarian"]
@@ -82,29 +82,29 @@
       "items": [
         {
           "id": "slow-smoked-bbq-pulled-pork",
-          "name": "Slow Smoked BBQ Pulled Pork",
-          "description": "Tender pulled pork smoked low and slow, served with coleslaw and cornbread.",
+          "name": "Slow Smoked BBQ Pork",
+          "description": "Served on a Toasted Brioche Bun, Route 94 BBQ Sauce and French Fries.",
           "price": 16.00,
           "available": true
         },
         {
           "id": "southern-style-chicken-tenders",
           "name": "Southern Style Chicken Tenders",
-          "description": "Hand-breaded chicken tenders fried golden brown. Served with fries and honey mustard.",
+          "description": "Served with Cole Slaw, French Fries and Ranch.",
           "price": 15.00,
           "available": true
         },
         {
           "id": "vfm-california-burrito",
           "name": "VFM California Burrito",
-          "description": "Flour tortilla stuffed with carne asada, fries, cheese, guacamole, and sour cream.",
+          "description": "Jumbo Flour Tortilla filled with Carne Asada, French Fries, Roasted Corn Elote, Pico De Gallo, Monterrey Jack Cheese, Avocado Crema and Chipotle Aioli.",
           "price": 15.00,
           "available": true
         },
         {
           "id": "vfm-signature-smashburger",
-          "name": "VFM Signature Smashburger",
-          "description": "Two smashed patties with American cheese, pickles, onions, and our signature sauce on a toasted bun.",
+          "name": "Signature Smash Burger",
+          "description": "Ground Chuck Topped with Umami Onions, American Cheese, Served on a Kings Hawaiian Bun with Secret Sauce and French Fries.",
           "price": 14.00,
           "available": true,
           "featured": true
@@ -143,7 +143,7 @@
         {
           "id": "ono-nui",
           "name": "Ono Nui",
-          "description": "Hawaiian-style pizza with ham, pineapple, and mozzarella cheese.",
+          "description": "Smoked Pulled Pork, Applewood Smoked Bacon, Caramelized Onions, Pineapple, Pickled Jalapeños, Chili Garlic Sauce, Five Cheese Blend and Fresh Cilantro.",
           "price": 19.00,
           "available": true,
           "featured": true
@@ -151,43 +151,43 @@
         {
           "id": "miss-piggy",
           "name": "Miss Piggy",
-          "description": "BBQ sauce base with pulled pork, bacon, red onion, and mozzarella cheese.",
+          "description": "Slow Smoked Pulled Pork, Route 94 BBQ Sauce, Caramelized Onions, Pickled Jalapeños, Roasted Garlic, Five Cheese Blend and Fresh Cilantro.",
           "price": 20.00,
           "available": true
         },
         {
           "id": "the-herbivore",
           "name": "The Herbivore",
-          "description": "Garden vegetables including mushrooms, bell peppers, onions, olives, and tomatoes.",
+          "description": "Pepperoncini, Kalamata Olives, Slow Roasted Tomatoes, Roasted Garlic, Red Onions, Marinara, Vegan Mozzarella Served on Vegan Cauliflower Crust.",
           "price": 18.00,
           "available": true,
-          "dietaryTags": ["vegetarian"]
+          "dietaryTags": ["vegan"]
         },
         {
           "id": "butchers-pizza",
           "name": "Butchers Pizza",
-          "description": "Loaded with pepperoni, sausage, bacon, ham, and mozzarella cheese.",
+          "description": "Pepperoni, Italian Sausage, Applewood Smoked Bacon, Smoked Ham, Roasted Garlic, Marinara, Five Cheese Blend.",
           "price": 20.00,
           "available": true
         },
         {
           "id": "sunrise-highway",
           "name": "Sunrise Highway",
-          "description": "Breakfast pizza with scrambled eggs, bacon, sausage, and cheddar cheese.",
+          "description": "Pepperoni, Mushrooms, Roasted Red Bell Pepper, Oven Roasted Tomato, Roasted Garlic, Marinara, Five Cheese Blend.",
           "price": 19.00,
           "available": true
         },
         {
           "id": "el-barracho",
           "name": "El Barracho",
-          "description": "Spicy pizza with jalapeños, chorizo, pepper jack cheese, and fresh cilantro.",
+          "description": "Magic Pinto Beans, Grilled Carne Asada, Roasted Corn Elote, Sauteed Peppers and Onions, Roasted Garlic, Pickled Jalapeños, Topped with Monterrey Jack and Cotija Cheese, Chipotle Aioli and Fresh Cilantro.",
           "price": 20.00,
           "available": true
         },
         {
           "id": "cheese-pizza",
           "name": "Cheese Pizza",
-          "description": "Classic pizza with tomato sauce and mozzarella cheese.",
+          "description": "Five Cheese Blend, Marinara.",
           "price": 16.00,
           "available": true,
           "dietaryTags": ["vegetarian"]
@@ -195,7 +195,7 @@
         {
           "id": "pepperoni-pizza",
           "name": "Pepperoni Pizza",
-          "description": "Traditional pizza with pepperoni and mozzarella cheese.",
+          "description": "Pepperoni, Five Cheese Blend, Marinara.",
           "price": 18.00,
           "available": true
         }
@@ -206,7 +206,22 @@
       "name": "Dessert",
       "description": "Sweet treats to finish your meal",
       "displayOrder": 5,
-      "items": []
+      "items": [
+        {
+          "id": "cobbler-of-the-day",
+          "name": "Cobbler of the Day",
+          "description": "Cobbler of the Day served with a scoop of Sea Salt Vanilla Bean Ice Cream.",
+          "price": 0.00,
+          "available": true
+        },
+        {
+          "id": "root-beer-float",
+          "name": "Root Beer Float",
+          "description": "Mutual Friend Vanilla Bean Ice Cream, and Traditional Root Beer Soda.",
+          "price": 0.00,
+          "available": true
+        }
+      ]
     },
     {
       "id": "sides",
