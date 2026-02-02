@@ -93,7 +93,7 @@ export function Header() {
                   width={140}
                   height={40}
                   alt="The Outpost VFM"
-                  className="h-10 w-auto invert brightness-0 filter"
+                  className="h-10 w-auto"
                 />
               </Link>
               <MobileMenu />
