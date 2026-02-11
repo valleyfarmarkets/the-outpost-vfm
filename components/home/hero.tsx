@@ -21,20 +21,20 @@ export function Hero({ nextEvent }: HeroProps) {
             Mount Laguna. Your perfect escape to the San Diego backcountry.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link href="/menu">
+            <Link href="/menu" className="w-full sm:w-auto">
               <Button
                 size="lg"
                 variant="primary"
-                className="h-14 px-8 text-lg rounded-2xl shadow-xl"
+                className="w-full h-14 px-8 text-lg rounded-2xl shadow-xl"
               >
                 View Menu
               </Button>
             </Link>
-            <Link href="/cabins">
+            <Link href="/cabins" className="w-full sm:w-auto">
               <Button
                 size="lg"
                 variant="primary"
-                className="h-14 px-8 text-lg rounded-2xl shadow-xl !bg-[#c87524] !text-black !hover:bg-[#b7661e] !focus-visible:ring-[#c87524] border-transparent"
+                className="w-full h-14 px-8 text-lg rounded-2xl shadow-xl !bg-[#c87524] !text-black !hover:bg-[#b7661e] !focus-visible:ring-[#c87524] border-transparent"
               >
                 Book a Cabin
               </Button>
