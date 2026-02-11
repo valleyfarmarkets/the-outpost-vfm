@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
-import Link from "next/link";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { FooterToggle } from "@/components/layout/footer-toggle";
 import { Providers } from "@/components/providers/providers";
 import { BookingModal } from "@/components/booking/booking-modal";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { ClosureBanner } from "@/components/layout/closure-banner";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -91,13 +91,7 @@ export default function RootLayout({
             }}
           />
           {/* Closure banner */}
-          <div className="fixed top-1 left-0 right-0 z-[55] bg-brand-primary py-2 text-center text-sm font-medium text-white">
-            Outpost is currently closed while we make repairs.{" "}
-            <Link href="/cabins" className="underline hover:opacity-80">
-              Cabins are still available to book
-            </Link>
-            .
-          </div>
+          <ClosureBanner />
           <Header />
           <main className="flex-1">{children}</main>
           <FooterToggle />
