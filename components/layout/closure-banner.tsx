@@ -27,7 +27,7 @@ export function ClosureBanner() {
   }
 
   return (
-    <div className="fixed top-[52px] lg:top-1 left-0 right-0 z-[45] bg-brand-primary py-2 text-center text-sm font-medium text-white">
+    <div className="fixed top-[68px] lg:top-1 left-0 right-0 z-[45] bg-brand-primary py-2 text-center text-sm font-medium text-white">
       <div className="relative px-10">
         Outpost is currently closed while we make repairs.{" "}
         <Link href="/cabins" className="underline hover:opacity-80">
