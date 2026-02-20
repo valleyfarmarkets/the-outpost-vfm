@@ -110,7 +110,7 @@
         {
           "icon": "paw",
           "label": "No pets",
-          "description": "See Stargazer or Hiker's Haven for pet-friendly options"
+          "description": "See Stargazer or Fisherman's Landing for pet-friendly options"
         },
         {
           "icon": "quiet",
@@ -176,12 +176,12 @@
       "name": "Fisherman's Landing",
       "guestyListingId": "644c59cd94d16e00419c1875",
       "personalityTag": "Seafaring Heritage",
-      "description": "Fisherman's Landing is a spacious cabin that welcomes families and groups with its warm, inviting atmosphere. The main level features a queen bed, bunk beds, and a cozy living area with fireplace, while a small upstairs loft offers additional sleeping space. Enjoy a well-equipped kitchenette and bathroom with shower. Sleeps 6.",
-      "shortDescription": "Spacious cabin with loft sleeping area, sleeps 6",
+      "description": "Fisherman's Landing is a spacious, pet-friendly cabin that welcomes families and groups with its warm, inviting atmosphere. The main level features a queen bed, bunk beds, and a cozy living area with fireplace, while a small upstairs loft offers additional sleeping space. Enjoy a well-equipped kitchenette and bathroom with shower. Sleeps 6.",
+      "shortDescription": "Pet-friendly spacious cabin with loft sleeping area, sleeps 6",
       "capacity": 6,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": false,
+      "petFriendly": true,
       "hasFireplace": true,
       "featured": false,
       "images": [
@@ -195,7 +195,8 @@
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
         { "icon": "kitchen", "label": "Kitchenette" },
-        { "icon": "parking", "label": "Parking" }
+        { "icon": "parking", "label": "Parking" },
+        { "icon": "paw", "label": "Pet Friendly" }
       ],
       "priceRange": {
         "min": 149,
@@ -256,7 +257,8 @@
           "items": [
             { "icon": "shower", "label": "Ensuite bathroom/shower" },
             { "icon": "linens", "label": "Linens provided" },
-            { "icon": "towels", "label": "Towels provided" }
+            { "icon": "towels", "label": "Towels provided" },
+            { "icon": "paw", "label": "Pet friendly (one pet)" }
           ]
         }
       ],
@@ -281,8 +283,8 @@
         },
         {
           "icon": "paw",
-          "label": "No pets",
-          "description": "See Stargazer or Hiker's Haven for pet-friendly options"
+          "label": "Pets welcome",
+          "description": "One pet allowed with $50 fee"
         },
         {
           "icon": "quiet",
@@ -348,12 +350,12 @@
       "name": "Hiker's Haven",
       "guestyListingId": "644c5e7a94d16e00419c4add",
       "personalityTag": "Trail Lover's Retreat",
-      "description": "Hiker's Haven offers a peaceful retreat nestled among the trails of Cleveland National Forest. This cozy, pet-friendly cabin features a California king bed, bunk beds, and a sofa bed to comfortably sleep 5. Enjoy a kitchenette, bathroom with shower, and a warm fireplace after a day on the trails.",
-      "shortDescription": "Pet-friendly trail retreat in a secluded setting, sleeps 5",
+      "description": "Hiker's Haven offers a peaceful retreat nestled among the trails of Cleveland National Forest. This cozy cabin features a California king bed, bunk beds, and a sofa bed to comfortably sleep 5. Enjoy a kitchenette, bathroom with shower, and a warm fireplace after a day on the trails.",
+      "shortDescription": "Trail retreat in a secluded setting, sleeps 5",
       "capacity": 5,
       "bedrooms": 1,
       "bathrooms": 1,
-      "petFriendly": true,
+      "petFriendly": false,
       "hasFireplace": true,
       "featured": false,
       "images": [
@@ -368,8 +370,7 @@
       "amenities": [
         { "icon": "fireplace", "label": "Fireplace" },
         { "icon": "kitchen", "label": "Kitchenette" },
-        { "icon": "parking", "label": "Parking" },
-        { "icon": "paw", "label": "Pet Friendly" }
+        { "icon": "parking", "label": "Parking" }
       ],
       "priceRange": {
         "min": 149,
@@ -422,8 +423,7 @@
           "items": [
             { "icon": "shower", "label": "Bathroom/shower" },
             { "icon": "linens", "label": "Linens provided" },
-            { "icon": "towels", "label": "Towels provided" },
-            { "icon": "paw", "label": "Pet friendly (one pet)" }
+            { "icon": "towels", "label": "Towels provided" }
           ]
         }
       ],
@@ -448,8 +448,8 @@
         },
         {
           "icon": "paw",
-          "label": "Pets welcome",
-          "description": "One pet allowed with $50 fee"
+          "label": "No pets",
+          "description": "See Stargazer or Fisherman's Landing for pet-friendly options"
         },
         {
           "icon": "quiet",
@@ -792,7 +792,7 @@
         {
           "icon": "paw-off",
           "label": "No pets allowed",
-          "description": "See Stargazer or Hiker's Haven for pet-friendly options"
+          "description": "See Stargazer or Fisherman's Landing for pet-friendly options"
         },
         {
           "icon": "wildlife",
