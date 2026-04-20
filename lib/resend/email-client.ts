@@ -182,7 +182,7 @@ export async function sendBookingConfirmation(
 
 const CONTACT_RECIPIENTS = [
   'cam@valleyfarmmarkets.com',
-  'christine@valleyfarmmarkets.com',
+  'christine@theoutpostvfm.com',
   'ashley@valleyfarmmarkets.com',
   'derek@valleyfarmmarkets.com',
   'diana@valleyfarmmarkets.com',
