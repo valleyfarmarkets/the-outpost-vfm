@@ -3,10 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact | The Outpost VFM",
   description:
-    "Get in touch with The Outpost VFM. Find our address, phone number, email, and hours of operation in Mount Laguna.",
+    "Find temporary closure information, reopening updates, and contact details for The Outpost VFM in Mount Laguna.",
   keywords: [
     "contact",
     "Mount Laguna contact",
+    "temporary closure",
+    "reopening updates",
     "restaurant hours",
     "directions",
     "location",

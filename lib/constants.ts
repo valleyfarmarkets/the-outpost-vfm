@@ -4,6 +4,9 @@ export const SITE_CONFIG = {
   url: "https://theoutpostvfm.com",
 } as const;
 
+export const TEMPORARY_CLOSURE_FAQ_PATH =
+  "/contact#temporary-closure-faq-title";
+
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/cabins", label: "Cabins" },

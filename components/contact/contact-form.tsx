@@ -107,8 +107,8 @@ export function ContactForm() {
     <Card>
       <h2 className="text-2xl font-bold text-gray-900">Send Us a Message</h2>
       <p className="mt-2 text-sm text-gray-600">
-        Have a question or comment? Fill out the form below and we&apos;ll get
-        back to you as soon as possible.
+        For questions not answered in the closure FAQ, fill out the form below
+        and we&apos;ll get back to you as soon as possible.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -222,7 +222,11 @@ export function ContactForm() {
           />
         </div>
 
-        <Button type="submit" disabled={isSubmitting || !turnstileToken} className="w-full">
+        <Button
+          type="submit"
+          disabled={isSubmitting || !turnstileToken}
+          className="w-full"
+        >
           {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
       </form>
