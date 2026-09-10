@@ -83,7 +83,7 @@ const cabinOverrides: Record<
   "fishermans-landing": {
     tagline: "Cast your worries away",
     description:
-      "Our most secluded cabin with private creek access. Ideal for anglers and those seeking true tranquility in nature.",
+      "A cozy cabin with a single queen bed, a bunk bed, and nautical decorations.",
     rating: 4.9,
     reviewCount: 28,
     sqft: 1100,
